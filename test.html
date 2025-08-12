@@ -44,13 +44,46 @@
     .logo{display:flex;align-items:center;gap:10px}
     .logo img{height:32px;width:auto}
 
+    .highlight-dots {
+    position: relative;
+    display: inline-block;
+    }
+
+    .highlight-dots::before {
+    content: "";
+    position: absolute;
+    top: -8px; /* 글자 위 높이 조절 */
+    left: 0;
+    width: 100%;
+    height: 5px; /* 점의 크기 */
+    background-image: radial-gradient(circle, red 3px, transparent 2px);
+    background-repeat: repeat-x;
+    background-size: 50px 5px; /* 점 간격 */
+    }
+
+    .highlight-dots2 {
+    position: relative;
+    display: inline-block;
+    }
+
+    .highlight-dots2::before {
+    content: "";
+    position: absolute;
+    top: -8px; /* 글자 위 높이 조절 */
+    left: 0;
+    width: 100%;
+    height: 5px; /* 점의 크기 */
+    background-image: radial-gradient(circle, red 3px, transparent 2px);
+    background-repeat: repeat-x;
+    background-size: 40px 5px; /* 점 간격 */
+    }
 /* Hero */
     .vt-hero{position:relative;min-height:72vh;background:#ffd54d}
     .vt-hero__video{
     position:absolute; inset:0; z-index:0;
     width:100%; height:100%;
     object-fit:contain;                /* 확대 금지 */
-    object-position:right center;      /* 우측 기준 */
+    object-position:center;      /* 우측 기준 */
     background: #ffd54d;
     filter:none; opacity:1; mix-blend-mode:normal;
     }
@@ -64,14 +97,46 @@
     position:absolute; inset:0; z-index:1; pointer-events:none;
     background:linear-gradient(90deg);
     }
+    .vt-hero .em{color:#DC2626}
+
 
     /* header bar (on top of hero) */
-    .vt-hero__bar{position:absolute;top:0;left:0;right:0;z-index:2;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
-    .vt-hero__logo{height:34px;width:auto}
-    .vt-hero__nav{display:flex;gap:12px}
+    .vt-hero__bar{position:absolute;top:30px;left:0;right:0;z-index:2;height:64px;display:flex;align-items:center;justify-content:space-around;padding:0 60px}
+    .vt-hero__logo{height:90px;width:auto; }
+    .vt-hero__nav a {
+        display: inline-flex;           /* 세로 중앙 정렬 */
+        align-items: center;           /* 세로 정렬 핵심 */
+        justify-content: center;
+        height: 38px;                  /* 로고/버튼 높이에 맞춤 */
+        line-height: 1;
+        padding: 0 14px;
+        font-size: 16px;
+        font-weight: 600;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        box-sizing: border-box;        /* 높이 계산 안정화 */
+    }    
     .vt-btn--ghost{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border:1px solid rgba(255,255,255,.55);border-radius:999px;color:#fff;text-decoration:none;font-weight:700;backdrop-filter:saturate(160%) blur(2px)}
     .vt-btn--ghost:hover{background:rgba(255,255,255,.12)}
+    .vt-link {
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+    text-decoration: none;
+    align-items: center;
+    }
 
+    .vt-link:hover {
+    opacity: 0.85;
+    }
+
+    .vt-outline {
+    padding: 8px 16px;
+    border: 2px solid white;
+    border-radius: 8px;
+    font-weight: 700;
+    }
     /* center content */
     .vt-hero__inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:100%;padding:96px 16px 64px}
     .vt-hero__lead{color:#fff;font-weight:800;font-size:clamp(16px,1.3vw,20px);line-height:1.5;opacity:.95}
@@ -90,7 +155,7 @@
 
     /* CTA */
     .vt-hero__cta{margin-top:18px}
-    .vt-btn--outline{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;border:5px solid rgba(255,255,255,.9);color:#fff;text-decoration:none;font-weight:800;gap:8px;box-shadow:0 10px 26px rgba(0,0,0,.18)}
+    .vt-btn--outline{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;border:5px solid rgba(255,255,255,.9);color:#fff;text-decoration:none;font-weight:600;gap:8px;box-shadow:0 10px 26px rgba(0,0,0,.18)}
     .vt-btn--outline:hover{background:rgba(255,255,255,.12)}
 
     /* scroll indicator */
@@ -248,6 +313,7 @@
     .vt-onestop {
     position: relative;
     width: 100%;
+    height:300px;
     overflow: hidden;
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
@@ -449,12 +515,12 @@
     .kakao .panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px}
     .kakao h3{margin:0 0 8px;font-size:20px;font-weight:800}
 
-    /* Testimonials */
+/* Testimonials */
     .testi{background:#F8FAFC;padding:72px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-    .testi .section-kicker{color:#EF4444;font-weight:800;letter-spacing:.02em;text-align:left;margin:0 0 8px}
-    .testi .section-title{font-size:40px;font-weight:900;margin:0 0 28px;letter-spacing:-.4px}
+    .testi .section-kicker{color:#EF4444;font-size:40px;font-weight:500;letter-spacing:.02em;text-align:left;margin:0 0 8px}
+    .testi .section-title{font-size:50px;font-weight:700;margin:0 0 28px;letter-spacing:-.4px}
     .testi .subgrid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:22px}
-    .testi h3{margin:0;color:#111827;font-weight:800}
+    .testi h3{margin:0;font-size:28px;color:#111827;font-weight:500}
     .testi .bubble {
         background:#fff;
         border:1px solid #E5E7EB;
@@ -491,7 +557,7 @@
     @media (max-width:1024px){ .testi .subgrid{grid-template-columns:1fr} .testi .section-title{font-size:32px}}
 
 /* ==== Bottom CTA (full-bleed, image no-crop) ==== */
-    .vt-cta{position:relative;width:100%;overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .vt-cta{position:relative;width:100%; height: 300px;; overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
     .vt-cta__bg{display:block;width:100%;height:auto;vertical-align:middle} /* 원본 비율 유지, 가로 100% */
     .vt-cta__scrim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.38) 40%,rgba(0,0,0,.18) 65%,rgba(0,0,0,0) 90%);pointer-events:none}
     .vt-cta__content{
@@ -511,12 +577,28 @@
     font-size:clamp(22px,2.8vw,42px);text-shadow:0 2px 10px rgba(0,0,0,.45)
     }
 
-    .vt-btn{
-    display:inline-flex;align-items:center;justify-content:center;gap:8px;
-    padding:14px 22px;border-radius:9999px;background:#0B0B0B;color:#fff;
-    font-weight:800;text-decoration:none;white-space:nowrap;box-shadow:0 10px 28px rgba(0,0,0,.35);
-    transition:transform .15s ease,filter .15s ease
+    .highlight {
+        color: #FACC15; 
     }
+
+
+    .vt-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 18px 28px; /* ⬅︎ 여기서 사이즈 조정 */
+    font-size: 20px;     /* ⬅︎ 글자 크기 증가 */
+    border-radius: 9999px;
+    background: #0B0B0B;
+    color: #fff;
+    font-weight: 800;
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, .35);
+    transition: transform .15s ease, filter .15s ease;
+    }
+
     .vt-btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
     .vt-btn:active{transform:translateY(0) scale(.98)}
 
@@ -532,7 +614,7 @@
     .footer-row{
         display:flex; align-items:flex-start; gap:18px;
     }
-    .footer-brand img{height:34px; width:auto; display:block}
+    .footer-brand img{height:60px; width:auto; display:block}
 
     .footer-meta{font-size:15px; line-height:1.9; color:#0f172a}
     .footer-meta .row{margin:0}
@@ -570,21 +652,22 @@
   <!-- HERO -->
     <section class="vt-hero" aria-label="메인 히어로">
     <!-- 배경 비디오 -->
-    <video class="vt-hero__video" src="/assets/header_vid2.mp4" autoplay muted loop playsinline poster="/assets/white.png"></video>
+    <video class="vt-hero__video" src="/assets/header_vid2.mp4" autoplay muted loop playsinline class="video"></video>
     <!-- 색상 톤 + 스크림 -->
-    <div class="vt-hero__tint" aria-hidden="true"></div>
-    <div class="vt-hero__scrim" aria-hidden="true"></div>
+   
 
     <!-- 상단 로고/네비 -->
     <div class="vt-hero__bar">
         <img class="vt-hero__logo" src="/assets/vtlogo.png" alt="VT 로고">
+
         <nav class="vt-hero__nav" aria-label="주요 메뉴">
-        <a class="vt-btn--ghost" href="#estimate">감정평가</a>
-        <a class="vt-btn--ghost" href="#tax">세금 컨설팅</a>
-        <a class="vt-btn--ghost" href="#law">부동산 법률상담</a>
-        <a class="vt-btn--ghost" href="#avm">추정가 확인하기</a>
+            <a class="vt-link" href="#estimate">감정평가</a>
+            <a class="vt-link" href="#tax">세금 컨설팅</a>
+            <a class="vt-link" href="#law">부동산 법률 상담</a>
+            <a class="vt-link vt-outline" href="#avm">추정가 확인하기</a>
         </nav>
     </div>
+
 
     <!-- 중앙 카피/타이틀/CTA -->
     <div class="vt-hero__inner">
@@ -592,7 +675,7 @@
         <div class="vt-hero__barline"></div>
         <h1 class="vt-hero__title"><span class="acc">V</span>ALUE <span class="acc">T</span>AX</h1>
         <div class="vt-hero__cta">
-        <a class="vt-btn--outline" href="#consult">3분 만에 나의 절세 플랜 상담하기 →</a>
+        <a class="vt-btn--outline" href="#consult">3분 만에 나의 <span class="em">절세 플랜</span> 상담하기→</a>
         </div>
     </div>
     </section>
@@ -602,7 +685,7 @@
     <section class="trust" aria-label="전담팀 소개">
         <div class="container">
             <h2 class="trust-headline">
-            <span class="em">세무팀 · 법무팀 · 감정평가 부동산 전문가</span>가 제공하는 최고의 원스톱 서비스
+            <span class="em">세무팀 · 법무팀 · 감정평가 부동산 전문가</span>가 제공하는 최고의 <span class="highlight-dots2">원스톱</span> 서비스
             </h2>
 
             <ul class="trust-grid">
@@ -823,7 +906,7 @@
     <section class="testi" id="testimonials">
         <div class="container">
             <div class="section-kicker">고객들이 증명합니다.</div>
-            <h1 class="section-title">밸류택스 원스톱 서비스의 명쾌한 해답</h1>
+            <h1 class="section-title">밸류택스 원스톱 서비스의  <span class="highlight-dots">명쾌한 해답</span></h1>
 
             <div class="subgrid">
             <h3>재개발 조합원 입주권을<br>감정평가부터 증여까지 한 번에 했습니다.</h3>
@@ -871,7 +954,10 @@
             <div class="vt-cta__headline">밸류택스로 단 5초만에 확인하세요 !</div>
         </div>
 
-        <a class="vt-btn" href="https://valuetouch.kr/main" rel="noopener">무료로 부동산 추정가 확인하기 ›</a>
+        <a class="vt-btn" href="https://valuetouch.kr/main" rel="noopener">
+            <span class="highlight">무료</span>로 부동산 추정가 확인하기 ›
+        </a>
+
     </div>
     </section>
 

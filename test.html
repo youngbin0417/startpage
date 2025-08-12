@@ -176,17 +176,17 @@
     }
 
     .services .section-subtitle {
-    text-align:center;
-    font-size:18px;
-    font-weight:600;
+    text-align:left;
+    font-size:38px;
+    font-weight:500;
     margin:0 0 6px;
     color:#111827;
     }
 
     .services .section-title {
-    text-align:center;
-    font-size:32px;
-    font-weight:800;
+    text-align:left;
+    font-size:50px;
+    font-weight:600;
     margin:0 0 48px;
     }
 
@@ -203,7 +203,8 @@
     .service-card {
     background:#fff;
     border-radius:16px;
-    padding:28px 20px;
+    width: 80%;
+    padding:10px 20px;
     box-shadow:0 4px 20px rgba(0,0,0,0.04);
     text-align:left;
     transition:transform .15s ease, box-shadow .15s ease;
@@ -214,23 +215,24 @@
     }
 
     .service-icon {
-    width:48px; height:48px; margin-bottom:16px;
+    width: 120px; height:120px;
     }
     .service-icon img {
     width:100%; height:100%; object-fit:contain;
     }
 
     .service-title {
-    font-size:18px;
-    font-weight:700;
+    font-size:22px;
+    font-weight:600;
     margin:0 0 8px;
     color:#111827;
     }
 
     .service-desc {
-    font-size:14px;
+    font-size:16px;
     color:#6B7280;
     margin:0;
+    font-weight: 600;
     line-height:1.6;
     }
 
@@ -374,14 +376,15 @@
 /* Solutions */
     .solutions {
     background:#fff;
-    padding:72px 0;
+    padding:26px 0;
+    height: 700px;
     }
 
     .solutions .section-title {
-    text-align:center;
-    font-size:28px;
-    font-weight:800;
-    margin:0 0 8px;
+    text-align:left;
+    font-size:60px;
+    font-weight:600;
+    margin:0 0 40px;
     }
 
     .solutions .section-title .em {
@@ -389,17 +392,17 @@
     }
 
     .solutions .section-subtitle {
-    text-align:center;
-    font-size:18px;
-    font-weight:500;
-    margin-bottom:48px;
+    text-align:left;
+    font-size:60px;
+    font-weight:600;
+    margin-bottom:8px;
     color:#111827;
     }
 
     .solutions-grid {
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:24px;
+    gap:32px;
     }
 
     .solution-card {
@@ -415,7 +418,7 @@
     position:absolute;
     top:0; left:50%;
     transform:translateX(-50%);
-    width:60px;
+    width:120px;
     height:4px;
     background:#E11D48;
     border-radius:999px;
@@ -426,8 +429,8 @@
     }
 
     .solution-text {
-    font-size:16px;
-    font-weight:500;
+    font-size:24px;
+    font-weight:600;
     color:#111827;
     line-height:1.6;
     white-space:pre-line;
@@ -480,8 +483,10 @@
         font-family:"Nanum Pen Script", cursive;
         font-size:28px;
         line-height:1.55;
+        padding: 24px 24px;
         color:#0F172A;
         margin:0;
+        text-align: center;
     }
     @media (max-width:1024px){ .testi .subgrid{grid-template-columns:1fr} .testi .section-title{font-size:32px}}
 
@@ -656,7 +661,10 @@
                 </div>
                 <h3 class="service-title">양도세 신고 상담</h3>
                 <p class="service-desc">
-                    정확한 양도소득세 계산과 절세 방안을 제시합니다.
+                    정확한 양도소득세 계산과
+                </p>
+                <p class="service-desc">
+                    절세 방안을 제시합니다
                 </p>
             </article>
 
@@ -666,7 +674,10 @@
                 </div>
                 <h3 class="service-title">상속세 신고 상담</h3>
                 <p class="service-desc">
-                    복잡한 상속세 절차에 대한 맞춤형 전략을 제공합니다.
+                    복잡한 상속세 절차에 대한
+                </p>
+                <p class="service-desc">
+                    맞춤형 전략을 제공합니다
                 </p>
             </article>
 
@@ -676,7 +687,10 @@
                 </div>
                 <h3 class="service-title">증여세 신고 상담</h3>
                 <p class="service-desc">
-                    사전 증여 설계부터 신고까지 효율적인 방안을 제시합니다.
+                    사전 증여 설계부터 신고까지
+                </p>
+                <p class="service-desc">
+                    효율적인 방안을 제시합니다
                 </p>
             </article>
 
@@ -686,7 +700,10 @@
                 </div>
                 <h3 class="service-title">세무조사 대응 및 조세불복</h3>
                 <p class="service-desc">
-                    세무조사 대응부터 불복 절차까지 전문적으로 지원합니다.
+                    세무조사 대응부터 불복 절차까지
+                </p>
+                <p class="service-desc">
+                    전문적으로 지원합니다.
                 </p>
             </article>
 
@@ -696,7 +713,10 @@
                 </div>
                 <h3 class="service-title">세무기장 및 자산재평가</h3>
                 <p class="service-desc">
-                    기업 및 개인의 세무기장과 자산가치 평가를 정확히 제공합니다.
+                    기업 및 개인의 세무기장과 자산가치 평가를
+                </p>
+                <p class="service-desc">
+                    정확히 제공합니다.
                 </p>
             </article>
 
@@ -706,7 +726,10 @@
                 </div>
                 <h3 class="service-title">부동산 세금 컨설팅</h3>
                 <p class="service-desc">
-                    보유 · 양도 · 취득 등 부동산 세금 전반에 대한 컨설팅을 제공합니다.
+                    보유 · 양도 · 취득 등 부동산 세금 전반에 대한
+                </p>
+                <p class="service-desc">
+                    컨설팅을 제공합니다.
                 </p>
             </article>
             </div>
@@ -811,8 +834,8 @@
             <article class="bubble">
                 <p class="handwriting">
                     자식에게 조합원 입주권을 증여 하려는데 거래사례가 없고
-                    취득세나 증여세도 몰라 신고에 애를 먹었습니다.
-                    입주권은 무형자산이라 평가하기도 어렵다는 얘기도 많이 들었습니다.
+                    취득세나 증여세도 몰라 신고에 애를 먹었습니다.<br>
+                    입주권은 무형자산이라 평가하기도 어렵다는 얘기도 많이 들었습니다.<br>
                     밸류택스는 세금 신고와 감정평가도 함께 처리해 준다고 해서
                     상담을 했는데, 무형자산 전문 평가사와 증여 전문 세무사를
                     연결해서 평가부터 세금신고까지 부담없이 해결할 수 있었습니다.
@@ -822,8 +845,8 @@
             <article class="bubble">
                 <p class="handwriting">
                     아들에게 1층 아파트를 증여했는데 세무서에서 7층 거래사례로
-                    세금을 청구해서 손이 덜덜 떨렸었어요...
-                    다행히 밸류택스로 세무·법무·감정평가 원스톱 서비스를 받았습니다.
+                    세금을 청구해서 손이 덜덜 떨렸었어요...<br>
+                    다행히 밸류택스로 세무·법무·감정평가 원스톱 서비스를 받았습니다.<br>
                     아파트 1층으로 평가서를 제출했더니 법무팀을 통해 취득세 50만원,
                     세무팀을 통해 증여세가 840만원 절세되었습니다!
                 </p>

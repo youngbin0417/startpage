@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>밸류택스 | 세무 · 법무 · 감정평가 원스톱</title>
+  <meta name="description" content="세무팀 · 법무팀 · 감정평가팀이 제공하는 부동산 절세 원스톱 서비스" />
+  <link rel="icon" href="/assets/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand:#0D1B2A; /* 남색 */
+      --ink:#101828;  /* 본문 */
+      --muted:#667085; /* 부본문 */
+      --line:#E5E7EB; /* 경계선 */
+      --bg:#F7F8FA;   /* 박스 배경 */
+      --accent:#00C389; /* 포인트 */
+      --radius:16px;
+      --container:1400px;
+    }
+    html,body{margin:0;padding:0}
+    body{font-family:"Pretendard","Noto Sans KR",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; color:var(--ink);}
+    .container{width:100%;max-width:var(--container);margin:0 auto;padding:0 20px;}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 20px;border-radius:12px;font-weight:700;text-decoration:none}
+    .btn-primary{background:#10B981;color:#fff;border:1px solid #10B981}
+    .btn-primary:hover{filter:brightness(0.95)}
+    .btn-outline{background:#fff;color:var(--ink);border:1px solid #CBD5E1}
+    .btn-noline{background-color: transparent;}
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border:1px solid rgba(255,255,255,.35);border-radius:999px}
+    .shadow-soft{box-shadow:0 10px 30px rgba(2,8,23,.08)}
+
+/* Top bar */
+    .topbar{background:#0B1220;color:#E2E8F0;font-size:14px}
+    .topbar .row{height:38px;display:flex;align-items:center;justify-content:space-between}
+    .topbar a{color:#E2E8F0;text-decoration:underline;text-underline-offset:3px}
+
+/* Header */
+    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.84);backdrop-filter:saturate(160%) blur(8px);border-bottom:1px solid #E5E7EB}
+    header .row{height:64px;display:flex;align-items:center;justify-content:space-between}
+    .logo{display:flex;align-items:center;gap:10px}
+    .logo img{height:32px;width:auto}
+
+/* Hero */
+    .vt-hero{position:relative;min-height:72vh;background:#ffd54d}
+    .vt-hero__video{
+    position:absolute; inset:0; z-index:0;
+    width:100%; height:100%;
+    object-fit:contain;                /* 확대 금지 */
+    object-position:right center;      /* 우측 기준 */
+    background: #ffd54d;
+    filter:none; opacity:1; mix-blend-mode:normal;
+    }
+    .vt-hero__tint{
+    position:absolute; inset:0; z-index:1; pointer-events:none;
+    background:#ffd54d;                /* 노란 톤 */
+    mix-blend-mode:screen;             /* 화면(밝게) 블렌드 */
+    opacity:.18;                       /* 0~0.3 사이 조절 */
+    }
+    .vt-hero__scrim{
+    position:absolute; inset:0; z-index:1; pointer-events:none;
+    background:linear-gradient(90deg);
+    }
+
+    /* header bar (on top of hero) */
+    .vt-hero__bar{position:absolute;top:0;left:0;right:0;z-index:2;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+    .vt-hero__logo{height:34px;width:auto}
+    .vt-hero__nav{display:flex;gap:12px}
+    .vt-btn--ghost{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border:1px solid rgba(255,255,255,.55);border-radius:999px;color:#fff;text-decoration:none;font-weight:700;backdrop-filter:saturate(160%) blur(2px)}
+    .vt-btn--ghost:hover{background:rgba(255,255,255,.12)}
+
+    /* center content */
+    .vt-hero__inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:100%;padding:96px 16px 64px}
+    .vt-hero__lead{color:#fff;font-weight:800;font-size:clamp(16px,1.3vw,20px);line-height:1.5;opacity:.95}
+    .vt-hero__barline{width:min(180px,30vw);height:6px;border-radius:999px;background:#ef4444;margin:18px auto 12px}
+
+    /* NEON title */
+    .vt-hero__title{font-weight:900;letter-spacing:.18em;font-size:clamp(42px,7vw,88px);color:#fff;text-transform:uppercase;
+    text-shadow:
+        0 0 6px rgba(255,255,255,.9),
+        0 0 18px rgba(255,255,255,.6),
+        0 0 32px rgba(255,255,255,.25)}
+    .vt-hero__title .acc{color:#ef4444;text-shadow:
+        0 0 6px rgba(239,68,68,.9),
+        0 0 18px rgba(239,68,68,.6),
+        0 0 36px rgba(239,68,68,.35)}
+
+    /* CTA */
+    .vt-hero__cta{margin-top:18px}
+    .vt-btn--outline{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;border:5px solid rgba(255,255,255,.9);color:#fff;text-decoration:none;font-weight:800;gap:8px;box-shadow:0 10px 26px rgba(0,0,0,.18)}
+    .vt-btn--outline:hover{background:rgba(255,255,255,.12)}
+
+    /* scroll indicator */
+    .vt-hero__chev{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);width:28px;height:28px;border-bottom:3px solid #fff;border-right:3px solid #fff;rotate:45deg;opacity:.9}
+
+    /* responsive */
+    @media (max-width:640px){
+    .vt-hero{min-height:64vh}
+    .vt-hero__bar{height:58px}
+    .vt-hero__nav{gap:8px}
+    .vt-btn--ghost{padding:8px 12px;font-weight:700}
+    }
+/* Trust row */
+    .trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .trust .container{padding:48px 0}
+
+    .trust-headline{
+    text-align:center; margin:0 0 28px; line-height:1.35;
+    font-weight:580; font-size:42px; letter-spacing:-0.2px; color:#000;
+    }
+    .trust-headline .em{color:#DC2626}
+
+    .trust-grid{
+    display:grid; grid-template-columns:repeat(3,1fr);
+    gap:48px; list-style:none; margin:0; padding:0;
+    }
+    .trust-card {
+    display: flex;
+    flex-direction: column; /* 아이콘 위, 텍스트 아래 배치 */
+    align-items: center;
+    text-align: center;
+    padding: 14px 16px;
+    background: #fff;
+    border-radius: 14px;
+    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    }
+
+
+    .trust-thumb{
+    width:75%; aspect-ratio:1/1;
+    border-radius:50px; overflow:hidden;
+    box-shadow:0 10px 30px rgba(2,8,23,.08);
+    }
+    .trust-thumb img{width:100%; height:100%; object-fit:cover; object-position: center; display:block}
+
+    .trust-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.25;
+    }
+
+    .trust-title {
+    font-weight: 600;
+    color: #000;
+    font-size: 28px;
+    }
+
+    .trust-sub {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 2px;
+    }
+    .trust-underline{
+    width:128px; height:3px; background:#E11D48;
+    border-radius:999px; margin: 14px auto auto auto;
+    }
+    .trust-desc{
+    margin:0; color:#6B7280; font-size:15px; line-height:1.7;
+    white-space:pre-line; /* 줄바꿈 유지 */
+    }
+
+    .trust-card:hover .trust-thumb{transform:translateY(-2px); transition:transform .18s ease}
+
+    @media (max-width:1024px){ .trust-grid{gap:28px} }
+    @media (max-width:820px){ .trust-grid{grid-template-columns:1fr; gap:36px} }
+
+
+/* Services section */
+    .services {
+    background:#F8FAFC;
+    padding:72px 0;
+    }
+
+    .services .section-subtitle {
+    text-align:center;
+    font-size:18px;
+    font-weight:600;
+    margin:0 0 6px;
+    color:#111827;
+    }
+
+    .services .section-title {
+    text-align:center;
+    font-size:32px;
+    font-weight:800;
+    margin:0 0 48px;
+    }
+
+    .services .section-title .em {
+    color:#DC2626;
+    }
+
+    .services-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+    }
+
+    .service-card {
+    background:#fff;
+    border-radius:16px;
+    padding:28px 20px;
+    box-shadow:0 4px 20px rgba(0,0,0,0.04);
+    text-align:left;
+    transition:transform .15s ease, box-shadow .15s ease;
+    }
+    .service-card:hover {
+    transform:translateY(-2px);
+    box-shadow:0 8px 28px rgba(0,0,0,0.08);
+    }
+
+    .service-icon {
+    width:48px; height:48px; margin-bottom:16px;
+    }
+    .service-icon img {
+    width:100%; height:100%; object-fit:contain;
+    }
+
+    .service-title {
+    font-size:18px;
+    font-weight:700;
+    margin:0 0 8px;
+    color:#111827;
+    }
+
+    .service-desc {
+    font-size:14px;
+    color:#6B7280;
+    margin:0;
+    line-height:1.6;
+    }
+
+    @media (max-width:1024px){
+    .services-grid{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:640px){
+    .services-grid{grid-template-columns:1fr}
+    }
+
+
+/* One-stop Section */
+    .vt-onestop {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    }
+
+    .vt-onestop__chips { display:flex; flex-direction:column; gap:8px; }
+    .vt-onestop__chip{
+    display:inline-block; padding:8px 14px; border-radius:8px; font-weight:900;
+    box-shadow:0 4px 12px rgba(0,0,0,.25);
+    width:max-content; max-width:min(90vw, 100%); /* 줄바꿈 방지 + 반응형 */
+    }
+    .vt-onestop__chip--dark{
+    background:rgba(0,0,0,.85); color:#fff;
+    font-size:clamp(18px,2.2vw,28px); line-height:1.25;
+    }
+    .vt-onestop__chip--light{
+    background:rgba(255,255,255,.92); color:#000;
+    font-size:clamp(20px,2.4vw,32px); line-height:1.25;
+    }
+    .vt-onestop__chip .accent{ color:#F59E0B; }
+
+    .vt-onestop__bg {
+    display: block;
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+    }
+
+    .vt-onestop__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(0,0,0,.65) 0%, rgba(0,0,0,.4) 40%, rgba(0,0,0,0) 70%);
+    pointer-events: none;
+    }
+
+    .vt-onestop__content {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(12px,3vw,20px) clamp(16px,6vw,80px);
+    gap: 40px;
+    }
+
+    .vt-onestop__headline1 {
+    display: inline-block;
+    background: rgba(0,0,0,.85);
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: clamp(18px,2.2vw,28px);
+    font-weight: 900;
+    color: #fff;
+    }
+    .vt-onestop__headline1 .accent { color: #F59E0B; }
+
+    .vt-onestop__headline2 {
+    margin-top: 8px;
+    background: rgba(255,255,255,.92);
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: clamp(20px,2.4vw,32px);
+    font-weight: 900;
+    color: #000;
+    }
+
+    .vt-onestop__image {
+    max-width: 360px;
+    flex-shrink: 0;
+    }
+    .vt-onestop__image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    }
+    .vt-onestop__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 22px;
+    border-radius: 9999px;
+    background: #FEE500; /* 카카오 노란색 */
+    color: #000;
+    font-weight: 800;
+    font-size: 16px;
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: 0 6px 16px rgba(0,0,0,.25);
+    transition: transform .15s ease, filter .15s ease;
+    }
+    .vt-onestop__btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+    }
+    .vt-onestop__btn:active {
+    transform: translateY(0) scale(.98);
+    }
+    .vt-onestop__right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    background: rgba(243, 244, 246, 0.95); /* 밝은 회색 박스 */
+    padding: 24px 28px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    }
+
+    .vt-onestop__logo {
+    max-width: 140px;
+    height: auto;
+    }
+
+
+    @media (max-width: 900px) {
+    .vt-onestop__content {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 20px;
+    }
+    }
+
+
+/* Solutions */
+    .solutions {
+    background:#fff;
+    padding:72px 0;
+    }
+
+    .solutions .section-title {
+    text-align:center;
+    font-size:28px;
+    font-weight:800;
+    margin:0 0 8px;
+    }
+
+    .solutions .section-title .em {
+    color:#DC2626;
+    }
+
+    .solutions .section-subtitle {
+    text-align:center;
+    font-size:18px;
+    font-weight:500;
+    margin-bottom:48px;
+    color:#111827;
+    }
+
+    .solutions-grid {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+    }
+
+    .solution-card {
+    background:#F9FAFB;
+    border-radius:20px;
+    padding:40px 20px;
+    text-align:center;
+    position:relative;
+    transition:transform .15s ease, box-shadow .15s ease;
+    }
+    .solution-card::before {
+    content:"";
+    position:absolute;
+    top:0; left:50%;
+    transform:translateX(-50%);
+    width:60px;
+    height:4px;
+    background:#E11D48;
+    border-radius:999px;
+    }
+    .solution-card:hover {
+    transform:translateY(-2px);
+    box-shadow:0 8px 28px rgba(0,0,0,0.06);
+    }
+
+    .solution-text {
+    font-size:16px;
+    font-weight:500;
+    color:#111827;
+    line-height:1.6;
+    white-space:pre-line;
+    }
+
+    @media (max-width:1024px){
+    .solutions-grid{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:640px){
+    .solutions-grid{grid-template-columns:1fr}
+    }
+
+
+/* Kakao CTA */
+    section.kakao{padding:72px 0}
+    .kakao .panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px}
+    .kakao h3{margin:0 0 8px;font-size:20px;font-weight:800}
+
+    /* Testimonials */
+    .testi{background:#F8FAFC;padding:72px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .testi .section-kicker{color:#EF4444;font-weight:800;letter-spacing:.02em;text-align:left;margin:0 0 8px}
+    .testi .section-title{font-size:40px;font-weight:900;margin:0 0 28px;letter-spacing:-.4px}
+    .testi .subgrid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:22px}
+    .testi h3{margin:0;color:#111827;font-weight:800}
+    .testi .bubble {
+        background:#fff;
+        border:1px solid #E5E7EB;
+        border-radius:28px;
+        padding:26px 24px;
+        position:relative;
+        box-shadow:0 8px 24px rgba(2,8,23,.06);
+
+        display:flex;
+        align-items:center;
+        min-height:260px;
+    }
+    .testi .bubble::before {
+        content:"";
+        position:absolute;
+        left:0;
+        top:50%;
+        transform:translateY(-50%);
+        width:4px;
+        height:60%;
+        background:#EF4444;
+        border-radius:999px;
+    }
+
+    .handwriting {
+        font-family:"Nanum Pen Script", cursive;
+        font-size:28px;
+        line-height:1.55;
+        color:#0F172A;
+        margin:0;
+    }
+    @media (max-width:1024px){ .testi .subgrid{grid-template-columns:1fr} .testi .section-title{font-size:32px}}
+
+/* ==== Bottom CTA (full-bleed, image no-crop) ==== */
+    .vt-cta{position:relative;width:100%;overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .vt-cta__bg{display:block;width:100%;height:auto;vertical-align:middle} /* 원본 비율 유지, 가로 100% */
+    .vt-cta__scrim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.38) 40%,rgba(0,0,0,.18) 65%,rgba(0,0,0,0) 90%);pointer-events:none}
+    .vt-cta__content{
+    position:absolute;inset:0;z-index:1;
+    display:flex;align-items:center;justify-content:center;gap:24px;
+    padding: clamp(12px,3vw,20px) clamp(16px,6vw,80px);
+    }
+
+    .vt-cta__badge{
+    display:inline-block;padding:10px 16px;border-radius:12px;
+    background:rgba(0,0,0,.78);color:#fff;font-weight:900;
+    font-size:clamp(18px,2.1vw,30px);line-height:1.25;box-shadow:0 6px 16px rgba(0,0,0,.35)
+    }
+    .vt-cta__badge .accent{color:#F59E0B}
+    .vt-cta__headline{
+    margin-top:10px;color:#F8FAFC;font-weight:900;letter-spacing:-.4px;
+    font-size:clamp(22px,2.8vw,42px);text-shadow:0 2px 10px rgba(0,0,0,.45)
+    }
+
+    .vt-btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:14px 22px;border-radius:9999px;background:#0B0B0B;color:#fff;
+    font-weight:800;text-decoration:none;white-space:nowrap;box-shadow:0 10px 28px rgba(0,0,0,.35);
+    transition:transform .15s ease,filter .15s ease
+    }
+    .vt-btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
+    .vt-btn:active{transform:translateY(0) scale(.98)}
+
+    @media (max-width:900px){
+    .vt-cta__content{flex-direction:column;align-items:flex-start;justify-content:center}
+    }
+
+
+
+/* Footer */
+    footer{background:#fff;border-top:1px solid var(--line)}
+    .footer-wrap{padding:28px 0}
+    .footer-row{
+        display:flex; align-items:flex-start; gap:18px;
+    }
+    .footer-brand img{height:34px; width:auto; display:block}
+
+    .footer-meta{font-size:15px; line-height:1.9; color:#0f172a}
+    .footer-meta .row{margin:0}
+    .footer-meta .row .sep{margin:0 10px; color:#94a3b8}
+
+    .footer-copy{margin-top:10px; font-size:14px; color:#0f172a}
+
+    @media (max-width:640px){
+        .footer-row{flex-direction:column; gap:10px}
+        .footer-meta{font-size:14px; line-height:1.8}
+    }
+
+    @media (max-width:1024px){
+      .why .grid{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr 1fr}
+      .testi .grid{grid-template-columns:1fr}
+    }
+    @media (max-width:640px){
+      .hero{min-height:520px}
+      .hero h1{font-size:30px}
+      .cards{grid-template-columns:1fr}
+      .trust .grid{grid-template-columns:1fr;}
+      .addr-form{flex-direction:column}
+      header .row{height:58px}
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- Header -->
+  <header>
+  </header>
+
+  <!-- HERO -->
+    <section class="vt-hero" aria-label="메인 히어로">
+    <!-- 배경 비디오 -->
+    <video class="vt-hero__video" src="/assets/header_vid2.mp4" autoplay muted loop playsinline poster="/assets/white.png"></video>
+    <!-- 색상 톤 + 스크림 -->
+    <div class="vt-hero__tint" aria-hidden="true"></div>
+    <div class="vt-hero__scrim" aria-hidden="true"></div>
+
+    <!-- 상단 로고/네비 -->
+    <div class="vt-hero__bar">
+        <img class="vt-hero__logo" src="/assets/vtlogo.png" alt="VT 로고">
+        <nav class="vt-hero__nav" aria-label="주요 메뉴">
+        <a class="vt-btn--ghost" href="#estimate">감정평가</a>
+        <a class="vt-btn--ghost" href="#tax">세금 컨설팅</a>
+        <a class="vt-btn--ghost" href="#law">부동산 법률상담</a>
+        <a class="vt-btn--ghost" href="#avm">추정가 확인하기</a>
+        </nav>
+    </div>
+
+    <!-- 중앙 카피/타이틀/CTA -->
+    <div class="vt-hero__inner">
+        <p class="vt-hero__lead">부동산 전문 세무사와 감정평가사가<br>당신만을 위한 최적의 절세 플랜을 완성합니다.</p>
+        <div class="vt-hero__barline"></div>
+        <h1 class="vt-hero__title"><span class="acc">V</span>ALUE <span class="acc">T</span>AX</h1>
+        <div class="vt-hero__cta">
+        <a class="vt-btn--outline" href="#consult">3분 만에 나의 절세 플랜 상담하기 →</a>
+        </div>
+    </div>
+    </section>
+
+    
+  <!-- Trust row -->
+    <section class="trust" aria-label="전담팀 소개">
+        <div class="container">
+            <h2 class="trust-headline">
+            <span class="em">세무팀 · 법무팀 · 감정평가 부동산 전문가</span>가 제공하는 최고의 원스톱 서비스
+            </h2>
+
+            <ul class="trust-grid">
+            <li class="trust-card">
+                <figure class="trust-thumb">
+                <img src="/assets/trust_tax.png" alt="세무팀">
+                </figure>
+                <div class="trust-title">세무팀</div>
+                <div class="trust-underline"></div>
+                <p class="trust-desc">
+                    부동산 세금 감면 및 비과세 적용
+                    파악과 양도·증여·상속세
+                    예상세액 비교 검토 컨설팅
+                </p>
+            </li>
+
+            <li class="trust-card">
+                <figure class="trust-thumb">
+                <img src="/assets/trust_law.png" alt="법무팀">
+                </figure>
+                <div class="trust-title">법무팀</div>
+                <div class="trust-underline"></div>
+                <p class="trust-desc">
+                    부동산 소송·보상·분할·세무조사
+                    법적 대응을 위한
+                    부동산 전문 법무팀 구성
+                </p>
+            </li>
+
+            <li class="trust-card">
+                <figure class="trust-thumb">
+                <img src="/assets/trust_appraisal.png" alt="감정평가팀">
+                </figure>
+                <div class="trust-title">감정평가팀</div>
+                <div class="trust-underline"></div>
+                <p class="trust-desc">
+                    세무서, 법원에 제출 가능한
+                    공신력있는 부동산·무형자산
+                    감정평가서 발급
+                </p>
+            </li>
+            </ul>
+        </div>
+    </section>
+
+  <!-- Services -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-subtitle">세무 · 법무 · 감정평가 전담팀 구성</h2>
+            <h1 class="section-title">밸류택스 <span class="em">주요 서비스 영역</span></h1>
+
+            <div class="services-grid">
+            <article class="service-card">
+                <div class="service-icon">
+                <img src="/assets/icon_tax.png" alt="">
+                </div>
+                <h3 class="service-title">양도세 신고 상담</h3>
+                <p class="service-desc">
+                    정확한 양도소득세 계산과 절세 방안을 제시합니다.
+                </p>
+            </article>
+
+            <article class="service-card">
+                <div class="service-icon">
+                <img src="/assets/icon_house.png" alt="">
+                </div>
+                <h3 class="service-title">상속세 신고 상담</h3>
+                <p class="service-desc">
+                    복잡한 상속세 절차에 대한 맞춤형 전략을 제공합니다.
+                </p>
+            </article>
+
+            <article class="service-card">
+                <div class="service-icon">
+                <img src="/assets/icon_money.png" alt="">
+                </div>
+                <h3 class="service-title">증여세 신고 상담</h3>
+                <p class="service-desc">
+                    사전 증여 설계부터 신고까지 효율적인 방안을 제시합니다.
+                </p>
+            </article>
+
+            <article class="service-card">
+                <div class="service-icon">
+                <img src="/assets/icon_law.png" alt="">
+                </div>
+                <h3 class="service-title">세무조사 대응 및 조세불복</h3>
+                <p class="service-desc">
+                    세무조사 대응부터 불복 절차까지 전문적으로 지원합니다.
+                </p>
+            </article>
+
+            <article class="service-card">
+                <div class="service-icon">
+                <img src="/assets/icon_human.png" alt="">
+                </div>
+                <h3 class="service-title">세무기장 및 자산재평가</h3>
+                <p class="service-desc">
+                    기업 및 개인의 세무기장과 자산가치 평가를 정확히 제공합니다.
+                </p>
+            </article>
+
+            <article class="service-card">
+                <div class="service-icon">
+                <img src="/assets/icon_consulting.png" alt="">
+                </div>
+                <h3 class="service-title">부동산 세금 컨설팅</h3>
+                <p class="service-desc">
+                    보유 · 양도 · 취득 등 부동산 세금 전반에 대한 컨설팅을 제공합니다.
+                </p>
+            </article>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- One-stop Section -->
+    <section class="vt-onestop" aria-label="카카오톡 상담 안내">
+        <!-- Background -->
+        <img class="vt-onestop__bg" src="/assets/background1.png" alt="도시 전경">
+        <div class="vt-onestop__scrim" aria-hidden="true"></div>
+
+        <!-- Content -->
+        <div class="vt-onestop__content">
+            <!-- 왼쪽 텍스트 -->
+            <div class="vt-onestop__chips">
+            <div class="vt-onestop__chip vt-onestop__chip--dark">
+                세금 컨설팅은 <span class="accent">카카오톡</span>으로도 가능합니다.
+            </div>
+            <div class="vt-onestop__chip vt-onestop__chip--light">
+                세무 · 법무 · 감정평가까지
+            </div>
+            <div class="vt-onestop__chip vt-onestop__chip--light">
+                간편하게 상담받으세요.
+            </div>
+            </div>
+
+            <!-- 오른쪽 로고 + 버튼 (회색 박스) -->
+            <div class="vt-onestop__right">
+            <img src="/assets/gamdong.png" alt="감동 로고" class="vt-onestop__logo">
+            <a class="vt-onestop__btn" href="https://pf.kakao.com/_ckUxcG" target="_blank" rel="noopener">
+                카카오톡으로 실시간 상담하기 ›
+            </a>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- Solutions -->
+    <section class="solutions">
+        <div class="container">
+            <h2 class="section-subtitle">수많은 부동산 고객이 신뢰한</h2>
+            <h1 class="section-title">밸류택스 <span class="em">절세 솔루션</span></h1>
+
+            <div class="solutions-grid">
+            <article class="solution-card">
+                <p class="solution-text">
+                    절세를 가장 잘하는
+                    세무사·감정평가사의
+                    원스톱 서비스
+                </p>
+            </article>
+
+            <article class="solution-card">
+                <p class="solution-text">
+                    체계적인 부동산
+                    세금 컨설팅과
+                    세무조사 대응에
+                    효과적인
+                    감정평가서 발행
+                </p>
+            </article>
+
+            <article class="solution-card">
+                <p class="solution-text">
+                    합리적인 상속 증여
+                    부동산 세금 신고 비용
+                </p>
+            </article>
+
+            <article class="solution-card">
+                <p class="solution-text">
+                    2,000건 이상의
+                    부동산을 평가한
+                    법인의 노하우로 만든
+                    AVM으로 쉽고 간편하게
+                    부동산 추정 가치 확인
+                </p>
+            </article>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Testimonials -->
+    <section class="testi" id="testimonials">
+        <div class="container">
+            <div class="section-kicker">고객들이 증명합니다.</div>
+            <h1 class="section-title">밸류택스 원스톱 서비스의 명쾌한 해답</h1>
+
+            <div class="subgrid">
+            <h3>재개발 조합원 입주권을<br>감정평가부터 증여까지 한 번에 했습니다.</h3>
+            <h3>취득세 증여세 890만원 절세 !</h3>
+            </div>
+
+            <div class="subgrid">
+            <article class="bubble">
+                <p class="handwriting">
+                    자식에게 조합원 입주권을 증여 하려는데 거래사례가 없고
+                    취득세나 증여세도 몰라 신고에 애를 먹었습니다.
+                    입주권은 무형자산이라 평가하기도 어렵다는 얘기도 많이 들었습니다.
+                    밸류택스는 세금 신고와 감정평가도 함께 처리해 준다고 해서
+                    상담을 했는데, 무형자산 전문 평가사와 증여 전문 세무사를
+                    연결해서 평가부터 세금신고까지 부담없이 해결할 수 있었습니다.
+                </p>
+            </article>
+
+            <article class="bubble">
+                <p class="handwriting">
+                    아들에게 1층 아파트를 증여했는데 세무서에서 7층 거래사례로
+                    세금을 청구해서 손이 덜덜 떨렸었어요...
+                    다행히 밸류택스로 세무·법무·감정평가 원스톱 서비스를 받았습니다.
+                    아파트 1층으로 평가서를 제출했더니 법무팀을 통해 취득세 50만원,
+                    세무팀을 통해 증여세가 840만원 절세되었습니다!
+                </p>
+            </article>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Bottom CTA -->
+    <section class="vt-cta" aria-label="추정가 안내">
+    <!-- 배경 (가로 100%, 크롭 없음) -->
+    <img class="vt-cta__bg" src="/assets/background2.png" alt="도시 전경">
+
+    <!-- 가독성 스크림 -->
+    <div class="vt-cta__scrim" aria-hidden="true"></div>
+
+    <!-- 내용 -->
+    <div class="vt-cta__content">
+        <div>
+            <div class="vt-cta__badge">세금 계산을 위한 <span class="accent">간편 시가 파악</span></div>
+            <div class="vt-cta__headline">밸류택스로 단 5초만에 확인하세요 !</div>
+        </div>
+
+        <a class="vt-btn" href="https://valuetouch.kr/main" rel="noopener">무료로 부동산 추정가 확인하기 ›</a>
+    </div>
+    </section>
+
+
+
+
+
+  <!-- Footer -->
+    <footer>
+        <div class="container footer-wrap">
+            <div class="footer-row">
+            <div class="footer-brand">
+                <img src="/assets/vtlogo.png" alt="VT 로고">
+            </div>
+
+            <div class="footer-meta">
+                <p class="row">
+                상호 : 주식회사 감정평가법인감동
+                <span class="sep">|</span>
+                대표 : 김민구
+                <span class="sep">|</span>
+                주소 : 서울특별시 종로구 새문안로5길 37, 7층 4호(도렴동)
+                </p>
+                <p class="row">
+                사업자등록번호 : 679-86-01599
+                <span class="sep">|</span>
+                전화번호 : 02-899-2444
+                <span class="sep">|</span>
+                02-6299-7444
+                </p>
+                <p class="row">
+                이메일 : gamdong01@kapaland.co.kr
+                <span class="sep">|</span>
+                팩스 : 0505-182-4448
+                </p>
+
+                <p class="footer-copy">Copyright&nbsp; All Rights Reserved.</p>
+            </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

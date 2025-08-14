@@ -781,6 +781,16 @@
             margin:0;
             text-align: center;
         }
+        .testi .subgrid > div {
+            display: flex;
+            flex-direction: column;
+        }
+        .testi .subgrid > div > .bubble {
+            flex-grow: 1;
+        }
+        .testi .subgrid > div > h3 {
+            height: 3em;
+        }
         @media (max-width:1024px){ .testi .subgrid{grid-template-columns:1fr} .testi .section-title{font-size:32px}}
 
     /* ==== Bottom CTA (full-bleed, image no-crop) ==== */
@@ -889,6 +899,36 @@
           .trust .grid{grid-template-columns:1fr;}
           .addr-form{flex-direction:column}
           header .row{height:58px}
+        }
+        @media (max-width: 768px) {
+            .trust-headline {
+                font-size: 32px !important;
+                word-break: keep-all;
+            }
+            .services .section-subtitle {
+                font-size: 24px !important;
+                word-break: keep-all;
+            }
+            .services .section-title {
+                font-size: 32px !important;
+                word-break: keep-all;
+            }
+            .solutions .section-title {
+                font-size: 32px !important;
+                word-break: keep-all;
+            }
+            .solutions .section-subtitle {
+                font-size: 24px !important;
+                word-break: keep-all;
+            }
+            .testi .section-kicker {
+                font-size: 24px !important;
+                word-break: keep-all;
+            }
+            .testi .section-title {
+                font-size: 32px !important;
+                word-break: keep-all;
+            }
         }
         @media (max-width: 640px) {
             .highlight-dots::before,
@@ -1188,31 +1228,31 @@
         <h1 class="section-title">밸류로우 원스톱 서비스의  <span class="highlight-dots">명쾌한 해답</span></h1>
 
         <div class="subgrid">
-            <h3>어려운 채무조정 사건,<br>오피스텔 감정평가로 해결 !</h3>
-            <h3>간이회생부터<br>부동산 평가까지 편하게 했어요!</h3>
-        </div>
-
-        <div class="subgrid">
-            <article class="bubble">
-                <p class="handwriting">
-                    채무조정을 하려고 신용회복위원회로 개인워크아웃을 신청했는데
-                    소유한 오피스텔의 가치가 너무 높게 나와 탕감율이 낮게 나왔습니다.<br>
-                    복잡한 마음에 밸류로우 원스톱 상담을 받아 보니까
-                    원래 오피스텔 가치로 감정평가해 평가서를 보내주셨습니다.<br>
-                    덕분에 탕감율을 훨씬 합리적으로 조정받을 수 있었습니다.
-                </p>
-            </article>
-
-            <article class="bubble">
-                <p class="handwriting">
-                    운영하던 사업이 너무 힘들고 해서 간이회생 개시결정 중 이었습니다.<br>
-                    다른 법무 법인에서는 대구 아파트 시세가
-                    너무 높아서 회생절차가 어렵다고 했습니다.<br>
-                    하지만 밸류로우에서 상담 후에는 전문 감정평가사를 연결했습니다.<br>
-                    제가 가진 부동산에 대해 탁상감정을 실시했고 더 정확하게 평가해 개인회생을 위한
-                    감정평가서 발급까지 진행해 회생절차를 무사히 마칠 수 있었습니다.
-                </p>
-            </article>
+            <div>
+                <h3>어려운 채무조정 사건,<br>오피스텔 감정평가로 해결 !</h3>
+                <article class="bubble">
+                    <p class="handwriting">
+                        채무조정을 하려고 신용회복위원회로 개인워크아웃을 신청했는데
+                        소유한 오피스텔의 가치가 너무 높게 나와 탕감율이 낮게 나왔습니다.<br>
+                        복잡한 마음에 밸류로우 원스톱 상담을 받아 보니까
+                        원래 오피스텔 가치로 감정평가해 평가서를 보내주셨습니다.<br>
+                        덕분에 탕감율을 훨씬 합리적으로 조정받을 수 있었습니다.
+                    </p>
+                </article>
+            </div>
+            <div>
+                <h3>간이회생부터<br>부동산 평가까지 편하게 했어요!</h3>
+                <article class="bubble">
+                    <p class="handwriting">
+                        운영하던 사업이 너무 힘들고 해서 간이회생 개시결정 중 이었습니다.<br>
+                        다른 법무 법인에서는 대구 아파트 시세가
+                        너무 높아서 회생절차가 어렵다고 했습니다.<br>
+                        하지만 밸류로우에서 상담 후에는 전문 감정평가사를 연결했습니다.<br>
+                        제가 가진 부동산에 대해 탁상감정을 실시했고 더 정확하게 평가해 개인회생을 위한
+                        감정평가서 발급까지 진행해 회생절차를 무사히 마칠 수 있었습니다.
+                    </p>
+                </article>
+            </div>
         </div>
     </div>
 </section>

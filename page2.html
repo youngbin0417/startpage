@@ -779,6 +779,16 @@
             margin:0;
             text-align: center;
         }
+        .testi .subgrid > div {
+            display: flex;
+            flex-direction: column;
+        }
+        .testi .subgrid > div > .bubble {
+            flex-grow: 1;
+        }
+        .testi .subgrid > div > h3 {
+            height: 3em;
+        }
         @media (max-width:1024px){ .testi .subgrid{grid-template-columns:1fr} .testi .section-title{font-size:32px}}
 
     /* ==== Bottom CTA (full-bleed, image no-crop) ==== */
@@ -882,6 +892,36 @@
           .trust .grid{grid-template-columns:1fr;}
           .addr-form{flex-direction:column}
           header .row{height:58px}
+        }
+        @media (max-width: 768px) {
+            .trust-headline {
+                font-size: 32px !important;
+                word-break: keep-all;
+            }
+            .services .section-subtitle {
+                font-size: 24px !important;
+                word-break: keep-all;
+            }
+            .services .section-title {
+                font-size: 32px !important;
+                word-break: keep-all;
+            }
+            .solutions .section-title {
+                font-size: 32px !important;
+                word-break: keep-all;
+            }
+            .solutions .section-subtitle {
+                font-size: 24px !important;
+                word-break: keep-all;
+            }
+            .testi .section-kicker {
+                font-size: 24px !important;
+                word-break: keep-all;
+            }
+            .testi .section-title {
+                font-size: 32px !important;
+                word-break: keep-all;
+            }
         }
         @media (max-width: 640px) {
             .highlight-dots::before,
@@ -1182,31 +1222,31 @@
         <h1 class="section-title">밸류택스 원스톱 서비스의  <span class="highlight-dots">명쾌한 해답</span></h1>
 
         <div class="subgrid">
-            <h3>재개발 조합원 입주권을<br>감정평가부터 증여까지 한 번에 했습니다.</h3>
-            <h3>취득세 증여세 890만원 절세 !</h3>
-        </div>
-
-        <div class="subgrid">
-            <article class="bubble">
-                <p class="handwriting">
-                    자식에게 조합원 입주권을 증여 하려는데 거래사례가 없고
-                    취득세나 증여세도 몰라 신고에 애를 먹었습니다.<br>
-                    입주권은 무형자산이라 평가하기도 어렵다는 얘기도 많이 들었습니다.<br>
-                    밸류택스는 세금 신고와 감정평가도 함께 처리해 준다고 해서
-                    상담을 했는데, 무형자산 전문 평가사와 증여 전문 세무사를
-                    연결해서 평가부터 세금신고까지 부담없이 해결할 수 있었습니다.
-                </p>
-            </article>
-
-            <article class="bubble">
-                <p class="handwriting">
-                    아들에게 1층 아파트를 증여했는데 세무서에서 7층 거래사례로
-                    세금을 청구해서 손이 덜덜 떨렸었어요...<br>
-                    다행히 밸류택스로 세무·법무·감정평가 원스톱 서비스를 받았습니다.<br>
-                    아파트 1층으로 평가서를 제출했더니 법무팀을 통해 취득세 50만원,
-                    세무팀을 통해 증여세가 840만원 절세되었습니다!
-                </p>
-            </article>
+            <div>
+                <h3>재개발 조합원 입주권을<br>감정평가부터 증여까지 한 번에 했습니다.</h3>
+                <article class="bubble">
+                    <p class="handwriting">
+                        자식에게 조합원 입주권을 증여 하려는데 거래사례가 없고
+                        취득세나 증여세도 몰라 신고에 애를 먹었습니다.<br>
+                        입주권은 무형자산이라 평가하기도 어렵다는 얘기도 많이 들었습니다.<br>
+                        밸류택스는 세금 신고와 감정평가도 함께 처리해 준다고 해서
+                        상담을 했는데, 무형자산 전문 평가사와 증여 전문 세무사를
+                        연결해서 평가부터 세금신고까지 부담없이 해결할 수 있었습니다.
+                    </p>
+                </article>
+            </div>
+            <div>
+                <h3>취득세 증여세 890만원 절세 !</h3>
+                <article class="bubble">
+                    <p class="handwriting">
+                        아들에게 1층 아파트를 증여했는데 세무서에서 7층 거래사례로
+                        세금을 청구해서 손이 덜덜 떨렸었어요...<br>
+                        다행히 밸류택스로 세무·법무·감정평가 원스톱 서비스를 받았습니다.<br>
+                        아파트 1층으로 평가서를 제출했더니 법무팀을 통해 취득세 50만원,
+                        세무팀을 통해 증여세가 840만원 절세되었습니다!
+                    </p>
+                </article>
+            </div>
         </div>
     </div>
 </section>

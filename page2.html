@@ -641,11 +641,26 @@
 
 
         @media (max-width: 900px) {
+        .vt-onestop {
+            height: auto;
+            padding: 40px 0;
+        }
         .vt-onestop__content {
+            position: relative;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
             justify-content: center;
             gap: 20px;
+            padding: 20px;
+        }
+        .vt-onestop__bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
         }
         }
 
@@ -871,7 +886,7 @@
         @media (max-width: 640px) {
             .highlight-dots::before,
             .highlight-dots2::before {
-                top: -4px;
+                display: none;
             }
         }
     </style>

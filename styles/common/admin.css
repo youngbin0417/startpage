@@ -1,0 +1,143 @@
+.top-right-link {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 16px;
+}
+
+/* ✅ 전체 페이지 스타일 */
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+}
+
+/* ✅ 헤더 */
+.header {
+    text-align: left;
+    font-size: 24px;
+    color: #007BFF;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* ✅ 좌우 2단 분할 레이아웃 */
+.page-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+/* ✅ 왼쪽: 지역 선택 */
+.left-section {
+    width: 45%;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ 오른쪽: 선택된 지역 */
+.right-section {
+    width: 45%;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ 폼 요소 */
+.form-group {
+    margin-bottom: 10px;
+}
+
+    label {
+        font-weight: bold;
+        margin-bottom: 3px; /* 🔥 간격을 좁힘 */
+        display: block;
+    }
+
+    select {
+        width: 100%;
+        padding: 6px;
+        margin-bottom: 8px; /* 🔥 기존보다 좁게 조정 */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+/* ✅ 검색 버튼 정렬 */
+.search-button-container {
+    text-align: right;
+    margin-top: 10px;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:active {
+    background-color: #0056b3;
+}
+
+/* ✅ 테이블 정렬 및 크기 조정 */
+.table-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* ✅ 테이블 크기 조정 및 중앙 정렬 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+th, td {
+    width: 13.33%;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: #007BAA;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+tr:active {
+    background: #f1f1f1;
+}
+
+input[type="number"] {
+    width: 90%;
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.kind-col { width: 36px; min-width: 30px; max-width: 44px; }
+.name-col { width: 48px; min-width: 30px; max-width: 60px; }
+.phone-col { width: 160px; min-width: 120px; max-width: 200px; }
+.content-col { width: 100%; min-width: 300px; }

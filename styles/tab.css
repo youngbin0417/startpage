@@ -1,0 +1,763 @@
+.tab-wrap {
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 400px;
+  z-index: 1001;
+  position: fixed;
+  top: 80px;
+  right: 0;
+  height: calc(100% - 80px);
+  background-color: #fff;
+  display: flex;
+  box-shadow: 1.5px 2.6px 10px 0 rgba(202, 207, 216, 0.6);
+  transform: translateX(100%);
+  visibility: hidden;
+  pointer-events: none; /* 클릭 이벤트 방지 */
+
+  /* ★★★ 여러 속성에 대한 transition을 한 번에 정의 ★★★ */
+  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out, visibility 0.4s;
+}
+
+#right-trade .section-icon {
+  background-color: #eef2ff; /* bg-indigo-100 */
+}
+#right-trade .section-icon svg {
+  fill: #4f46e5; /* text-indigo-600 */
+}
+
+.trade-table-container {
+  flex-grow: 1; /* ★★★ 남는 세로 공간을 모두 차지함 ★★★ */
+  overflow-y: auto;
+}
+#trade-list-more-button {
+  margin-top: 15px; /* ★★★ 테이블과 버튼 사이의 간격 ★★★ */
+  /* (선택) 버튼이 항상 아래에 고정되게 하려면 margin-top: auto; 를 사용 */
+  flex-shrink: 0; /* 버튼이 줄어들지 않도록 */
+}
+.standard-date.trade-list-date {
+  margin-top: 10px;
+  flex-shrink: 0;
+}
+/* 3. 테이블 기본 스타일 */
+.trade-table {
+  width: 100%;
+  border-collapse: collapse; /* 테두리 겹침 방지 */
+  font-size: 14px;
+}
+.no-data-notice img {
+  width: 48px;  /* 아이콘 크기를 약간 키움 */
+  height: 48px;
+  margin-bottom: 16px;
+  opacity: 0.6; /* 아이콘을 너무 튀지 않게 */
+}
+.no-data-notice {
+  display: none; /* 평소에는 숨김 */
+  text-align: center;
+  padding: 40px 20px;
+
+  background-color: #f8f9fa; /* 매우 연한 회색 배경 */
+  border: 1px dashed #e0e0e0; /* 점선 테두리로 정보 영역과 구분 */
+  border-radius: 8px; /* 부드러운 모서리 */
+
+  display: flex; /* 내부 요소들을 정렬하기 위해 flex 사용 */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: 100%; /* 부모 컨테이너 높이에 맞춰 채우기 (선택사항) */
+  box-sizing: border-box;
+}
+.no-data-notice p {
+  font-size: 16px;
+  font-weight: 500;
+  color: #6c757d; /* 차분한 회색 계열 텍스트 */
+  margin: 0;
+  line-height: 1.5;
+}
+/* 4. 테이블 헤더(thead) 스타일 */
+.trade-table th {
+  text-align: left;
+  padding: 0 8px 8px 8px;
+  color: #9ca3af; /* 연한 회색 */
+  font-weight: 500;
+  position: sticky; /* 스크롤 시 헤더 고정 */
+  top: 0;
+  background-color: #fff; /* 스크롤 시 내용 가리지 않게 */
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* 5. 테이블 바디(tbody) 셀(td) 스타일 */
+.trade-table td {
+  padding: 12px 8px;
+  border-bottom: 1px solid #f3f4f6; /* 매우 연한 회색 */
+  color: #374151;
+  vertical-align: middle;
+}
+
+/* 가격(price) 셀 특별 스타일 */
+.trade-table td.price {
+  color: #2563eb; /* 파란색 */
+  font-weight: 600;
+  cursor: pointer;
+}
+#whole-table-wrapper {
+  position: fixed;
+  bottom: 0;
+  right: 400px;
+  width: calc(100% - 400px);
+  height: 300px; /* ★★★ 높이 300px 절대 고정 ★★★ */
+  z-index: 990;
+  background-color: #fff;
+
+  overflow-y: auto; /* ★★★ 내용이 300px를 넘으면 "전체 세로 스크롤" 생성 ★★★ */
+  overflow-x: hidden; /* 가로 스크롤은 절대 생기지 않도록 방지 */
+
+  transform: translateY(100%);
+  transition: transform 0.5s ease-in-out;
+}
+#whole-table-wrapper.show {
+  transform: translateY(0%);
+}
+
+/* 2. 내부 컨테이너(#whole-table): 반응형 Grid 설정 */
+#whole-table {
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+
+  /* 기본 상태 (가장 넓은 화면): 3열 그리드 */
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* 3. 각 정보 카드(자식 요소) 공통 스타일 */
+#left-land, #center-building, #right-trade {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  padding: 20px;
+  box-sizing: border-box;
+
+  /* ★★★ 카드 내부의 내용이 길어지면 "개별 세로 스크롤" 생성 ★★★ */
+  overflow-y: auto;
+
+  /* ★★★ 카드의 높이를 260px로 고정 (300px - #whole-table의 상하 패딩 40px) ★★★ */
+  height: 260px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/*
+ * 미디어 쿼리를 이용한 단계별 레이아웃 변경 ("내려가는 방식")
+ */
+
+/* Phase 2: 화면이 1300px 이하일 때 (2열 + 1열, 마지막 칸 비우기) */
+@media (max-width: 1300px) {
+  #whole-table {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  #center-building {
+    grid-row: 2;
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 1100px) {
+  #whole-table {
+    grid-template-columns: 1fr;
+  }
+  #center-building {
+    grid-row: auto;
+    grid-column: auto;
+  }
+}
+
+
+@media (max-width: 800px) {
+  /* 오른쪽 패널(.tab-wrap)이 전체 스크롤의 부모가 됩니다. */
+   .tab-wrap {
+      width: 100% !important;
+      right: 0;
+      left: 0;
+      top: 40px;
+      position: absolute;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(0%) !important; /* 강제 초기화 */
+    }
+  .tab-wrap.show {
+    transform: translateX(0%) !important;
+  }
+  /* .tab-wrap의 모든 "직계" 자식 중, 스크롤의 일부가 될 주요 콘텐츠 영역에 대한 스타일 */
+  /* 예: .tab-wrap__content, .tab-wrap-layout, 또는 다른 주요 컨테이너 클래스 */
+  /* 이 부분이 중요합니다. .tab-wrap의 원래 자식들에게 적용할 스타일입니다. */
+  .tab-wrap > .tab-wrap-layout,
+  .tab-wrap > .tab-wrap__content {
+    flex-shrink: 0; /* 내용이 많아져도 줄어들지 않도록 */
+  }
+
+  /* JS에 의해 .tab-wrap 안으로 이동한 #whole-table-wrapper의 스타일 */
+  .tab-wrap #whole-table-wrapper {
+    position: static;
+    width: 100%; /* 부모 너비에 맞춤 */
+    height: auto;
+    transform: none;
+    transition: none;
+    background-color: #f7f9fb; /* 배경색을 다시 줍니다 */
+    overflow: visible;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: none;
+    flex-shrink: 0;
+    display: none; /* ★★★ 기본적으로는 보이지 않도록 숨김 ★★★ */
+    margin-top: 20px; /* 위 콘텐츠와의 간격을 명확히 줌 */
+    border-top: 1px solid #e9ecef; /* 구분선 추가 */
+  }
+  .tab-wrap #whole-table-wrapper.show {
+    display: block;
+  }
+
+  /* 모바일에서는 카드들을 1열로 고정 */
+  .tab-wrap #whole-table {
+    grid-template-columns: 1fr;
+    padding: 0;
+    gap: 10px;
+  }
+
+  /* 모바일 카드 높이 자동 조절 */
+  .tab-wrap #left-land,
+  .tab-wrap #center-building,
+  .tab-wrap #right-trade {
+    height: auto;
+    min-height: 200px;
+  }
+}
+
+.tab-wrap-layout {
+  padding: 0 20px;
+}
+
+#road-view3,
+#road-view2 {
+  width: 100% !important;
+  max-width: 560px;
+  aspect-ratio: 16 / 9; /* 16:9 비율 유지 */
+  height: auto !important; /* 명시적 높이 제거 */
+
+  box-shadow:
+          0 1px 3px rgba(0,0,0,0.1),
+          0 1px 2px rgba(0,0,0,0.18);
+  border-radius: 0.5rem;
+
+  /* --- 테두리 추가 --- */
+  border: 1px solid #e9e9e9; /* 매우 연한 회색 테두리 */
+
+  /* 테두리가 둥근 모서리 안쪽으로 그려지도록 */
+  overflow: hidden;
+}
+
+.tab-map {
+  width: 100% !important;
+  max-width: 560px;
+}
+
+@media (max-width: 1000px) {
+  .tab-wrap__content, .tab-map {
+    width: 100% !important;  /* 부모 요소 크기도 100% */
+  }
+
+  /*#road-view3 {*/
+  /*  max-width: 100% !important; !* 부모 요소 안에서만 최대 크기 *!*/
+  /*  height: 50% !important;*/
+  /*}*/
+  /*#road-view2 {*/
+  /*  max-width: 100% !important; !* 부모 요소 안에서만 최대 크기 *!*/
+  /*  height: 50% !important;*/
+  /*}*/
+}
+.section-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%; /* 원으로 만들기 */
+  display: flex;
+  align-items: center; /* 아이콘을 세로 중앙에 */
+  justify-content: center; /* 아이콘을 가로 중앙에 */
+  margin-right: 12px; /* 원과 텍스트 사이의 간격 */
+  flex-shrink: 0; /* 창이 줄어들어도 원이 찌그러지지 않도록 */
+}
+/* 토지 정보 아이콘 색상 (초록/에메랄드 계열) */
+#left-land .section-icon {
+  background-color: #d1fae5; /* 연한 초록 (bg-emerald-100) */
+}
+#left-land .section-icon svg {
+  fill: #059669; /* 진한 초록 (text-emerald-600) */
+}
+
+.land-summary-wrap .section-icon {
+  background-color: #FEF3C7;
+}
+
+.land-summary-wrap .section-icon svg {
+  fill: #F0C57E;
+}
+
+/* 건물 정보 아이콘 색상 (파랑 계열) */
+#center-building .section-icon {
+  background-color: #dbeafe; /* 연한 파랑 (bg-blue-100) */
+}
+#center-building .section-icon svg {
+  fill: #2563eb; /* 진한 파랑 (text-blue-600) */
+}
+.section-icon svg {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+}
+.tab-title {
+  display: flex; /* 아이콘과 텍스트를 나란히 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  font-size: 18px; /* 이미지와 어울리도록 폰트 크기 조정 */
+  font-weight: bold;
+  color: #111;
+  margin-bottom: 20px; /* 그리드와의 간격 */
+}
+
+.tab-title svg {
+  width: 24px;
+  height: 24px;
+}
+
+.info-grid {
+  display: grid;
+  gap: 12px; /* 정보 박스들 사이의 간격 */
+  width: 100%;
+}
+
+.info-grid.three-columns {
+  grid-template-columns: repeat(3, 1fr);
+}
+.info-box {
+  background-color: #f7f9fb; /* 이미지와 동일한 연한 회색 */
+  border-radius: 8px; /* 둥근 모서리 */
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column; /* 라벨과 값을 수직으로 정렬 */
+  justify-content: center;
+  min-height: 70px; /* 최소 높이를 주어 박스 크기를 일정하게 유지 */
+}
+
+/* --- 4. 박스 너비 조절용 클래스 --- */
+/* (그리드 아이템이 여러 칸을 차지하도록 함) */
+.info-box.full-width {
+  grid-column: 1 / -1; /* 모든 열을 차지 (가로로 길게) */
+}
+
+.info-box.two-thirds-width {
+  grid-column: span 2; /* 3열 그리드에서 2칸 차지 */
+}
+
+.info-box.one-third-width {
+  grid-column: span 1; /* 3열 그리드에서 1칸 차지 */
+}
+
+
+/* --- 5. 정보 라벨과 값 스타일 --- */
+.info-label {
+  font-size: 13px;
+  color: #888; /* 연한 회색 텍스트 */
+  margin-bottom: 4px;
+}
+
+.info-value {
+  font-size: 16px;
+  font-weight: 600; /* 약간 굵게 */
+  color: #333; /* 진한 회색 텍스트 */
+  word-break: keep-all;
+}
+/* ================================================================= */
+/* ==   (최종) Base64 마스크 + 배경 애니메이션 (가장 확실함)       == */
+/* ================================================================= */
+
+/* 부모 요소 정렬 */
+.estimate-title-row, .type-wrap__item {
+  display: flex;
+  align-items: center;
+}
+
+/* 1. 최종 로고 컨테이너 */
+.ai-logo-container-final {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 6px;
+  line-height: 0; /* SVG 아래 불필요한 여백 제거 */
+}
+.ai-logo-container-final .logo-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* 2. [핵심] 반짝임 효과를 담을 위층 레이어 */
+.ai-logo-container-final .shine-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  /* 움직이는 빛줄기 그라데이션 배경 */
+  background: linear-gradient(100deg, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 80%);
+  background-size: 200% 100%;
+
+  /* JS에서 전달받은 Base64 SVG를 마스크로 사용 */
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+
+  /* 애니메이션 적용 (배경 위치를 이동시킴) */
+  animation: final-shine-bg-slide 4.5s infinite linear;
+}
+
+/* 3. 애니메이션 키프레임 (배경 위치 이동) */
+@keyframes final-shine-bg-slide {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+.tab-title .tab-title__help-icon {
+  cursor: pointer;
+  color: #cacfd8;
+}
+.tab-wrap.fold {
+  transform: translateX(100%);
+}
+.tab-wrap.two-depth.fold {
+  transform: translateX(200%);
+}
+.tab-wrap .fa-caret-left {
+  display: none;
+}
+.tab-wrap.fold .fa-caret-left {
+  display: block;
+}
+.tab-wrap.fold .fa-caret-right {
+  display: none;
+}
+.tab-wrap .fold-button {
+  z-index: 1003;
+  position: absolute;
+  cursor: pointer;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -30px;
+  background-color: #fff;
+  height: 74px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  box-shadow: 1.5px 2.6px 10px 0 rgba(202, 207, 216, 0.6);
+}
+.tab-wrap.two-depth .fold-button {
+  left: calc(-100% - 30px);
+}
+.tab-wrap .fold-button:hover {
+ background-color: #eef1f6;
+}
+.tab-wrap .fold-button i{
+  color: #0072ff;
+  font-size: 16px;
+}
+
+.tab-wrap.show {
+  border-top-left-radius: 2rem;
+  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.land-building-tab-wrap.show {
+  transform: translateY(0); /* 활성화 시 화면 맨 아래로 슬라이드 */
+}
+
+.land-building-tab-wrap.fold {
+  transform: translateY(100%);
+}
+
+.tab-wrap__inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.tab-wrap__content {
+  overflow-y: auto;
+}
+.tab-wrap__content::-webkit-scrollbar {
+  width: 6px;
+}
+.tab-wrap__content::-webkit-scrollbar-thumb {
+  background-color: #677082;
+  border-radius: 3px;
+}
+.tab-wrap__content::-webkit-scrollbar-track {
+  background-color: #e6e9ee;
+  border-radius: 3px;
+}
+.tab-wrap__divider {
+  border-bottom: 1px solid #e9ecef;
+}
+
+.tab-wrap__header {
+  color: #111;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  padding-top: 20px;
+}
+.header__btn {
+  cursor: pointer;
+  width: 18px;
+}
+
+
+.badge-wrap {
+  margin-bottom: 16px;
+}
+
+.badge {
+  color: #333c4e;
+  font-weight: 600;
+  border: 1px solid #0072ff;
+  padding: 9px 16px;
+  width: fit-content;
+  border-radius: 17px;
+}
+.badge i {
+  color: #0072ff;
+  margin-right: 5px;
+}
+
+.progress-wrap {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+.gradation-circle {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  margin-right: 7px;
+}
+.gradation-circle__item {
+  position: absolute;
+  border-radius: 90%;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+.gradation-circle__item.large {
+  width: 26px;
+  height: 26px;
+  background-color: #daeaff;
+}
+.gradation-circle__item.medium {
+  width: 18px;
+  height: 18px;
+  background-color: #98c7ff;
+}
+.gradation-circle__item.small {
+  width: 8px;
+  height: 8px;
+  background-color: #0072ff;
+}
+.progress-text {
+  color: #0072ff;
+  margin-right: 5px;
+  font-size: 18px;
+}
+.progress-status {
+  color: #677082;
+}
+
+.box-wrap {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+.box-wrap .box {
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #f3f8fe;
+  width: 100%;
+}
+.box .box-title {
+  font-size: 14px;
+  color: #677082;
+  margin-bottom: 9px;
+}
+.box .box-content {
+  font-size: 22px;
+  font-weight: bold;
+  color: #0072ff;
+}
+
+
+.notice-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 30px;
+}
+.notice-item {
+  display: flex;
+  align-items: center;
+}
+.notice-item__img-wrap {
+  width: 43px;
+  margin-right: 18px;
+}
+.notice-item__img-wrap img {
+  width: 100%;
+}
+.notice-item__subtitle {
+  font-weight: 600;
+  color: #677082;
+  margin-bottom: 7px;
+  font-size: 14px;
+}
+.notice-item__title {
+  font-weight: 600;
+  font-size: 18px;
+  color: #333c4e;
+}
+
+.progress-graph {
+  padding: 30px 27px;
+}
+.progress-item {
+  position: relative;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #111;
+}
+.progress-item__bar {
+  width: 6px;
+  min-width: 6px;
+  background-color: #e6e9ee;
+  position: relative;
+  height: 100%;
+  margin-right: 20px;
+}
+.progress-item__text, .progress-item__step {
+  color: #959eb0;
+}
+
+.progress-item.completed .progress-item__bar {
+  background-color: #34a0ff;
+}
+.progress-item.completed .progress-item__text {
+  color: #111;
+}
+.progress-item.completed .progress-item__step {
+  color: #111;
+}
+.progress-item__content {
+  display: flex;
+  align-items: center;
+}
+.progress-item__date {
+  color: #677082;
+  font-size: 14px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.progress-item__explain {
+  color: #111;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* 현재 진행중인 Item */
+.progress-item.ongoing .progress-item__bar {
+  background:linear-gradient(#34a0ff 50%, #e6e9ee 50%);
+}
+.progress-item.ongoing .progress-item__bar::before {
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  padding: 3px;
+  background-color: #fff;
+  color: #000;
+  border-radius: 50%;
+  box-shadow: 0.5px 0.9px 5px 0 rgba(25, 38, 61, 0.4);
+}
+.progress-item.ongoing .progress-item__bar::after {
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  background-color: #0072ff;
+  color: #000;
+  border-radius: 50%;
+}
+.progress-item.ongoing {
+  height: 90px;
+}
+.progress-item.ongoing .progress-item__content {
+  background-color: #f3f8fe;
+  border-radius: 6px;
+  width: 100%;
+  padding: 20px 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: first baseline;
+}
+.progress-item.ongoing .progress-item__step {
+  color: #0072ff;
+  font-weight: bold;
+}
+.progress-item.ongoing .progress-item__text {
+  color: #0072ff;
+  font-weight: bold;
+}
+
+
+.progress-item:first-child .progress-item__bar {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.progress-item:last-child .progress-item__bar {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.progress-item__step {
+  margin-right: 15px;
+}
+
+
+

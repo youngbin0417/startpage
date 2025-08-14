@@ -1,0 +1,152 @@
+/* 공동주택 */
+.apart-price {
+  padding: 30px 20px;
+}
+.apart-price__button {
+  border: 1px solid #cacfd8;
+  width: fit-content;
+  padding: 7px;
+  color: #333c4e;
+  font-size: 14px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.apart-price__button img {
+  width: 13px;
+}
+
+.apart-price-table {
+  margin-bottom: 16px;
+  margin-top: 16px;
+}
+
+.ownership-wrap {
+  padding: 30px 20px;
+}
+
+.extra-price-wrap {
+  padding: 30px 20px;
+  background-color: #f3f8fe;
+}
+
+.extra-price-wrap .calc-condition {
+  margin-top: 9px;
+  color: #ff8400;
+  font-size: 14px;
+}
+.extra-price-wrap .calc-condition i {
+  margin-right: 4px;
+}
+.extra-price-wrap .calc-condition strong {
+  font-weight: bold;
+}
+
+.location-wrap {
+  padding: 30px 20px;
+}
+
+.near-info {
+}
+.near-info__title {
+  display: flex;
+  align-items: center;
+  color: #111;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 20px 0;
+}
+.near-info__title img {
+  width: 52px;
+  padding: 12px;
+  background-color: #f5f7f9;
+  border-radius: 90%;
+  margin-right: 10px;
+}
+
+.vehicle-info {
+  color: #677082;
+  font-size: 14px;
+}
+
+.vehicle-info__item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.vehicle-info.subway .vehicle-info__item {
+  margin-bottom: 6px;
+}
+.vehicle-info__line {
+  color: #fff;
+  /* default */
+  background-color: #263c96;
+  font-weight: bold;
+  border-radius: 9px;
+  font-size: 12px;
+  padding: 3px 0 2px;
+  text-align: center;
+  width: 47px;
+  margin-right: 5px;
+}
+.vehicle-info__line.line_1 {
+  background-color: #263c96;
+}
+.vehicle-info__line.line_2 {
+  background-color: #3cb44a;
+}
+.vehicle-info__line.line_3 {
+  background-color: #f06e00;
+}
+.vehicle-info__line.line_4 {
+  background-color: #2c9ede;
+}
+.vehicle-info__line.line_5 {
+  background-color: #8936e0;
+}
+.vehicle-info__line.line_6 {
+  background-color: #b5500b;
+}
+.vehicle-info__line.line_7 {
+  background-color: #697215;
+}
+.vehicle-info__line.line_8 {
+  background-color: #e51e6e;
+}
+.vehicle-info__line.line_9 {
+  background-color: #d1a62c;
+}
+/* 공항 */
+.vehicle-info__line.line_10 {
+  background-color: #73b6e4;
+}
+/* 경의중앙 */
+.vehicle-info__line.line_11 {
+  background-color: #7cc4a5;
+}
+/* 경춘 */
+.vehicle-info__line.line_12 {
+  background-color: #d1a62c;
+}
+
+.vehicle-info__station {
+  color: #111;
+  margin-right: 3px;
+}
+
+.vehicle-info__img {
+  width: 14px;
+  margin-right: 5px;
+}
+
+.vehicle-info__item.circle-list-style::before {
+  content: '';
+  background-color: #0072ff;
+  width: 6px;
+  height: 6px;
+  border-radius: 90%;
+  margin-right: 5px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}

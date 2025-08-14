@@ -1,0 +1,52 @@
+.map-markers {
+  position: absolute;
+  z-index: 1002;
+  top: 50px;
+  left: 500px;
+}
+.map-marker {
+  cursor: pointer;
+  font-weight: bold;
+  color: #fff;
+  width: 30px;
+  padding: 6px;
+  border-radius: 90%;
+}
+.map-markers__button {
+  background-color: #16a5a0;
+  width: fit-content;
+  padding: 5px;
+  border: 3px solid #000;
+  cursor: pointer;
+  color: #fff;
+}
+.map-markers__markers {
+  display: none;
+}
+.map-markers.active .map-markers__markers {
+  display: block;
+}
+.map-marker.blue {
+  background-color: #0072ff;
+  border: 1px solid #0061da;
+}
+.map-marker.red {
+  background-color: #f75844;
+  border: 1px solid #e63a24;
+}
+.map-marker.yellow {
+  background-color: #ffb21f;
+  border: 1px solid #e89800;
+}
+.map-marker.skyblue {
+  background-color: #34a0ff;
+  border: 1px solid #1b85e2;
+}
+.map-marker.pink {
+  background-color: #ff7998;
+  border: 1px solid #fc5279;
+}
+.map-marker.green {
+  background-color: #2ac1bc;
+  border: 1px solid #16a5a0;
+}

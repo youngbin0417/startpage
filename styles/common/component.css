@@ -1,0 +1,875 @@
+/* 재사용된 공통 컴포넌트 스타일을 정의합니다. */
+
+.divider {
+  background-color: #eef1f6;
+  height: 10px;
+}
+.divider-s {
+  background-color: #eef1f6;
+  height: 1px;
+}
+
+.button-box {
+  display: flex;
+  gap: 12px;
+}
+.button-box__button {
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  padding: 14px 0;
+  font-size: 14px;
+  border-radius: 10px;
+  background-color: #f35757;
+  color: #fff;
+  font-weight: bold;
+  justify-content: center;
+  box-shadow:
+          0 1px 3px rgba(0,0,0,0.1),
+          0 1px 2px rgba(0,0,0,0.18);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.button-box__button:hover{
+  box-shadow:
+          0 8px 16px rgba(0,0,0,0.15),
+          0 5px 5px rgba(0,0,0,0.18);
+}
+
+.button-box__button.font-weight-600 {
+  font-weight: 600;
+}
+.button-box__button.blue-bg {
+  color: #fff;
+  background-color: #0072ff;
+}
+
+/* 더보기 버튼 */
+.more-button {
+  cursor: pointer;
+  font-size: 14px;
+  color: #677082;
+  border: 1px solid #cacfd8;
+  border-radius: 18px;
+  padding: 11px;
+  width: fit-content;
+  margin: auto;
+}
+.more-button i {
+  margin-left: 5px;
+}
+
+/* 좌측 하단 국토교통부 기준 날짜 컴포넌트 ex. 2023.08.03 국토교통부 기준 */
+.standard-date {
+  font-size: 12px;
+  color: #959eb0;
+  text-align: right;
+}
+
+.phone-number {
+  position: absolute;
+  background-color: #0072ff;
+  font-size: 14px;
+  color: white;
+  padding: 16px 16px;
+  border-radius: 20px;
+  top: 90%;
+  left: 2%;
+  z-index: 1000;
+}
+
+.hide {
+  display: none;
+}
+
+/* simple navigation */
+.simple-selector {
+  display: flex;
+  color: #677082;
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: 10px;
+}
+.simple-selector__item {
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  padding: 13px 0;
+  border-bottom: 1px solid #677082;
+}
+.simple-selector__item.active {
+  color: #111;
+  border-bottom: 2px solid #111;
+}
+
+
+/* 일반적으로 사용하는 테이블 */
+.general-table {
+  margin-top: 16px;
+}
+.general-table-item {
+  border-bottom: 1px solid #cacfd8;
+  font-size: 18px;
+  padding: 13px 5px;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+.table-item{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 20px;
+}
+@media (max-width: 400px) {
+  .table-item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+  }
+  .general-table-item {
+    border-bottom: 1px solid #cacfd8;
+    font-size: 14px;
+    padding: 13px 5px;
+  }
+}
+
+.general-table-item.center .general-table-item__content {
+  width: 100%;
+  text-align: center;
+  padding-right: 0;
+}
+.general-table-item.green_1 {
+  background-color: #ebf9f9;
+}
+.general-table-item.green_2 {
+  background-color: #c4eeec;
+}
+.general-table-item:first-child {
+  border-top: 2px solid #959eb0;
+}
+.general-table-item__content.bold {
+  font-weight: bold;
+}
+.general-table-item__content {
+  color: #000000;
+  font-weight: 500;
+  text-align: center;
+}
+.general-table-item__content.text-right {
+  text-align: right;
+}
+.general-table-item__content.w10 {
+  width: 10%;
+}
+.general-table-item__content.w20 {
+  width: 20%;
+}
+.general-table-item__content.w30 {
+  width: 30%;
+}
+.general-table-item__content.clickable {
+  color: #0072ff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.general-table-item__content.dark-gray {
+  color: #333c4e;
+}
+.general-table-item__content.blue {
+  color: #0072ff;
+}
+.general-table-item__content strong {
+  color: #0072ff;
+  font-size: 16px;
+  font-weight: 600;
+  margin-right: 3px;
+}
+.general-table-item__content-first {
+  margin-bottom: 4px;
+}
+.general-table-item.has-label {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.general-table-item__content i {
+  margin-left: 3px;
+  cursor: pointer;
+}
+
+
+/* 드롭다운 */
+.dropdown {
+  font-size: 16px;
+  font-weight: 400;
+  color: #333c4e;
+  position: relative;
+}
+
+/* dropdown active */
+.dropdown.active .dropdown__selected {
+  border-color: #0072ff;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.dropdown.active .dropdown-list {
+  display: block;
+}
+.dropdown.active .fa-caret-up {
+  display: block;
+}
+.dropdown.active .fa-caret-down {
+  display: none;
+}
+.dropdown.disabled {
+
+}
+.dropdown.disabled .dropdown__selected {
+  background-color: #f4f4f4;
+}
+
+.dropdown__selected {
+  border: 1px solid #959eb0;
+  cursor: pointer;
+  border-radius: 6px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px;
+}
+.dropdown__selected .fa-caret-up {
+  display: none;
+}
+.dropdown-list {
+  display: none;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  border: 1px solid #959eb0;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-top: 0;
+  background-color: #fff;
+}
+.dropdown-background {
+  background-color: #00000080;
+  display: none;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+.dropdown-list__header {
+  align-items: center;
+  display: none;
+  font-size: 24px;
+  font-weight: 500;
+  justify-content: space-between;
+  letter-spacing: -.72px;
+  line-height: 1;
+  margin-bottom: 15px;
+  padding: 33px 30px 15px;
+}
+.dropdown-list__header img {
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
+}
+.dropdown-list__body {
+  max-height: 210px;
+  overflow-y: auto;
+}
+@media (max-width: 800px) {
+  .dropdown.responsive .dropdown-list {
+    pointer-events: none;
+    display: block;
+    border-radius: 20px 20px 0 0;
+    bottom: 0;
+    font-size: 20px;
+    left: 0;
+    max-height: 80%;
+    min-height: auto;
+    opacity: 0;
+    position: fixed;
+    top: auto;
+    transform: translateY(50%);
+    transition: transform .2s;
+    z-index: 2;
+  }
+  .dropdown.responsive .dropdown-list__body {
+    max-height: 300px;
+    padding: 0 30px 30px;
+  }
+  .dropdown.responsive.active .dropdown-background {
+    display: block;
+  }
+  .dropdown.responsive.active .dropdown-list {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+  }
+  .dropdown.responsive.active .dropdown__selected {
+    border-radius: 6px;
+  }
+  .dropdown.responsive .dropdown-list__header {
+    display: flex;
+  }
+  .dropdown.responsive div.dropdown-item {
+    height: 60px;
+    line-height: 60px;
+    padding: 0 20px;
+  }
+  .dropdown.responsive .dropdown-item:not(:last-child) {
+    border-bottom: 1px solid #e6e9ee;
+  }
+}
+@media (max-width: 450px) {
+  .dropdown.responsive .dropdown-list {
+    font-size: 16px;
+  }
+  .dropdown.responsive .dropdown-list__header {
+    font-size: 20px;
+    margin-bottom: 10px;
+    padding: 30px 20px 10px;
+  }
+  .dropdown.responsive .dropdown-list__header {
+    font-size: 20px;
+  }
+  .dropdown.responsive .dropdown-list__header img {
+    height: 15px;
+    width: 15px;
+  }
+  .dropdown.responsive .dropdown-list__body {
+    padding: 0 20px 20px;
+  }
+  .dropdown.responsive div.dropdown-item {
+    height: 50px;
+    line-height: 50px;
+    padding: 0 10px;
+  }
+}
+
+.dropdown-item {
+  cursor: pointer;
+  background-color: #fff;
+  padding: 10px;
+}
+.dropdown-item:last-child {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.dropdown-item:hover {
+  color: #0072ff;
+}
+
+.apexchart__tooltip {
+  border: 3px solid #0072ff;
+  background-color: #fff;
+  color: #0d1724;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px;
+}
+.general-modal {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
+.general-modal__title {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 18px;
+  color: #0072ff;
+  margin-bottom: 20px;
+}
+.general-modal__content {
+  color: #0d1724;
+  font-weight: normal;
+  font-size: 14px;
+}
+.general-modal__content__row {
+  margin-bottom: 8px;
+}
+.general-modal__content__row:last-child {
+  margin-bottom: 0;
+}
+
+/* 값이 없거나 제공하지 않는 경우 보여지는 UI */
+.no-value-box {
+  padding: 30px 0;
+}
+.no-value-box img {
+  width: 40px;
+  display: block;
+  margin: auto;
+  margin-bottom: 16px;
+}
+.no-value-box__title {
+  font-size: 16px;
+  line-height: 24px;
+  color: #111;
+  text-align: center;
+}
+.no-value-box__title strong {
+  font-weight: bold;
+}
+.no-value-box__title.blue {
+  color: #0072ff;
+}
+.no-value-box__title.red {
+  color: #f4361e;
+}
+.no-value-box__inner-box {
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 19px;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+  margin-top: 16px;
+}
+.no-value-box__inner-box strong.bold {
+  font-weight: bold;
+}
+.no-value-box__inner-box strong.blue {
+  color: #0072ff;
+}
+.no-value-box__inner-box strong.red {
+  color: #f4361e;
+}
+
+
+/* 세금 컨설팅 신청서 모달 스타일 */
+.consulting-request-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 12000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.consulting-request-modal.hide {
+  display: none;
+}
+.consulting-request-modal .modal-background {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.consulting-request-modal .modal-wrap {
+  position: relative;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  padding: 32px 24px 24px 24px;
+  z-index: 10001;
+  width: 100%;
+  max-width: 400px;
+}
+.consulting-request-modal .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.consulting-request-modal .modal-header .title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #222;
+}
+.consulting-request-modal .modal-header .close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.consulting-request-modal .modal-header .close img {
+  width: 22px;
+  height: 22px;
+}
+.consulting-request-modal .modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.consulting-request-modal .button-group {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+.consulting-request-modal .button {
+  min-width: 80px;
+  padding: 8px 0;
+  border-radius: 6px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.consulting-request-modal .button.blue {
+  background: #f35757;
+  color: #fff;
+  border: 1px solid #f35757;
+}
+.consulting-request-modal .button.blue:hover {
+  background: #d93b3b;
+}
+.consulting-request-modal .button:not(.blue) {
+  background: #f5f5f5;
+  color: #444;
+  border: 1px solid #e0e0e0;
+}
+.consulting-request-modal .button:not(.blue):hover {
+  background: #ececec;
+}
+.consulting-request-modal #consultingRequestResult {
+  font-size: 0.98rem;
+  margin-top: 6px;
+  text-align: center;
+}
+
+/* 세금 컨설팅 신청서 모달 - 첨부 이미지 스타일 */
+.consulting-request-modal .consulting-modal-wrap {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  max-height: 90vh;
+}
+
+.consulting-request-modal .consulting-modal-background {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(30, 41, 59, 0.32); /* 오버레이 효과 */
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.consulting-request-modal .consulting-modal-header {
+  background: #2563eb;
+  padding: 24px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.consulting-request-modal .consulting-modal-title {
+  font-size: 1.35rem;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.consulting-request-modal .consulting-modal-desc {
+  font-size: 12px;
+  opacity: 0.95;
+}
+
+.consulting-request-modal .consulting-modal-content {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.consulting-request-modal .consulting-input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.consulting-request-modal .consulting-label {
+  font-size: 1rem;
+  color: #222;
+  margin-bottom: 2px;
+  font-weight: 500;
+}
+
+.consulting-request-modal .consulting-input,
+.consulting-request-modal .consulting-textarea,
+.consulting-request-modal select.consulting-input {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 5px 16px;
+  border: 1.5px solid #e0e7ef;
+  border-radius: 8px;
+  background: #f8fafc;
+  transition: border 0.2s;
+  font-family: inherit;
+  margin: 0;
+  display: block;
+}
+
+.consulting-request-modal .consulting-input:focus,
+.consulting-request-modal .consulting-textarea:focus,
+.consulting-request-modal select.consulting-input:focus {
+  border: 1.5px solid #2563eb;
+  outline: none;
+  background: #fff;
+}
+
+.consulting-request-modal .consulting-textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.consulting-request-modal .consulting-checkbox-wrap {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  margin-top: 6px;
+}
+
+.consulting-request-modal .consulting-checkbox {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  accent-color: #2563eb;
+}
+
+.consulting-request-modal .consulting-checkbox-label {
+  font-size: 0.98rem;
+  color: #222;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.consulting-request-modal .consulting-privacy-desc {
+  font-size: 10px;
+  color: #666;
+  border-radius: 7px;
+  padding: 5px 5px;
+}
+
+.consulting-request-modal .consulting-submit-btn {
+  width: 100%;
+  background: #2563eb;
+  color: #fff;
+  font-size: 1.13rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 16px 0;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: background 0.18s;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.07);
+}
+
+.consulting-request-modal .consulting-submit-btn:hover {
+  background: #1746b3;
+}
+
+.consulting-request-modal .consulting-modal-close {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
+.consulting-request-modal.hide {
+  display: none !important;
+}
+
+/* 1. 헤더 배경색 변경 */
+.modal-theme-tax .consulting-modal-header {
+  background: #047857; /* 새로운 녹색 */
+}
+.modal-theme-tax .consulting-checkbox {
+  accent-color: #047857; /* 새로운 녹색 */
+}
+.modal-theme-tax .consulting-submit-btn {
+  background: #047857; /* 새로운 녹색 */
+  box-shadow: 0 2px 8px rgba(4, 120, 87, 0.1); /* 녹색 계열 그림자 */
+}
+.modal-theme-tax .consulting-submit-btn:hover {
+  background: #065f46;
+}
+
+.modal-theme-tax .consulting-input:focus,
+.modal-theme-tax .consulting-textarea:focus,
+.modal-theme-tax select.consulting-input:focus {
+  border: 1.5px solid #047857; /* 새로운 녹색 */
+}
+
+/* 1. 헤더 배경색 변경 */
+.modal-theme-legal .consulting-modal-header {
+  background: #4B5563; /* 새로운 회색 */
+}
+
+/* 2. 입력창 포커스(클릭) 시 테두리 색상 변경 */
+.modal-theme-legal .consulting-input:focus,
+.modal-theme-legal .consulting-textarea:focus,
+.modal-theme-legal select.consulting-input:focus {
+  border: 1.5px solid #4B5563; /* 새로운 회색 */
+}
+
+/* 3. 체크박스 색상 변경 */
+.modal-theme-legal .consulting-checkbox {
+  accent-color: #4B5563; /* 새로운 회색 */
+}
+
+/* 4. 제출 버튼 배경색 및 그림자 색상 변경 */
+.modal-theme-legal .consulting-submit-btn {
+  background: #4B5563; /* 새로운 회색 */
+  box-shadow: 0 2px 8px rgba(75, 85, 99, 0.1); /* 회색 계열 그림자 */
+}
+
+/* 5. 제출 버튼에 마우스 올렸을 때 배경색 변경 (더 진한 회색) */
+.modal-theme-legal .consulting-submit-btn:hover {
+  background: #374151;
+}
+
+
+
+@media (max-width: 600px) {
+  .consulting-request-modal .consulting-modal-wrap {
+    max-width: 98vw;
+    min-width: 0;
+    width: 100%;
+    padding: 0;
+    max-height: 98vh;
+    overflow-y: auto;
+  }
+  .consulting-request-modal .consulting-modal-header,
+  .consulting-request-modal .consulting-modal-content {
+    padding: 10px;
+  }
+  .consulting-request-modal .consulting-input,
+  .consulting-request-modal .consulting-textarea,
+  .consulting-request-modal select.consulting-input {
+    font-size: 15px;
+    padding: 10px 10px;
+  }
+  .consulting-request-modal .consulting-submit-btn {
+    font-size: 1rem;
+    padding: 13px 0;
+  }
+}
+.login-modal,
+.join-modal,
+.findid-modal,
+.findpw-modal {
+  z-index: 10003;
+}
+
+/* 기타 모든 상담 모달 */
+#taxConsultingRequestModal,
+#appraisalConsultingRequestModal,
+#legalConsultingRequestModal {
+  z-index: 10003;
+}
+
+/* Support 이미지 고정 위치 및 호버 애니메이션 */
+.support-fixed {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  z-index: 10000;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+  opacity: 1;
+  visibility: visible;
+}
+
+.support-fixed:hover {
+  transform: scale(1.05);
+}
+
+.support-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition: all 0.3s ease;
+}
+
+.support-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 10001;
+}
+
+.support-extended {
+  width: 270.4px;
+  height: 80px;
+  border-radius: 65px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transform: translateX(20px);
+  z-index: 10000;
+  background-color: #51CDD1;
+}
+
+.support-extended.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.support-fixed:hover .support-circle {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.support-fixed:hover .support-extended {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Support 이미지 숨김 상태 */
+.support-fixed.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.8);
+}
+
+/* 모바일에서 크기 조정 */
+@media (max-width: 768px) {
+  .support-fixed {
+    bottom: 100px;
+    right: 15px;
+  }
+  
+  .support-circle {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .support-extended {
+    width: 270.4px;
+    height: 80px;
+    border-radius: 40px;
+    background-color: #51CDD1;
+  }
+}

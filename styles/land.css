@@ -1,0 +1,187 @@
+.land-wrap {
+  z-index: 1003;
+}
+
+.land-summary-wrap {
+  padding: 30px 20px;
+}
+
+/* 임시 position */
+.jibun-info-modal {
+  position: absolute;
+  top: 100px;
+  left: 110%;
+  width: 100%;
+}
+
+.jibun-info {
+  background-color: #fff;
+  width: 100%;
+  border-radius: 10px;
+  padding: 20px;
+}
+.jibun-info__title {
+  color: #0072ff;  
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.jibun-info__title .header__btn {
+  width: 16px;
+}
+.dong-info {
+  margin-bottom: 16px;
+}
+
+.floor-summary-wrap {
+  padding: 30px 20px;
+}
+
+.floor-summary-wrap__list {
+  margin-bottom: 16px;
+}
+
+.building-price-modal {
+  position: absolute;
+  background-color: #fff;
+  top: 5px;
+  left: 100px;
+  padding: 28px;
+  border-radius: 10px;
+  color: #000;
+  width: 1180px;
+  z-index: 1100;
+}
+.building-price-modal__header {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  font-size: 18px;
+  font-weight: 500;
+  border-bottom: 1px solid #a3a3a3;
+}
+.building-price-modal__header img {
+  width: 18px;
+  cursor: pointer;
+}
+.info-table table {
+  width: 100%;
+}
+.info-table th {
+  border-collapse: collapse;
+}
+.info-table tr {
+  border-collapse: collapse;
+}
+.info-table .th {
+  font-weight: 700;
+  background-color: #e8eef1;
+  text-align: center;
+  vertical-align: center;
+  word-break: keep-all;
+  padding-left: 0;
+  padding-right: 0;
+  border: 1px solid #c2c6cc;
+  padding: 8px 20px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.info-table .td {
+  border: 1px solid #c2c6cc;
+  padding: 8px 20px;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: right;
+}
+
+.building-price-modal .info-table-header {
+  margin-top: 20px;
+  text-align: right;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #2d2d2d;
+}
+
+.info-table-footer {
+  margin-top: 10px;
+}
+.info-table-footer .total {
+  font-size: 16px;
+  font-weight: 600;
+  text-align: right;
+}
+.info-table-footer .total__label {
+  display: inline-block;
+  text-align: right;
+  color: #2d2d2d;
+  width: 150px;
+  margin-right: 10px;
+}
+.info-table-footer .total__value {
+  color: #26499c;
+  font-size: 1.1em;
+}
+.info-table-footer .descript {
+  margin-top: 10px;
+}
+.info-table-footer .descript p {
+  font-size: 14px;
+  color: #2d2d2d;
+}
+.info-table-footer .descript p+p {
+  margin-top: 5px;
+}
+
+/*
+ * 개별공시지가 테이블 및 차트 관련 스타일
+ */
+/* 테이블을 감싸는 컨테이너 여백 */
+.price-table-container {
+  margin-top: 24px;
+}
+
+/* 테이블(ul) 스타일 */
+.general-table-list.land-price-table {
+  border-top: 1px solid #e9ecef;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* 테이블 행(li) 스타일 */
+.general-table-list.land-price-table .general-table-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #f1f3f5;
+  font-size: 14px;
+}
+
+/* 테이블 헤더 행 스타일 */
+.general-table-list.land-price-table .general-table-item:first-child {
+  background-color: #f8f9fa;
+  color: #495057;
+  font-weight: 500;
+}
+
+/* 가격 값(숫자) 스타일 */
+.general-table-item__content.price-value {
+  color: #0d6efd;
+  font-weight: 500;
+}
+
+/* 테이블 하단 '단위' 텍스트 스타일 */
+.table-footer {
+  text-align: right;
+  margin-top: 8px;
+  padding-right: 16px;
+  font-size: 12px;
+  color: #868e96;
+}

@@ -1,0 +1,493 @@
+/* loading_overlay.css - 투명 배경 오버레이 로딩 화면 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* 로딩 오버레이 래퍼 */
+#loading-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.85); /* 투명한 다크 배경 */
+    backdrop-filter: blur(8px); /* 배경 블러 효과 */
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: #ffffff;
+}
+
+/* 활성화 상태 */
+#loading-wrap.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 로딩 컨테이너 */
+.loading-container {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(30, 41, 59, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 메인 로고 영역 */
+.loading-logo-section {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 외부 원형 테두리 */
+.loading-outer-ring {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 3px solid transparent;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #3b82f6, #06b6d4, #10b981) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: subtract;
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    mask-composite: subtract;
+    animation: loadingRotate 2s linear infinite;
+}
+
+/* 내부 원형 배경 */
+.loading-inner-circle {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* 집 생성 애니메이션 */
+.loading-house-construction {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+/* 집 기초 */
+.loading-house-foundation {
+    position: absolute;
+    bottom: 0;
+    width: 32px;
+    height: 24px;
+    background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+    border-radius: 2px;
+    opacity: 0;
+    animation: loadingBuildFoundation 3s ease-in-out infinite;
+}
+
+/* 집 지붕 */
+.loading-house-roof {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 16px solid #06b6d4;
+    opacity: 0;
+    animation: loadingBuildRoof 3s ease-in-out infinite;
+}
+
+/* 집 문 */
+.loading-house-door {
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 12px;
+    background: #8b5cf6;
+    border-radius: 1px;
+    opacity: 0;
+    animation: loadingBuildDoor 3s ease-in-out infinite;
+}
+
+/* 집 창문들 */
+.loading-house-window {
+    position: absolute;
+    bottom: 12px;
+    width: 5px;
+    height: 5px;
+    background: #fbbf24;
+    border-radius: 1px;
+    opacity: 0;
+    animation: loadingBuildWindows 3s ease-in-out infinite;
+}
+
+.loading-house-window.left {
+    left: 6px;
+    animation-delay: 0.1s;
+}
+
+.loading-house-window.right {
+    right: 6px;
+    animation-delay: 0.2s;
+}
+
+/* 굴뚝 */
+.loading-house-chimney {
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    width: 3px;
+    height: 10px;
+    background: #ef4444;
+    border-radius: 1px 1px 0 0;
+    opacity: 0;
+    animation: loadingBuildChimney 3s ease-in-out infinite;
+}
+
+/* 연기 */
+.loading-smoke {
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 2px;
+    background: #94a3b8;
+    border-radius: 50%;
+    opacity: 0;
+    animation: loadingSmoke 3s ease-in-out infinite;
+}
+
+.loading-smoke:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.loading-smoke:nth-child(2) {
+    animation-delay: 0.2s;
+    left: 40%;
+}
+
+.loading-smoke:nth-child(3) {
+    animation-delay: 0.3s;
+    left: 60%;
+}
+
+/* 상태 메시지 */
+.loading-status-section {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.loading-main-status {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 6px;
+    letter-spacing: -0.025em;
+}
+
+.loading-sub-status {
+    font-size: 14px;
+    color: #64748b;
+    font-weight: 400;
+}
+
+/* 임의 로딩 바 */
+.loading-progress-section {
+    width: 250px;
+    margin-bottom: 20px;
+}
+
+.loading-progress-bar {
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.loading-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6 0%, #06b6d4 50%, #10b981 100%);
+    border-radius: 2px;
+    width: 0%;
+    animation: loadingArbitraryProgress 4s ease-in-out infinite;
+    position: relative;
+}
+
+.loading-progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 15px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 100%);
+    animation: loadingShimmer 1.5s ease-in-out infinite;
+}
+
+.loading-progress-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+.loading-progress-percentage {
+    font-weight: 600;
+    color: #3b82f6;
+}
+
+/* 데이터 포인트 애니메이션 */
+.loading-data-points {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.loading-data-point {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #3b82f6;
+    border-radius: 50%;
+    opacity: 0;
+    animation: loadingDataFloat 3s ease-in-out infinite;
+}
+
+.loading-data-point:nth-child(1) {
+    top: 20%;
+    left: 15%;
+    animation-delay: 0s;
+}
+
+.loading-data-point:nth-child(2) {
+    top: 30%;
+    right: 20%;
+    animation-delay: 0.75s;
+}
+
+.loading-data-point:nth-child(3) {
+    bottom: 25%;
+    left: 25%;
+    animation-delay: 1.5s;
+}
+
+.loading-data-point:nth-child(4) {
+    bottom: 35%;
+    right: 15%;
+    animation-delay: 2.25s;
+}
+
+/* 애니메이션 정의 */
+@keyframes loadingRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes loadingBuildFoundation {
+    0%, 5% {
+        opacity: 0;
+        transform: scaleY(0);
+    }
+    15%, 100% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+@keyframes loadingBuildRoof {
+    0%, 15% {
+        opacity: 0;
+        transform: translateX(-50%) scaleY(0);
+    }
+    25%, 100% {
+        opacity: 1;
+        transform: translateX(-50%) scaleY(1);
+    }
+}
+
+@keyframes loadingBuildDoor {
+    0%, 25% {
+        opacity: 0;
+        transform: translateX(-50%) scaleY(0);
+    }
+    35%, 100% {
+        opacity: 1;
+        transform: translateX(-50%) scaleY(1);
+    }
+}
+
+@keyframes loadingBuildWindows {
+    0%, 35% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    45%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes loadingBuildChimney {
+    0%, 45% {
+        opacity: 0;
+        transform: scaleY(0);
+    }
+    55%, 100% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+@keyframes loadingSmoke {
+    0%, 55% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(0px) scale(0.5);
+    }
+    65% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-4px) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-12px) scale(1.5);
+    }
+}
+
+@keyframes loadingArbitraryProgress {
+    0% { width: 0%; }
+    20% { width: 25%; }
+    40% { width: 45%; }
+    60% { width: 70%; }
+    80% { width: 85%; }
+    100% { width: 100%; }
+}
+
+@keyframes loadingShimmer {
+    0% { transform: translateX(-15px); }
+    100% { transform: translateX(265px); }
+}
+
+@keyframes loadingDataFloat {
+    0%, 100% {
+        opacity: 0;
+        transform: translateY(0px) scale(0.8);
+    }
+    25% {
+        opacity: 1;
+        transform: translateY(-8px) scale(1);
+    }
+    75% {
+        opacity: 1;
+        transform: translateY(-4px) scale(1);
+    }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .loading-container {
+        width: 280px;
+        height: 280px;
+    }
+
+    .loading-logo-section {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 25px;
+    }
+
+    .loading-outer-ring {
+        width: 80px;
+        height: 80px;
+    }
+
+    .loading-inner-circle {
+        width: 65px;
+        height: 65px;
+    }
+
+    .loading-house-construction {
+        width: 40px;
+        height: 40px;
+    }
+
+    .loading-house-foundation {
+        width: 26px;
+        height: 20px;
+    }
+
+    .loading-house-roof {
+        border-left-width: 16px;
+        border-right-width: 16px;
+        border-bottom-width: 13px;
+        bottom: 16px;
+    }
+
+    .loading-progress-section {
+        width: 200px;
+    }
+
+    .loading-main-status {
+        font-size: 16px;
+    }
+
+    .loading-sub-status {
+        font-size: 12px;
+    }
+}
+
+/* 라이트 테마 지원 */
+@media (prefers-color-scheme: light) {
+    #loading-wrap {
+        background: rgba(248, 250, 252, 0.85);
+        color: #1e293b;
+    }
+
+    .loading-container {
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .loading-inner-circle {
+        background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .loading-main-status {
+        color: #1e293b;
+    }
+
+    .loading-progress-bar {
+        background: rgba(0, 0, 0, 0.1);
+    }
+}
+

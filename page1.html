@@ -1419,7 +1419,6 @@
         font-weight: 1000;
         color: white;
         line-height: 1.1;
-        font-family: "Poor Story", system-ui;
     }
 
     .smartphone-interface {
@@ -2153,6 +2152,46 @@
             transform: translateX(0);
         }
     }
+    
+
+    /* Flicker animation for KakaoTalk button */
+    .flicker-blink {
+        animation: flicker 0.6s steps(1) 3 alternate; /* 1s duration, instant steps, 3 times, alternate */
+    }
+    @keyframes flicker {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+
+    /* Pop-in animation for step characters */
+    .pop-in {
+        opacity: 0;
+        transform: scale(0.5); /* Start smaller */
+        transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Bounce effect */
+    }
+    .pop-in.is-visible {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    /* Zigzag line scale animation */
+    .zigzag-scale-animation {
+        animation: zigzag-scale 1.5s ease-out forwards;
+        background-size: 100%; /* Ensure initial state is normal */
+    }
+    @keyframes zigzag-scale {
+        0% {
+            background-size: 100%;
+        }
+        50% {
+            background-size: 110%; /* Scale up */
+        }
+        100% {
+            background-size: 100%; /* Return to normal */
+        }
+    }
 </style>
 
 <body>
@@ -2476,16 +2515,16 @@
         <div class="kakao-content">
             <!-- Left: Promotional Text -->
             <div class="promo-text">
-                <span class="promo-title">복잡한 절차? </span> <span class="promo-title" style="color: #FFDD79;">클릭 한 번</span><span class="promo-title">에 해결!</span>
+                <span class="promo-title letter-slide-in-container" style="background-color: black;"><span class="letter" style="animation-delay: 0.5s;">복</span><span class="letter" style="animation-delay: 0.55s;">잡</span><span class="letter" style="animation-delay: 0.6s;">한</span> <span class="letter" style="animation-delay: 0.65s;">절</span><span class="letter" style="animation-delay: 0.7s;">차</span><span class="letter" style="animation-delay: 0.75s;">?</span>
+                    <span class="letter" style="animation-delay: 0.8s;">클</span><span class="letter" style="animation-delay: 0.85s;">릭</span> <span class="letter" style="animation-delay: 0.9s;">한</span> <span class="letter" style="animation-delay: 0.95s;">번</span><span class="letter" style="animation-delay: 1s;">에</span> <span class="letter" style="animation-delay: 1.05s;">해</span><span class="letter" style="animation-delay: 1.1s;">결</span><span class="letter" style="animation-delay: 1.15s;">!</span></span>
                 <br>
                 <div style="margin-top: 20px;"></div>
-                <span class="promo-subtitle">세무·법무·감정평가까지</span>
+                <span class="promo-subtitle letter-slide-in-container" style="background-color: black;"><span class="letter" style="animation-delay: 1.2s;">세</span><span class="letter" style="animation-delay: 1.25s;">무</span><span class="letter" style="animation-delay: 1.3s;">·</span><span class="letter" style="animation-delay: 1.35s;">법</span><span class="letter" style="animation-delay: 1.4s;">무</span><span class="letter" style="animation-delay: 1.45s;">·</span><span class="letter" style="animation-delay: 1.5s;">감</span><span class="letter" style="animation-delay: 1.55s;">정</span><span class="letter" style="animation-delay: 1.6s;">평</span><span class="letter" style="animation-delay: 1.65s;">가</span><span class="letter" style="animation-delay: 1.7s;">까</span><span class="letter" style="animation-delay: 1.75s;">지</span></span>
                 <div style="margin-top: 20px;"></div>
 
-                <span class="promo-description">부동산 전문 상담, 카톡으로 가능</span><span class="promo-description" style="color: white;">합니다.</span>
+                <span class="promo-description letter-slide-in-container" style="background-color: black;"><span class="letter" style="animation-delay: 1.8s;">부</span><span class="letter" style="animation-delay: 1.85s;">동</span><span class="letter" style="animation-delay: 1.9s;">산</span> <span class="letter" style="animation-delay: 1.95s;">전</span><span class="letter" style="animation-delay: 2.0s;">문</span> <span class="letter" style="animation-delay: 2.05s;">상</span><span class="letter" style="animation-delay: 2.1s;">담</span><span class="letter" style="animation-delay: 2.15s;">,</span> <span class="letter" style="animation-delay: 2.2s;">카</span><span class="letter" style="animation-delay: 2.25s;">톡</span><span class="letter" style="animation-delay: 2.3s;">으</span><span class="letter" style="animation-delay: 2.35s;">로</span> <span class="letter" style="animation-delay: 2.4s;">가</span><span class="letter" style="animation-delay: 2.45s;">능</span><span class="letter" style="animation-delay: 2.5s;">합</span><span class="letter" style="animation-delay: 2.55s;">니</span><span class="letter" style="animation-delay: 2.6s;">다</span><span class="letter" style="animation-delay: 2.65s;">.</span></span>
             </div>
 
-            <!-- Right: Chat Interface -->
             <!-- Right: Chat Interface -->
             <div class="chat-interface">
                 <div class="chat-header">
@@ -2497,7 +2536,7 @@
                 </div>
 
                 <div class="chat-bubble">
-                    <a href="http://pf.kakao.com/_ckUxcG/chat" target="_blank" rel="noopener" style="color: black;">카카오톡으로 실시간 상담하기 &gt;</a>
+                    <a href="http://pf.kakao.com/_ckUxcG/chat" target="_blank" rel="noopener" style="color: black;" class="flicker-blink">카카오톡으로 실시간 상담하기 &gt;</a>
                 </div>
 
                 <div class="chat-input-area">
@@ -2521,8 +2560,8 @@
     <div class="container">
         <!-- Section Title -->
         <div class="faq-header">
-            <h2 class="faq-title">자주 묻는 질문</h2>
-            <h3 class="faq-subtitle">FAQ</h3>
+            <h2 class="faq-title slide-up">자주 묻는 질문</h2>
+            <h3 class="faq-subtitle slide-in-from-left">FAQ</h3>
             <div class="title-separator"></div>
         </div>
 
@@ -2530,12 +2569,12 @@
         <div class="faq-content">
             <!-- Q1 & A1 -->
             <div class="faq-item">
-                <div class="question">
+                <div class="question slide-in-from-left">
                     <span class="q-label">Q1.</span>
                     <br>
                     <span class="q-text">감정평가 없이도 부동산 상속증여 세금 신고가 가능한가요?</span>
                 </div>
-                <div class="answer">
+                <div class="answer slide-in-from-left">
                     <span class="a-label">A1.</span>
                     <br>
                     <span class="a-text">
@@ -2550,12 +2589,12 @@
 
             <!-- Q2 & A2 -->
             <div class="faq-item">
-                <div class="question">
+                <div class="question slide-in-from-left">
                     <span class="q-label">Q2.</span>
                     <br>
                     <span class="q-text">부동산 전문가 상담은 무료인가요?</span>
                 </div>
-                <div class="answer">
+                <div class="answer slide-in-from-left">
                     <span class="a-label">A2.</span>
                     <br>
                     <span class="a-text">
@@ -2569,12 +2608,12 @@
 
             <!-- Q3 & A3 -->
             <div class="faq-item">
-                <div class="question">
+                <div class="question slide-in-from-left">
                     <span class="q-label">Q3.</span>
                     <br>
                     <span class="q-text">밸류터치 AVM 추정가 만으로 효력이 있나요?</span>
                 </div>
-                <div class="answer">
+                <div class="answer slide-in-from-left">
                     <span class="a-label">A3.</span>
                     <br>
                     <span class="a-text">
@@ -2591,19 +2630,19 @@
 <section class="process-section">
     <div class="container">
         <!-- Section Title -->
-        <div class="process-header">
+        <div class="process-header slide-in-from-left">
             <span class="process-title" style="color:white; background-color: #00458d; font-size:2.5rem;">감정평가법인 감동</span><span class="process-subtitle" style="color:black;font-size:2.5rem;">의 노하우가 담긴</span> <br />
             <div style="margin:15px;"></div>
             <span class="process-title">밸류터치</span><span class="process-subtitle">는 이렇게 연결됩니다.</span>
         </div>
 
         <!-- Process Steps -->
-        <div class="process-flow">
+        <div class="process-flow zigzag-scale-animation">
             <!-- Step 1 -->
             <div class="process-step step-1">
                 <span class="step-number-gamdong">1단계</span>
 
-                <div class="step-character">
+                <div class="step-character pop-in">
                     <div class="step-image-placeholder">
                         <img src="/assets/start/page1/터치/터치_1단계 감동이.png">
                     </div>
@@ -2622,7 +2661,7 @@
             <div class="process-step step-2">
                 <span class="step-number-gamdong">2단계</span>
 
-                <div class="step-character">
+                <div class="step-character pop-in">
                     <div class="step-image-placeholder">
                         <img src="/assets/start/page1/터치/터치_2단계 감동이.png">
                     </div>
@@ -2637,7 +2676,7 @@
             <!-- Step 3 -->
             <div class="process-step step-3">
                 <span class="step-number-gamdong">3단계</span>
-                <div class="step-character">
+                <div class="step-character pop-in">
                     <div class="step-image-placeholder">
                         <img src="/assets/start/page1/터치/터치_3단계 감동이.png">
                     </div>
@@ -2655,7 +2694,7 @@
             <!-- Step 4 -->
             <div class="process-step step-4">
                 <span class="step-number-gamdong">4단계</span>
-                <div class="step-character">
+                <div class="step-character pop-in">
                     <div class="step-image-placeholder">
                         <img src="/assets/start/page1/터치/터치_4단계 감동이.png">
                     </div>
@@ -2682,12 +2721,12 @@
         <div class="footer-content">
             <!-- Left: Text Content -->
             <div class="footer-text">
-                <span class="footer-question">내 집, 지금 얼마일까?</span> <br>
+                <span class="footer-question slide-up">내 집, 지금 얼마일까?</span> <br>
                 <div style="margin-top: 30px;"></div>
-                <span class="footer-cta" style="color: #84211E; background-color: #eee8e8;">5초 만에 밸류터치</span>
-                <span class="footer-cta">로 부동산 가치 확인!</span>
+                <span class="footer-cta letter-slide-in-container" style="color: #84211E; background-color: #eee8e8;"><span class="letter" style="animation-delay: 0.5s;">5</span><span class="letter" style="animation-delay: 0.55s;">초</span><span class="letter" style="animation-delay: 0.6s;"> 만</span><span class="letter" style="animation-delay: 0.65s;">에</span><span class="letter" style="animation-delay: 0.7s;"> 밸</span><span class="letter" style="animation-delay: 0.75s;">류</span><span class="letter" style="animation-delay: 0.8s;">터</span><span class="letter" style="animation-delay: 0.85s;">치</span></span>
+                <span class="footer-cta slide-up">로 부동산 가치 확인!</span>
             </div>
-            <div class="chat-bubble" style="background-color: #ff2e55; border-radius: 30px;">
+            <div class="chat-bubble flicker-blink" style="background-color: #ff2e55; border-radius: 30px;">
                 <a href="/main" style="color: white; font-weight: 1000;">무료로 부동산 추정가 확인하기 &gt;</a>
             </div>
             <!-- <div class="footer-image-wrapper">
@@ -2828,7 +2867,7 @@
             });
         }, { threshold: 0.3 });
 
-        const elementsToAnimate = document.querySelectorAll('.slide-in-from-left, .slide-in-from-right, .slide-up, .letter-slide-in-container');
+        const elementsToAnimate = document.querySelectorAll('.slide-in-from-left, .slide-in-from-right, .slide-up, .letter-slide-in-container, .pop-in, .zigzag-scale-animation');
         elementsToAnimate.forEach(el => {
             observer.observe(el);
         });

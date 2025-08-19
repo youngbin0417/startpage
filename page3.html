@@ -436,7 +436,7 @@
         }
         .trust-desc{
         margin:0; color:#6B7280; font-size:15px; line-height:1.7;
-        white-space:normal;
+        white-space:normal; 
         }
 
         /* Trust headline & desc animations (match page2 behavior) */
@@ -1681,12 +1681,76 @@
         cards.forEach(function(card){ io.observe(card); });
     });
 </script>
+<script>
+    // Onestop chips: split into characters and reveal with per-char drop when visible
+    document.addEventListener('DOMContentLoaded', function(){
+        const chips = document.querySelectorAll('.vt-onestop__chip');
+        if (!chips.length) return;
 
+        // Split all descendant text nodes into span.char while preserving element structure (e.g., .accent)
+        const splitNodeToChars = function(node){
+            if (node.nodeType === Node.TEXT_NODE) {
+                const fragment = document.createDocumentFragment();
+                const text = node.textContent || '';
+                for (const ch of text) {
+                    if (ch === ' ') {
+                        fragment.appendChild(document.createTextNode(' '));
+                    } else {
+                        const span = document.createElement('span');
+                        span.className = 'char';
+                        span.textContent = ch;
+                        fragment.appendChild(span);
+                    }
+                }
+                return fragment;
+            }
+            if (node.nodeType === Node.ELEMENT_NODE) {
+                const clone = node.cloneNode(false);
+                const children = Array.from(node.childNodes);
+                children.forEach(function(child){
+                    clone.appendChild(splitNodeToChars(child));
+                });
+                return clone;
+            }
+            return node.cloneNode(true);
+        };
 
+        chips.forEach(function(chip){
+            if (chip.dataset.charProcessed === '1') return;
+            const fragment = document.createDocumentFragment();
+            Array.from(chip.childNodes).forEach(function(child){
+                fragment.appendChild(splitNodeToChars(child));
+            });
+            chip.textContent = '';
+            chip.appendChild(fragment);
+            chip.dataset.charProcessed = '1';
+        });
 
-</body>
-</html>
+        const revealChip = function(chip){
+            chip.classList.add('is-revealed');
+            const chars = chip.querySelectorAll('.char');
+            chars.forEach(function(span, index){
+                span.style.animationDelay = (index * 0.03) + 's';
+            });
+        };
 
+        if (!('IntersectionObserver' in window)) {
+            chips.forEach(revealChip);
+            return;
+        }
+
+        const io = new IntersectionObserver(function(entries, obs){
+            entries.forEach(function(entry){
+                if (entry.isIntersecting) {
+                    revealChip(entry.target);
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        chips.forEach(function(chip){ io.observe(chip); });
+    });
+</script>
 <script>
     // Services: reveal service-card when it enters the viewport (mirrors page2)
     document.addEventListener('DOMContentLoaded', function(){
@@ -1774,20 +1838,6 @@
         elems.forEach(p=>io.observe(p));
     });
 </script>
-> { /* iOS가 막아도 조용히 재시도 */ });
-
-    // DOM 준비 후 1회 시도
-    if (document.readyState === 'complete') tryPlay();
-    else window.addEventListener('load', tryPlay, { once: true });
-
-    // 사용자 첫 터치/포커스 복귀 시 재시도
-    window.addEventListener('touchstart', tryPlay, { once: true, passive: true });
-    document.addEventListener('visibilitychange', () => {
-      if (!document.hidden) tryPlay();
-    });
-  })();
-</script>
-
 
 </body>
 </html>

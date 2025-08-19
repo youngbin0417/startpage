@@ -7,8 +7,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gasoek+One&amp;family=Hi+Melody&amp;family=Nanum+Myeongjo&amp;family=Nanum+Pen+Script&amp;family=Poor+Story&amp;display=swap" rel="stylesheet"&gt;>
     <link  rel="stylesheet" href="./styles/index.css">
+    <link rel="stylesheet" href="./styles/sidebar.css">
 </head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MPTZN809D2"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
+    gtag('config', 'G-MPTZN809D2');
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VALUE TOUCH - 부동산 전문 서비스</title>
 <style>
@@ -18,6 +27,94 @@
         box-sizing: border-box;
     }
     .em{color:#DC2626}
+
+    /* Hero */
+        .vt-hero{position:relative;min-height:72vh;background:#000; overflow: hidden;}
+        .vt-hero__video {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 70% center;  /* ⬅️ 중심보다 우측을 기준으로 */
+        background: transparent;
+        filter: none;
+        opacity: 1;
+        mix-blend-mode: normal;
+        }
+
+
+        .vt-hero__tint{
+        position:absolute; inset:0; z-index:1; pointer-events:none;
+        background:transparent;                /* 노란 톤 */
+        mix-blend-mode:screen;             /* 화면(밝게) 블렌드 */
+        opacity:.18;                       /* 0~0.3 사이 조절 */
+        }
+        .vt-hero__scrim{
+        position:absolute; inset:0; z-index:1; pointer-events:none;
+        background:linear-gradient(90deg);
+        }
+        .vt-hero .em{color:#DC2626}
+
+
+        /* header bar (on top of hero) */
+        .vt-hero__bar{position:absolute;top:30px;left:0;right:0;z-index:2;height:64px;display:flex;align-items:center;justify-content:space-around;padding:0 60px}
+        .vt-hero__logo{height:90px;width:auto; }
+        .vt-hero__nav a {
+            display: inline-flex;           /* 세로 중앙 정렬 */
+            align-items: center;           /* 세로 정렬 핵심 */
+            justify-content: center;
+            height: 38px;                  /* 로고/버튼 높이에 맞춤 */
+            line-height: 1;
+            padding: 0 14px;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            box-sizing: border-box;        /* 높이 계산 안정화 */
+        }
+        .vt-btn--ghost{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border:1px solid rgba(255,255,255,.55);border-radius:999px;color:#fff;text-decoration:none;font-weight:700;backdrop-filter:saturate(160%) blur(2px)}
+        .vt-btn--ghost:hover{background:rgba(255,255,255,.12)}
+        .vt-link {
+        color: white;
+        font-weight: 600;
+        font-size: 20px;
+        text-decoration: none;
+        align-items: center;
+        }
+
+        .vt-link:hover {
+        opacity: 0.85;
+        }
+
+        .vt-outline {
+        padding: 8px 16px;
+        border: 2px solid white;
+        border-radius: 8px;
+        font-weight: 700;
+        }
+        /* center content */
+        .vt-hero__inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:100%;padding:220px 16px}
+        .vt-hero__lead{color:#fff;font-weight:800;font-size:clamp(16px,1.3vw,20px);line-height:1.5;opacity:.95}
+        .vt-hero__barline{width:min(180px,30vw);height:6px;border-radius:999px;background:#ef4444;margin:18px auto 12px}
+
+        /* CTA */
+        .vt-hero__cta{margin-top:18px}
+        .vt-btn--outline{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;border:5px solid rgba(255,255,255,.9);color:#fff;text-decoration:none;font-weight:600;gap:8px;box-shadow:0 10px 26px rgba(0,0,0,.18)}
+        .vt-btn--outline:hover{background:rgba(255,255,255,.12)}
+
+        /* scroll indicator */
+        .vt-hero__chev{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);width:28px;height:28px;border-bottom:3px solid #fff;border-right:3px solid #fff;rotate:45deg;opacity:.9}
+
+        /* responsive */
+        @media (max-width:640px){
+        .vt-hero{min-height:64vh}
+        .vt-hero__bar{height:58px}
+        .vt-hero__nav{gap:8px}
+        .vt-btn--ghost{padding:8px 12px;font-weight:700}
+        }
     /* NEON title */
     .vt-hero__title{font-weight:900;letter-spacing:.18em;font-size:clamp(42px,7vw,88px);color:#fff;text-transform:uppercase;
         text-shadow:
@@ -47,7 +144,7 @@
         background-color: #000;
         color: white;
         overflow-x: hidden;
-        font-size: 1.2em;
+        font-size: 1em;
     }
 
     /* Navigation Bar */
@@ -159,76 +256,98 @@
         transform: rotate(-45deg) translate(7px, -6px);
     }
 
-    /* Mobile Navigation Menu */
-    .mobile-nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 280px;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(10px);
-        z-index: 9999;
-        transition: right 0.3s ease;
-        padding: 80px 30px 30px;
-    }
+        /* Mobile Navigation Menu */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            transition: right 0.3s ease;
+            padding: 80px 30px 30px;
+        }
 
-    .mobile-nav.active {
-        right: 0;
-    }
+        .mobile-nav.active {
+            right: 0;
+        }
 
-    .mobile-nav .close-btn {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        background: none;
-        border: none;
-        color: white;
-        font-size: 2rem;
-        cursor: pointer;
-        padding: 5px;
-        line-height: 1;
-    }
+        .mobile-nav .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 5px;
+            line-height: 1;
+        }
 
-    .mobile-nav .close-btn:hover {
-        color: #ff3131;
-    }
+        .mobile-nav .close-btn:hover {
+            color: #ff3131;
+        }
 
-    .mobile-nav a {
-        display: block;
-        color: white;
-        text-decoration: none;
-        font-size: 1.1rem;
-        font-weight: bold;
-        padding: 15px 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        transition: color 0.3s ease;
-    }
+        .mobile-nav a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: color 0.3s ease;
+        }
 
-    <!--    .mobile-nav a:hover {-->
-            <!--        color: #ff3131;-->
-            <!--    }-->
-    .mobile-nav a:not(.mobile-cta):hover { /* .mobile-cta를 제외한 a태그에만 hover 효과 적용 */
-        color: #ff3131;
-    }
-    .mobile-nav .mobile-cta {
-        background: transparent;
-        border: 2px solid white;
-        color: white !important; /* 글자색을 흰색으로 고정 (important 사용) */
-        padding: 15px 25px;
-        font-size: 1rem;
-        font-weight: bold;
-        border-radius: 25px;
-        margin-top: 20px;
-        text-align: center;
-        transition: all 0.3s ease;
-        display: block; /* a 태그 기본 스타일과 맞춤 */
-    }
+        .mobile-nav a:hover {
+            color: #ff3131;
+        }
 
-    .mobile-nav .mobile-cta:hover {
-        background: white;
-        color: #000 !important; /* 호버 시 배경은 흰색, 글자는 검은색으로 고정 */
-    }
+        .mobile-nav .mobile-cta {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 15px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 25px;
+            margin-top: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav .mobile-cta:hover {
+            background: white;
+            color: #000;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex !important;
+            }
+
+            .nav-container {
+                justify-content: space-between;
+            }
+        }
+        .nav-cta,
+        .nav-cta:hover,
+        .mobile-nav .mobile-cta,
+        .mobile-nav .mobile-cta:hover {
+            text-decoration: none;
+        }
 
     .solution-container-phone {
         display:inline-block;
@@ -896,13 +1015,17 @@
     /* 카카오톡 상담하기 말풍선 */
     .chat-bubble {
         display: inline-block; /* 내용물 크기에 맞게 너비 축소 */
-        background-color: white;
+        background-color: #FEE500;
         padding: 15px 25px;
         border-radius: 25px; /* 더 둥글게 */
         margin-bottom: 25px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
         text-align: center;
     }
+    .chat-bubble:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
     /* 말풍선을 감싸는 부모(chat-interface)에서 중앙정렬 */
     .chat-interface {
         text-align: center;
@@ -1947,65 +2070,191 @@
             text-align: center;
         }
     }
+    /* Added for text animation */
+    .vt-hero__title .letter {
+        display: inline-block;
+        opacity: 0;
+        transform-origin: center;
+        animation: fall-down 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+    }
+
+    @keyframes fall-down {
+        from {
+            opacity: 0;
+            transform: translateY(-100px) rotateX(360deg);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) rotateX(0deg);
+        }
+    }
+
+    /* Fade in up animation for lead text */
+    .fade-in-up {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fade-in-up-animation 1s ease-out forwards;
+        animation-delay: 1.2s; /* Delay to start after title animation */
+    }
+
+    @keyframes fade-in-up-animation {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Fade in for CTA button */
+    .cta-fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fade-in-up-animation 1s ease-out forwards;
+        animation-delay: 1.8s; /* Delay to start after lead text */
+    }
+
+    /* Slide-in animations for scroll */
+    .slide-in-from-left, .slide-in-from-right {
+        opacity: 0;
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .slide-in-from-left {
+        transform: translateX(-150px);
+    }
+    .slide-in-from-right {
+        transform: translateX(150px);
+    }
+    .slide-in-from-left.is-visible, .slide-in-from-right.is-visible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* Slide up animation */
+    .slide-up {
+        opacity: 0;
+        transform: translateY(50px); /* Start below */
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .slide-up.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Letter by letter slide in animation */
+    .letter-slide-in-container.is-visible .letter {
+        display: inline-block;
+        opacity: 0;
+        transform: translateX(-50px); /* Start from left */
+        animation: letter-slide-in-animation 0.6s ease-out forwards;
+    }
+
+    @keyframes letter-slide-in-animation {
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
 </style>
 
 <body>
-<!-- Navigation Bar -->
-<nav class="navbar">
-    <div class="nav-container">
-        <div class="nav-logo">
-            <a href="/" class="logo">
-                <img src="/assets/start/page1/터치/밸류터치_로고.png" alt="VTF Logo" style="width: 100%; height: 100%; object-fit: contain;">
-            </a>
-        </div>
-        <div class="nav-links">
-            <a href="/" class="nav-link">감정평가</a>
-            <a href="/tax" class="nav-link">세금 컨설팅</a>
-            <a href="/law" class="nav-link">부동산 법률 상담</a>
-            <a href="/main" class="nav-cta">내 집 가치 확인</a>
-        </div>
-        <div class="mobile-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </div>
-</nav>
+<!--&lt;!&ndash; Navigation Bar &ndash;&gt;-->
+<!--<nav class="navbar">-->
+<!--    <div class="nav-container">-->
+<!--        <div class="nav-logo">-->
+<!--            <a href="/" class="logo">-->
+<!--                <img src="/assets/start/page1/터치/밸류터치_로고.png" alt="VTF Logo" style="width: 100%; height: 100%; object-fit: contain;">-->
+<!--            </a>-->
+<!--        </div>-->
+<!--        <div class="nav-links">-->
+<!--            <a href="/" class="nav-link">감정평가</a>-->
+<!--            <a href="/tax" class="nav-link">세금 컨설팅</a>-->
+<!--            <a href="/law" class="nav-link">부동산 법률 상담</a>-->
+<!--            <a href="/main" class="nav-cta">내 집 가치 확인</a>-->
+<!--        </div>-->
+<!--        <div class="mobile-menu">-->
+<!--            <span></span>-->
+<!--            <span></span>-->
+<!--            <span></span>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
 
-<!-- Mobile Navigation Menu -->
-<div class="mobile-nav" id="mobileNav">
-    <button class="close-btn">×</button>
-    <a href="/">감정평가</a>
-    <a href="/tax">세금 컨설팅</a>
-    <a href="/law">부동산법률상담</a>
-    <a href="/main">내 집 가치 확인</a>
-</div>
+<!--&lt;!&ndash; Mobile Navigation Menu &ndash;&gt;-->
+<!--<div class="mobile-nav" id="mobileNav">-->
+<!--    <button class="close-btn">×</button>-->
+<!--    <a href="/">감정평가</a>-->
+<!--    <a href="/tax">세금 컨설팅</a>-->
+<!--    <a href="/law">부동산법률상담</a>-->
+<!--    <a href="/main" class="mobile-cta">내 집 가치 확인</a>-->
+<!--</div>-->
 
-<!-- Main Hero Section -->
-<section class="hero-section">
-    <video id="background-video"
-           src="/assets/start/page1/터치/밸류터치 헤더 영상.mp4"
-           autoplay
-           muted
-           playsinline
-           webkit-playsinline
-           loop
-           preload="metadata">
+<section class="vt-hero" aria-label="메인 히어로">
+    <!-- 배경 비디오 -->
+    <video id="heroVideo" class="vt-hero__video" autoplay="" muted="" playsinline="" webkit-playsinline="" loop="" preload="metadata">
+        <source src="/assets/start/page1/터치/밸류터치 헤더 영상.mp4" type="video/mp4">
     </video>
-    <div class="hero-content">
-        <p class="tagline">부동산 자동 가치산정부터 감정평가까지</p>
-        <div class="tagline-separator"></div>
-        <h1 class="vt-hero__title"><span class="acc">V</span>ALUE <span class="acc">T</span>OUCH</h1>
-        <div class="vt-hero__cta">
-            <a class="vt-btn--outline"
-               href="javascript:void(0);"
-               onclick="openConsultingModal('appraisal')">
-                3분 만에 나의 <span class="em">무료로 부동산 전문가</span> 상담하기 →
+    <!-- 색상 톤 + 스크림 -->
+
+
+    <!-- 상단 로고/네비 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#" class="logo">
+                    <img src="/assets/start/page1/터치/밸류터치_로고.png" alt="VT Logo" style="width: 100%; height: 100%; object-fit: contain;">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="/" class="nav-link">감정평가</a>
+                <a href="/tax" class="nav-link">세금 컨설팅</a>
+                <a href="/law" class="nav-link">부동산 법률 상담</a>
+                <a href="/main" class="nav-cta">내 집 가치 확인</a>
+            </div>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="close-btn">×</button>
+        <a href="/">감정평가</a>
+        <a href="/tax">세금 컨설팅</a>
+        <a href="/law">부동산법률상담</a>
+        <a href="/main" class="mobile-cta">내 집 가치 확인</a>
+    </div>
+
+
+    <!-- 중앙 카피/타이틀/CTA -->
+    <div class="vt-hero__inner">
+        <p class="vt-hero__lead fade-in-up">부동산 자동 가치산정부터 감정평가까지</p>
+        <div class="vt-hero__barline"></div>
+                <h1 class="vt-hero__title">
+            <span class="letter acc" style="animation-delay: 0s">V</span><span class="letter" style="animation-delay: 0.1s">A</span><span class="letter" style="animation-delay: 0.2s">L</span><span class="letter" style="animation-delay: 0.3s">U</span><span class="letter" style="animation-delay: 0.4s">E</span> <span class="letter acc" style="animation-delay: 0.5s">T</span><span class="letter" style="animation-delay: 0.6s">O</span><span class="letter" style="animation-delay: 0.7s">U</span><span class="letter" style="animation-delay: 0.8s">C</span><span class="letter" style="animation-delay: 0.9s">H</span>
+        </h1>
+        <div class="vt-hero__cta cta-fade-in">
+            <a class="vt-btn--outline" href="javascript:void(0);" onclick="openConsultingModal('touch')">
+                3분 만에 <span class="em">무료로 부동산 전문가</span> 상담하기 →
             </a>
         </div>
     </div>
-
 </section>
+<div class="valuetouch-sidebar">
+    <a href="javascript:void(0);" onclick="openConsultingModal('touch')">
+        <img src="/assets/sidebar/call.svg" alt="상담신청">
+        <span>상담신청</span>
+    </a>
+    <a href="http://pf.kakao.com/_ckUxcG/chat" target="_blank" rel="noopener">
+        <img src="/assets/sidebar/kakao.svg" alt="카카오톡">
+        <span>카카오톡</span>
+    </a>
+    <a href="https://valuetouch.kr/main" target="_blank" rel="noopener">
+        <img src="/assets/sidebar/map.svg" alt="무료탁감">
+        <span>무료탁감</span>
+    </a>
+</div>
 
 <!-- Services Section -->
 <section class="services-section">
@@ -2013,19 +2262,19 @@
         <!-- Main Title Section -->
         <div class="main-title-section">
             <div class="chevron-icon"></div>
-            <h2 class="section-title">
+            <h2 class="section-title slide-in-from-right">
                 <div class="title-line">
                     <div class="title-start">부동산</div>
                     <div class="onestop-container">
-                        <div class="char-dot-group">
+                        <div class="char-dot-group slide-in-from-left">
                             <span class="red-dot">•</span>
                             <span class="char">원</span>
                         </div>
-                        <div class="char-dot-group">
+                        <div class="char-dot-group slide-in-from-left">
                             <span class="red-dot">•</span>
                             <span class="char">스</span>
                         </div>
-                        <div class="char-dot-group">
+                        <div class="char-dot-group slide-in-from-left">
                             <span class="red-dot">•</span>
                             <span class="char">톱</span>
                         </div>
@@ -2034,13 +2283,13 @@
                 </div>
             </h2>
             <div class="brand-name">
-                <span class="value">밸류터치</span><span class="touch"><span class="red-letter">V</span>ALUE<span class="red-letter">T</span>OUCH</span>
+                <span class="value slide-in-from-left">밸류터치</span><span class="touch slide-in-from-right"><span class="red-letter">V</span>ALUE<span class="red-letter">T</span>OUCH</span>
             </div>
         </div>
 
         <!-- Service Description and Card -->
         <div class="service-description-section">
-            <p class="section-description">
+            <p class="section-description slide-in-from-left">
                 세무·법무·감정평가 부동산 전문가가 협업해 고객님만을 위한 결과를 제공합니다.
             </p>
         </div>
@@ -2056,11 +2305,11 @@
                         </div>
                     </div>
                     <h3 class="service-title">부동산 법무 상담</h3>
-                    <span class="service-description">
+                    <span class="service-description slide-in-from-left">
                             복잡한 부동산 법률 문제를 명확하게 해결하고,
                         </span>
                     <br>
-                    <span class="service-description">
+                    <span class="service-description slide-in-from-left">
                             계약서 검토부터 분쟁 해결까지 전 과정을 지원합니다.
                         </span>
                 </div>
@@ -2098,11 +2347,11 @@
                         </div>
                     </div>
                     <h3 class="service-title">세금 컨설팅</h3>
-                    <span class="service-description">
+                    <span class="service-description slide-in-from-left">
                             최적의 절세 전략으로 세금 부담을 최소화하고,
                         </span>
                     <br>
-                    <span class="service-description">
+                    <span class="service-description slide-in-from-left">
                             정확하고 안전한 세무 신고를 보장합니다.
                         </span>
                 </div>
@@ -2120,11 +2369,11 @@
                         </div>
                     </div>
                     <h3 class="service-title">감정평가 의뢰</h3>
-                    <span class="service-description">
+                    <span class="service-description slide-in-from-left">
                             고객님의 상황을 고려해 감정평가로 합리적인 가격 결정을 도와드립니다.
                         </span>
                     <br>
-                    <span class="service-description">
+                    <span class="service-description slide-in-from-left">
                             세무서 법원 제출도 가능합니다.
                         </span>
                 </div>
@@ -2150,8 +2399,8 @@
     <div class="container">
         <!-- Main Title Area -->
         <div class="testimonials-header">
-            <h2 class="testimonials-subtitle">고객들이 증명합니다.</h2>
-            <h1 class="testimonials-title">
+            <h2 class="testimonials-subtitle slide-up">고객들이 증명합니다.</h2>
+            <h1 class="testimonials-title slide-up">
                 <span class="char2">밸류터치 감정평가 서비스의</span>
                 <div class="solution-container-phone"></div>
                 <div class="solution-container">
@@ -2183,7 +2432,9 @@
         <div class="testimonials-grid">
             <!-- Left Testimonial -->
             <div class="testimonial-block">
-                <h3 class="testimonial-heading">부동산 감정평가로<br>상속세 문제를 미리 대비했습니다.</h3>
+                <h3 class="testimonial-heading letter-slide-in-container">
+    <span class="letter" style="animation-delay: 0s;">부</span><span class="letter" style="animation-delay: 0.02s;">동</span><span class="letter" style="animation-delay: 0.04s;">산</span> <span class="letter" style="animation-delay: 0.06s;">감</span><span class="letter" style="animation-delay: 0.08s;">정</span><span class="letter" style="animation-delay: 0.1s;">평</span><span class="letter" style="animation-delay: 0.12s;">가</span><span class="letter" style="animation-delay: 0.14s;">로</span><br><span class="letter" style="animation-delay: 0.16s;">상</span><span class="letter" style="animation-delay: 0.18s;">속</span><span class="letter" style="animation-delay: 0.2s;">세</span> <span class="letter" style="animation-delay: 0.22s;">문</span><span class="letter" style="animation-delay: 0.24s;">제</span><span class="letter" style="animation-delay: 0.26s;">를</span> <span class="letter" style="animation-delay: 0.28s;">미</span><span class="letter" style="animation-delay: 0.3s;">리</span> <span class="letter" style="animation-delay: 0.32s;">대</span><span class="letter" style="animation-delay: 0.34s;">비</span><span class="letter" style="animation-delay: 0.36s;">했</span><span class="letter" style="animation-delay: 0.38s;">습</span><span class="letter" style="animation-delay: 0.4s;">니</span><span class="letter" style="animation-delay: 0.42s;">다</span><span class="letter" style="animation-delay: 0.44s;">.</span>
+</h3>
                 <div class="testimonial-box">
                     <p class="testimonial-text myeongjo">
                         노쇠하신 부모님께서 가지고 계신 건물이 하나 있었는데 국세청에서 <br>
@@ -2199,7 +2450,9 @@
 
             <!-- Right Testimonial -->
             <div class="testimonial-block">
-                <h3 class="testimonial-heading">힘들었던 전세보증보험 가입<br>밸류터치로 해결했어요!</h3>
+                <h3 class="testimonial-heading letter-slide-in-container">
+    <span class="letter" style="animation-delay: 0s;">힘</span><span class="letter" style="animation-delay: 0.02s;">들</span><span class="letter" style="animation-delay: 0.04s;">었</span><span class="letter" style="animation-delay: 0.06s;">던</span> <span class="letter" style="animation-delay: 0.08s;">전</span><span class="letter" style="animation-delay: 0.1s;">세</span><span class="letter" style="animation-delay: 0.12s;">보</span><span class="letter" style="animation-delay: 0.14s;">증</span><span class="letter" style="animation-delay: 0.16s;">보</span><span class="letter" style="animation-delay: 0.18s;">험</span> <span class="letter" style="animation-delay: 0.2s;">가</span><span class="letter" style="animation-delay: 0.22s;">입</span><br><span class="letter" style="animation-delay: 0.24s;">밸</span><span class="letter" style="animation-delay: 0.26s;">류</span><span class="letter" style="animation-delay: 0.28s;">터</span><span class="letter" style="animation-delay: 0.3s;">치</span><span class="letter" style="animation-delay: 0.32s;">로</span> <span class="letter" style="animation-delay: 0.34s;">해</span><span class="letter" style="animation-delay: 0.36s;">결</span><span class="letter" style="animation-delay: 0.38s;">했</span><span class="letter" style="animation-delay: 0.4s;">어</span><span class="letter" style="animation-delay: 0.42s;">요</span><span class="letter" style="animation-delay: 0.44s;">!</span>
+</h3>
                 <div class="testimonial-box">
                     <p class="testimonial-text hi_melody">
                         서울에 급하게 전세로 집에 거주하게 되었는데<br>
@@ -2495,8 +2748,8 @@
     </div>
 </footer>
 
-<template id="appraisal-consulting-template">
-    {{>modal/appraisalConsultingRequest}}
+<template id="touch-consulting-template">
+    {{>modal/touchConsultingRequest}}
 </template>
 
 <script src="/js/jquery/core/jquery-1.12.4.min.js"></script>
@@ -2561,6 +2814,23 @@
                     behavior: 'smooth'
                 });
             }
+        });
+    });
+
+    // Intersection Observer for scroll animations
+    document.addEventListener('DOMContentLoaded', () => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const elementsToAnimate = document.querySelectorAll('.slide-in-from-left, .slide-in-from-right, .slide-up, .letter-slide-in-container');
+        elementsToAnimate.forEach(el => {
+            observer.observe(el);
         });
     });
 </script>

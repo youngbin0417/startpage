@@ -448,11 +448,11 @@
         }
         .trust-underline{
         width:128px; height:3px; background:#E11D48;
-        border-radius:999px; margin: 14px auto auto auto;
+        border-radius:999px; margin: 14px auto 14px auto;
         }
         .trust-desc{
         margin:0; color:#6B7280; font-size:15px; line-height:1.7;
-        white-space:pre-line; /* 줄바꿈 유지 */
+        white-space:normal; /* 줄바꿈은 요소로 제어 (fly-in-line) */
         }
 
         .trust-card:hover .trust-thumb{transform:translateY(-2px); transition:transform .18s ease}
@@ -528,6 +528,28 @@
         transform:translateY(-2px);
         box-shadow:0 8px 28px rgba(0,0,0,0.08);
         }
+
+        /* Services: side fly-in (no duplication, variable-based) */
+        .services .service-card { --fly-distance: 28px; }
+        .service-card:nth-child(odd) { --fly-x: -1; }   /* from left */
+        .service-card:nth-child(even) { --fly-x: 1; }   /* from right */
+
+        .service-card > * {
+        opacity: 0;
+        transform: translateX(calc(var(--fly-x, -1) * var(--fly-distance, 28px)));
+        will-change: transform, opacity;
+        }
+
+        @keyframes fly-in-x {
+        from { opacity: 0; transform: translateX(calc(var(--fly-x, -1) * var(--fly-distance, 28px))); }
+        to { opacity: 1; transform: translateX(0); }
+        }
+
+        .service-card.is-visible > * { animation: fly-in-x .5s cubic-bezier(.2,.6,.2,1) forwards; }
+        .service-card.is-visible > *:nth-child(1) { animation-delay: 0s; }
+        .service-card.is-visible > *:nth-child(2) { animation-delay: .08s; }
+        .service-card.is-visible > *:nth-child(3) { animation-delay: .16s; }
+        .service-card.is-visible > *:nth-child(4) { animation-delay: .24s; }
 
         .service-icon {
         width: 120px; height:120px;
@@ -681,6 +703,21 @@
         .vt-onestop__logo {
         max-width: 140px;
         height: auto;
+        }
+
+        /* Onestop chips: per-character drop-in from top */
+        .vt-onestop__chip .char {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(-0.6em);
+        will-change: transform, opacity;
+        }
+        @keyframes vt-char-drop {
+        from { opacity: 0; transform: translateY(-0.6em); }
+        to { opacity: 1; transform: translateY(0); }
+        }
+        .vt-onestop__chip.is-revealed .char {
+        animation: vt-char-drop .55s cubic-bezier(.2,.6,.2,1) forwards;
         }
 
 
@@ -884,6 +921,13 @@
         color:#111827;
         }
 
+        /* Generic side reveal for headings */
+        .reveal-fx{opacity:0; transform:translateX(var(--reveal-x, 0)); will-change:transform, opacity}
+        .reveal-left{--reveal-x:-28px}
+        .reveal-right{--reveal-x:28px}
+        @keyframes reveal-in-x { from { opacity:0; transform:translateX(var(--reveal-x, 0)); } to { opacity:1; transform:translateX(0); } }
+        .reveal-fx.is-visible{animation:reveal-in-x .6s cubic-bezier(.2,.6,.2,1) forwards}
+
         .solutions-grid {
         display:grid;
         grid-template-columns:repeat(4,1fr);
@@ -898,6 +942,10 @@
         position:relative;
         transition:transform .15s ease, box-shadow .15s ease;
         }
+        /* Solutions: rise-in from bottom sequentially */
+        .solution-card.reveal-item{opacity:0; transform:translateY(18px); will-change: transform, opacity}
+        @keyframes solution-rise-in { from {opacity:0; transform:translateY(18px);} to {opacity:1; transform:translateY(0);} }
+        .solution-card.is-visible{animation: solution-rise-in .55s cubic-bezier(.2,.6,.2,1) forwards}
         .solution-card::before {
         content:"";
         position:absolute;
@@ -973,6 +1021,10 @@
             margin:0;
             text-align: center;
         }
+        /* Testi: handwriting fly-in from left (as a whole) */
+        .testi .handwriting{opacity:0; transform:translateX(-24px); will-change:transform,opacity}
+        @keyframes hw-fly-in { from {opacity:0; transform:translateX(-24px);} to {opacity:1; transform:translateX(0);} }
+        .testi .handwriting.is-visible{animation: hw-fly-in .55s cubic-bezier(.2,.6,.2,1) forwards}
         .testi .subgrid > div {
             display: flex;
             flex-direction: column;
@@ -984,6 +1036,16 @@
             height: 3em;
         }
         @media (max-width:1024px){ .testi .subgrid{grid-template-columns:1fr} .testi .section-title{font-size:32px}}
+
+        /* Testi headings: per-character rise from bottom */
+        .testi .char{display:inline-block;opacity:0;transform:translateY(0.6em);will-change:transform,opacity}
+        @keyframes testi-char-rise { from {opacity:0;transform:translateY(0.6em);} to {opacity:1;transform:translateY(0);} }
+        .testi .is-revealed .char{animation:testi-char-rise .55s cubic-bezier(.2,.6,.2,1) forwards}
+
+        /* Testi h3: per-word rise from bottom */
+        .testi .word{display:inline-block;opacity:0;transform:translateY(0.6em);will-change:transform,opacity}
+        @keyframes testi-word-rise { from {opacity:0;transform:translateY(0.6em);} to {opacity:1;transform:translateY(0);} }
+        .testi .is-revealed-words .word{animation:testi-word-rise .5s cubic-bezier(.2,.6,.2,1) forwards}
 
     /* ==== Bottom CTA (full-bleed, image no-crop) ==== */
         .vt-cta{position:relative;width:100%; height: 300px;; overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -1441,8 +1503,8 @@
 <!-- Solutions -->
 <section class="solutions">
     <div class="container">
-        <h2 class="section-subtitle">수많은 부동산 고객이 신뢰한</h2>
-        <h1 class="section-title">밸류택스 <span class="em">절세 솔루션</span></h1>
+        <h2 class="section-subtitle reveal-fx reveal-right">수많은 부동산 고객이 신뢰한</h2>
+        <h1 class="section-title reveal-fx reveal-left">밸류택스 <span class="em">절세 솔루션</span></h1>
 
         <div class="solutions-grid">
             <article class="solution-card">
@@ -1488,12 +1550,12 @@
 <!-- Testimonials -->
 <section class="testi" id="testimonials">
     <div class="container">
-        <div class="section-kicker">고객들이 증명합니다.</div>
-        <h1 class="section-title">밸류택스 원스톱 서비스의  <span class="highlight-dots">명쾌한 해답</span></h1>
+        <div class="section-kicker js-split-chars">고객들이 증명합니다.</div>
+        <h1 class="section-title js-split-chars">밸류택스 원스톱 서비스의  <span class="highlight-dots">명쾌한 해답</span></h1>
 
         <div class="subgrid">
             <div>
-                <h3>재개발 조합원 입주권을<br>감정평가부터 증여까지 한 번에 했습니다.</h3>
+                <h3 class="js-split-words">재개발 조합원 입주권을<br>감정평가부터 증여까지 한 번에 했습니다.</h3>
                 <article class="bubble">
                     <p class="handwriting">
                         자식에게 조합원 입주권을 증여 하려는데 거래사례가 없고
@@ -1506,7 +1568,7 @@
                 </article>
             </div>
             <div>
-                <h3>취득세 증여세 890만원 절세 !</h3>
+                <h3 class="js-split-words">취득세 증여세 890만원 절세 !</h3>
                 <article class="bubble">
                     <p class="handwriting">
                         아들에게 1층 아파트를 증여했는데 세무서에서 7층 거래사례로
@@ -1533,8 +1595,8 @@
     <!-- 내용 -->
     <div class="vt-cta__content">
         <div>
-            <div class="vt-cta__badge">세금 계산을 위한 <span class="accent">간편 시가 파악</span></div>
-            <div class="vt-cta__headline">밸류택스로 단 5초만에 확인하세요 !</div>
+            <div class="vt-cta__badge reveal-fx reveal-right">세금 계산을 위한 <span class="accent">간편 시가 파악</span></div>
+            <div class="vt-cta__headline reveal-fx reveal-left">밸류택스로 단 5초만에 확인하세요 !</div>
         </div>
 
         <a class="vt-btn" href="/main" rel="noopener">
@@ -1674,6 +1736,77 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <script>
+    // Onestop chips: split into characters and reveal with per-char drop when visible
+    document.addEventListener('DOMContentLoaded', function(){
+        const chips = document.querySelectorAll('.vt-onestop__chip');
+        if (!chips.length) return;
+
+        // Split all descendant text nodes into span.char while preserving element structure (e.g., .accent)
+        const splitNodeToChars = function(node){
+            if (node.nodeType === Node.TEXT_NODE) {
+                const fragment = document.createDocumentFragment();
+                const text = node.textContent || '';
+                for (const ch of text) {
+                    if (ch === ' ') {
+                        fragment.appendChild(document.createTextNode(' '));
+                    } else {
+                        const span = document.createElement('span');
+                        span.className = 'char';
+                        span.textContent = ch;
+                        fragment.appendChild(span);
+                    }
+                }
+                return fragment;
+            }
+            if (node.nodeType === Node.ELEMENT_NODE) {
+                const clone = node.cloneNode(false);
+                const children = Array.from(node.childNodes);
+                children.forEach(function(child){
+                    clone.appendChild(splitNodeToChars(child));
+                });
+                return clone;
+            }
+            return node.cloneNode(true);
+        };
+
+        chips.forEach(function(chip){
+            if (chip.dataset.charProcessed === '1') return;
+            const fragment = document.createDocumentFragment();
+            Array.from(chip.childNodes).forEach(function(child){
+                fragment.appendChild(splitNodeToChars(child));
+            });
+            chip.textContent = '';
+            chip.appendChild(fragment);
+            chip.dataset.charProcessed = '1';
+        });
+
+        const revealChip = function(chip){
+            chip.classList.add('is-revealed');
+            const chars = chip.querySelectorAll('.char');
+            chars.forEach(function(span, index){
+                span.style.animationDelay = (index * 0.03) + 's';
+            });
+        };
+
+        if (!('IntersectionObserver' in window)) {
+            chips.forEach(revealChip);
+            return;
+        }
+
+        const io = new IntersectionObserver(function(entries, obs){
+            entries.forEach(function(entry){
+                if (entry.isIntersecting) {
+                    revealChip(entry.target);
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        chips.forEach(function(chip){ io.observe(chip); });
+    });
+</script>
+
+<script>
     document.addEventListener('DOMContentLoaded', function() {
         const titleElement = document.querySelector('.vt-hero__title');
         if (titleElement) {
@@ -1707,22 +1840,255 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 
+<script>
+    // Trust cards: animate lines when each card enters the viewport
+    document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.trust-card');
+        if (!cards.length) return;
 
+        const animateCard = function(card){
+            const lines = card.querySelectorAll('.trust-desc .fly-in-line');
+            lines.forEach(function(line, idx){
+                setTimeout(function(){ line.classList.add('animated'); }, idx * 80);
+            });
+        };
+
+        if (!('IntersectionObserver' in window)) {
+            cards.forEach(animateCard);
+            return;
+        }
+
+        const io = new IntersectionObserver(function(entries, obs){
+            entries.forEach(function(entry){
+                if (entry.isIntersecting) {
+                    animateCard(entry.target);
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        cards.forEach(function(card){ io.observe(card); });
     });
 </script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const trustCardDescriptions = document.querySelectorAll('.trust-desc');
+    // Solutions headings: reveal when entering viewport
+    document.addEventListener('DOMContentLoaded', function(){
+        const targets = document.querySelectorAll('.solutions .reveal-fx, .vt-cta .reveal-fx');
+        if (!targets.length) return;
 
-        trustCardDescriptions.forEach((desc, cardIndex) => {
-            const lines = desc.querySelectorAll('.fly-in-line');
-            lines.forEach((line, lineIndex) => {
-                setTimeout(() => {
-                    line.classList.add('animated');
-                }, 2000 + (cardIndex * 300) + (lineIndex * 150)); // Start after 2s, then stagger by card and line
+        const makeVisible = (el) => el.classList.add('is-visible');
+
+        if (!('IntersectionObserver' in window)) {
+            targets.forEach(makeVisible);
+            return;
+        }
+
+        const io = new IntersectionObserver(function(entries, obs){
+            entries.forEach(function(entry){
+                if (entry.isIntersecting) {
+                    makeVisible(entry.target);
+                    obs.unobserve(entry.target);
+                }
             });
+        }, { threshold: 0.25 });
+
+        targets.forEach(function(el){ io.observe(el); });
+    });
+</script>
+
+<script>
+    // Services: reveal service-card when it enters the viewport
+    document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.services .service-card');
+        if (!cards.length) return;
+
+        if (!('IntersectionObserver' in window)) {
+            cards.forEach(function(card){ card.classList.add('is-visible'); });
+            return;
+        }
+
+        const observer = new IntersectionObserver(function(entries, obs){
+            entries.forEach(function(entry){
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { root: null, threshold: 0.2 });
+
+        cards.forEach(function(card){ observer.observe(card); });
+    });
+</script>
+
+<script>
+    // Solutions: reveal solution-card sequentially (left to right) when grid enters viewport
+    document.addEventListener('DOMContentLoaded', function(){
+        const grid = document.querySelector('.solutions .solutions-grid');
+        if (!grid) return;
+        const cards = Array.from(grid.querySelectorAll('.solution-card'));
+        if (!cards.length) return;
+
+        cards.forEach(function(card){ card.classList.add('reveal-item'); });
+
+        const revealAll = function(){
+            cards.forEach(function(card, idx){
+                card.style.animationDelay = (idx * 0.12) + 's';
+                card.classList.add('is-visible');
+            });
+        };
+
+        if (!('IntersectionObserver' in window)) { revealAll(); return; }
+
+        const io = new IntersectionObserver(function(entries, obs){
+            entries.forEach(function(entry){
+                if (entry.isIntersecting) {
+                    revealAll();
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        io.observe(grid);
+    });
+</script>
+
+<script>
+    // Testi headings: split into characters and reveal on intersection
+    document.addEventListener('DOMContentLoaded', function(){
+        const roots = document.querySelectorAll('.testi .js-split-chars');
+        if (!roots.length) return;
+
+        const splitText = function(node){
+            if (node.nodeType === Node.TEXT_NODE) {
+                const frag = document.createDocumentFragment();
+                const text = node.textContent || '';
+                for (const ch of text) {
+                    if (ch === ' ') { frag.appendChild(document.createTextNode(' ')); continue; }
+                    const span = document.createElement('span');
+                    span.className = 'char';
+                    span.textContent = ch;
+                    frag.appendChild(span);
+                }
+                return frag;
+            }
+            if (node.nodeType === Node.ELEMENT_NODE) {
+                const clone = node.cloneNode(false);
+                Array.from(node.childNodes).forEach(function(child){
+                    clone.appendChild(splitText(child));
+                });
+                return clone;
+            }
+            return node.cloneNode(true);
+        };
+
+        roots.forEach(function(el){
+            if (el.dataset.charProcessed === '1') return;
+            const frag = document.createDocumentFragment();
+            Array.from(el.childNodes).forEach(function(n){ frag.appendChild(splitText(n)); });
+            el.textContent = '';
+            el.appendChild(frag);
+            el.dataset.charProcessed = '1';
         });
+
+        const reveal = function(el){
+            el.classList.add('is-revealed');
+            const chars = el.querySelectorAll('.char');
+            chars.forEach(function(span, idx){ span.style.animationDelay = (idx * 0.02) + 's'; });
+        };
+
+        if (!('IntersectionObserver' in window)) { roots.forEach(reveal); return; }
+
+        const io = new IntersectionObserver(function(entries, obs){
+            entries.forEach(function(entry){
+                if (entry.isIntersecting) {
+                    reveal(entry.target);
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        roots.forEach(function(el){ io.observe(el); });
+    });
+</script>
+
+<script>
+    // Testi h3: split by words and reveal on intersection
+    document.addEventListener('DOMContentLoaded', function(){
+        const targets = document.querySelectorAll('.testi .js-split-words');
+        if (!targets.length) return;
+
+        const splitByWords = function(node){
+            if (node.nodeType === Node.TEXT_NODE) {
+                const frag = document.createDocumentFragment();
+                const tokens = (node.textContent || '').split(/(\s+)/);
+                tokens.forEach(function(tok){
+                    if (/^\s+$/.test(tok)) { frag.appendChild(document.createTextNode(tok)); return; }
+                    const span = document.createElement('span');
+                    span.className = 'word';
+                    span.textContent = tok;
+                    frag.appendChild(span);
+                });
+                return frag;
+            }
+            if (node.nodeType === Node.ELEMENT_NODE) {
+                const clone = node.cloneNode(false);
+                Array.from(node.childNodes).forEach(function(child){ clone.appendChild(splitByWords(child)); });
+                return clone;
+            }
+            return node.cloneNode(true);
+        };
+
+        targets.forEach(function(el){
+            if (el.dataset.wordProcessed === '1') return;
+            const frag = document.createDocumentFragment();
+            Array.from(el.childNodes).forEach(function(n){ frag.appendChild(splitByWords(n)); });
+            el.textContent = '';
+            el.appendChild(frag);
+            el.dataset.wordProcessed = '1';
+        });
+
+        const reveal = function(el){
+            el.classList.add('is-revealed-words');
+            const words = el.querySelectorAll('.word');
+            words.forEach(function(w, idx){ w.style.animationDelay = (idx * 0.04) + 's'; });
+        };
+
+        if (!('IntersectionObserver' in window)) { targets.forEach(reveal); return; }
+
+        const io = new IntersectionObserver(function(entries, obs){
+            entries.forEach(function(entry){
+                if (entry.isIntersecting) {
+                    reveal(entry.target);
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        targets.forEach(function(el){ io.observe(el); });
+    });
+</script>
+
+<script>
+    // Testi: reveal handwriting paragraphs as a whole from left when visible
+    document.addEventListener('DOMContentLoaded', function(){
+        const elems = document.querySelectorAll('.testi .handwriting');
+        if (!elems.length) return;
+
+        const show = function(p){ p.classList.add('is-visible'); };
+
+        if (!('IntersectionObserver' in window)) { elems.forEach(show); return; }
+
+        const io = new IntersectionObserver(function(entries, obs){
+            entries.forEach(function(entry){
+                if (entry.isIntersecting) {
+                    show(entry.target);
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        elems.forEach(function(p){ io.observe(p); });
     });
 </script>
 

@@ -1021,10 +1021,6 @@
             margin:0;
             text-align: center;
         }
-        /* Testi: handwriting fly-in from left (as a whole) */
-        .testi .handwriting{opacity:0; transform:translateX(-24px); will-change:transform,opacity}
-        @keyframes hw-fly-in { from {opacity:0; transform:translateX(-24px);} to {opacity:1; transform:translateX(0);} }
-        .testi .handwriting.is-visible{animation: hw-fly-in .55s cubic-bezier(.2,.6,.2,1) forwards}
         .testi .subgrid > div {
             display: flex;
             flex-direction: column;
@@ -1301,20 +1297,6 @@
     </div>
 </section>
 
-<div class="valuetouch-sidebar">
-    <a href="javascript:void(0);" onclick="openConsultingModal('tax')">
-        <img src="/assets/sidebar/call.svg" alt="상담신청">
-        <span>상담신청</span>
-    </a>
-    <a href="http://pf.kakao.com/_ckUxcG/chat" target="_blank" rel="noopener">
-        <img src="/assets/sidebar/kakao.svg" alt="카카오톡">
-        <span>카카오톡</span>
-    </a>
-    <a href="https://valuetouch.kr/main" target="_blank" rel="noopener">
-        <img src="/assets/sidebar/map.svg" alt="무료탁감">
-        <span>무료탁감</span>
-    </a>
-</div>
 
 <!-- Trust row -->
 <section class="trust" aria-label="전담팀 소개">
@@ -1609,8 +1591,8 @@
     <!-- 내용 -->
     <div class="vt-cta__content">
         <div>
-            <div class="vt-cta__badge reveal-fx reveal-right">세금 계산을 위한 <span class="accent">간편 시가 파악</span></div>
-            <div class="vt-cta__headline reveal-fx reveal-left">밸류택스로 단 5초만에 확인하세요 !</div>
+            <div class="vt-cta__badge">세금 계산을 위한 <span class="accent">간편 시가 파악</span></div>
+            <div class="vt-cta__headline">밸류택스로 단 5초만에 확인하세요 !</div>
         </div>
 
         <a class="vt-btn" href="/main" rel="noopener">
@@ -1888,7 +1870,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
     // Solutions headings: reveal when entering viewport
     document.addEventListener('DOMContentLoaded', function(){
-        const targets = document.querySelectorAll('.solutions .reveal-fx, .vt-cta .reveal-fx');
+        const targets = document.querySelectorAll('.solutions .reveal-fx');
         if (!targets.length) return;
 
         const makeVisible = (el) => el.classList.add('is-visible');
@@ -2080,29 +2062,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, { threshold: 0.2 });
 
         targets.forEach(function(el){ io.observe(el); });
-    });
-</script>
-
-<script>
-    // Testi: reveal handwriting paragraphs as a whole from left when visible
-    document.addEventListener('DOMContentLoaded', function(){
-        const elems = document.querySelectorAll('.testi .handwriting');
-        if (!elems.length) return;
-
-        const show = function(p){ p.classList.add('is-visible'); };
-
-        if (!('IntersectionObserver' in window)) { elems.forEach(show); return; }
-
-        const io = new IntersectionObserver(function(entries, obs){
-            entries.forEach(function(entry){
-                if (entry.isIntersecting) {
-                    show(entry.target);
-                    obs.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.2 });
-
-        elems.forEach(function(p){ io.observe(p); });
     });
 </script>
 

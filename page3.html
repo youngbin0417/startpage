@@ -436,8 +436,18 @@
         }
         .trust-desc{
         margin:0; color:#6B7280; font-size:15px; line-height:1.7;
-        white-space:pre-line; /* 줄바꿈 유지 */
+        white-space:normal;
         }
+
+        /* Trust headline & desc animations (match page2 behavior) */
+        @keyframes typewriter-effect {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .trust-headline span.animated-word { opacity: 0; display: inline-block; transform: translateY(20px); }
+        .trust-headline span.animated-word.animated { animation: typewriter-effect 0.5s forwards; }
+        .trust-desc .fly-in-line { opacity: 0; display: block; transform: translateY(20px); }
+        .trust-desc .fly-in-line.animated { animation: typewriter-effect 0.5s forwards; }
 
         .trust-card:hover .trust-thumb{transform:translateY(-2px); transition:transform .18s ease}
 
@@ -511,6 +521,18 @@
         transform:translateY(-2px);
         box-shadow:0 8px 28px rgba(0,0,0,0.08);
         }
+
+        /* Services: side fly-in (mirrors page2) */
+        .services .service-card { --fly-distance: 28px; }
+        .services .service-card:nth-child(odd) { --fly-x: -1; }
+        .services .service-card:nth-child(even) { --fly-x: 1; }
+        .services .service-card > * { opacity: 0; transform: translateX(calc(var(--fly-x, -1) * var(--fly-distance, 28px))); will-change: transform, opacity; }
+        @keyframes fly-in-x { from { opacity:0; transform: translateX(calc(var(--fly-x, -1) * var(--fly-distance, 28px))); } to { opacity:1; transform: translateX(0); } }
+        .services .service-card.is-visible > * { animation: fly-in-x .5s cubic-bezier(.2,.6,.2,1) forwards; }
+        .services .service-card.is-visible > *:nth-child(1){ animation-delay:0s }
+        .services .service-card.is-visible > *:nth-child(2){ animation-delay:.08s }
+        .services .service-card.is-visible > *:nth-child(3){ animation-delay:.16s }
+        .services .service-card.is-visible > *:nth-child(4){ animation-delay:.24s }
 
         .service-icon {
         width: 120px; height:120px;
@@ -667,6 +689,11 @@
         max-width: 140px;
         height: auto;
         }
+
+        /* Onestop chips: per-character drop-in (mirrors page2) */
+        .vt-onestop__chip .char{display:inline-block; opacity:0; transform:translateY(-0.6em); will-change:transform,opacity}
+        @keyframes vt-char-drop{ from{opacity:0; transform:translateY(-0.6em);} to{opacity:1; transform:translateY(0);} }
+        .vt-onestop__chip.is-revealed .char{ animation: vt-char-drop .55s cubic-bezier(.2,.6,.2,1) forwards }
 
 
         @media (max-width: 900px) {
@@ -855,6 +882,13 @@
         color:#111827;
         }
 
+        /* Generic side reveal for headings (mirrors page2) */
+        .reveal-fx{opacity:0; transform:translateX(var(--reveal-x, 0)); will-change:transform, opacity}
+        .reveal-left{--reveal-x:-28px}
+        .reveal-right{--reveal-x:28px}
+        @keyframes reveal-in-x { from { opacity:0; transform:translateX(var(--reveal-x, 0)); } to { opacity:1; transform:translateX(0); } }
+        .reveal-fx.is-visible{animation:reveal-in-x .6s cubic-bezier(.2,.6,.2,1) forwards}
+
         .solutions-grid {
         display:grid;
         grid-template-columns:repeat(4,1fr);
@@ -883,6 +917,11 @@
         transform:translateY(-2px);
         box-shadow:0 8px 28px rgba(0,0,0,0.06);
         }
+
+        /* Solutions: rise-in from bottom sequentially (mirrors page2) */
+        .solution-card.reveal-item{opacity:0; transform:translateY(18px); will-change: transform, opacity}
+        @keyframes solution-rise-in { from {opacity:0; transform:translateY(18px);} to {opacity:1; transform:translateY(0);} }
+        .solution-card.is-visible{animation: solution-rise-in .55s cubic-bezier(.2,.6,.2,1) forwards}
 
         .solution-text {
         font-size:24px;
@@ -954,6 +993,16 @@
         .testi .subgrid > div > h3 {
             height: 3em;
         }
+        /* Testi headings/ch3/handwriting (mirrors page2) */
+        .testi .char{display:inline-block;opacity:0;transform:translateY(0.6em);will-change:transform,opacity}
+        @keyframes testi-char-rise { from {opacity:0;transform:translateY(0.6em);} to {opacity:1;transform:translateY(0);} }
+        .testi .is-revealed .char{animation:testi-char-rise .55s cubic-bezier(.2,.6,.2,1) forwards}
+        .testi .word{display:inline-block;opacity:0;transform:translateY(0.6em);will-change:transform,opacity}
+        @keyframes testi-word-rise { from {opacity:0;transform:translateY(0.6em);} to {opacity:1;transform:translateY(0);} }
+        .testi .is-revealed-words .word{animation:testi-word-rise .5s cubic-bezier(.2,.6,.2,1) forwards}
+        .testi .handwriting{opacity:0; transform:translateX(-24px); will-change:transform,opacity}
+        @keyframes hw-fly-in { from {opacity:0; transform:translateX(-24px);} to {opacity:1; transform:translateX(0);} }
+        .testi .handwriting.is-visible{animation: hw-fly-in .55s cubic-bezier(.2,.6,.2,1) forwards}
         @media (max-width:1024px){ .testi .subgrid{grid-template-columns:1fr} .testi .section-title{font-size:32px}}
 
     /* ==== Bottom CTA (full-bleed, image no-crop) ==== */
@@ -1190,49 +1239,49 @@
             <div class="chevron-icon"></div>
         </div>
         <h2 class="trust-headline">
-            <span class="highlight-dots2">모든 부동산</span> 업무에 대응하기 위해,<br>세무 · 법무 · 감정평가 전문가가 함께 최고의 <span class="em">원스톱 서비스</span>를 제공합니다
-
-            <ul class="trust-grid">
-                <li class="trust-card">
-                    <figure class="trust-thumb">
-                        <img src="/assets/start/page3/trust_tax.png" alt="세무팀">
-                    </figure>
-                    <div class="trust-title">세무팀</div>
-                    <div class="trust-underline"></div>
-                    <p class="trust-desc">
-                        세무조사 대응과
-                        조세불복 서비스를 위한
-                        부동산 전문 세무사
-                    </p>
-                </li>
-
-                <li class="trust-card">
-                    <figure class="trust-thumb">
-                        <img src="/assets/start/page3/trust_law.png" alt="법무팀">
-                    </figure>
-                    <div class="trust-title">법무팀</div>
-                    <div class="trust-underline"></div>
-                    <p class="trust-desc">
-                        부동산 소송·보상·분할·개인회생
-                        법적 대응을 위한
-                        부동산 전문 법무팀 구성
-                    </p>
-                </li>
-
-                <li class="trust-card">
-                    <figure class="trust-thumb">
-                        <img src="/assets/start/page3/trust_appraisal.png" alt="감정평가팀">
-                    </figure>
-                    <div class="trust-title">감정평가팀</div>
-                    <div class="trust-underline"></div>
-                    <p class="trust-desc">
-                        법원·세무조사에 대응이 가능한
-                        공신력 있는 부동산·무형자산
-                        감정평가서 발급
-                    </p>
-                </li>
-            </ul>
+            <span class="animated-word highlight-dots2">모든 부동산</span> <span class="animated-word">업무에</span> <span class="animated-word">대응하기</span> <span class="animated-word">위해,</span><br><span class="animated-word">세무</span> <span class="animated-word">·</span> <span class="animated-word">법무</span> <span class="animated-word">·</span> <span class="animated-word">감정평가</span> <span class="animated-word">전문가가</span> <span class="animated-word">함께</span> <span class="animated-word">최고의</span> <span class="animated-word em">원스톱</span> <span class="animated-word">서비스</span><span class="animated-word">를</span> <span class="animated-word">제공합니다</span>
         </h2>
+
+        <ul class="trust-grid">
+            <li class="trust-card">
+                <figure class="trust-thumb">
+                    <img src="/assets/start/page3/trust_tax.png" alt="세무팀">
+                </figure>
+                <div class="trust-title">세무팀</div>
+                <div class="trust-underline"></div>
+                <p class="trust-desc">
+                    <span class="fly-in-line">세무조사 대응과</span>
+                    <span class="fly-in-line">조세불복 서비스를 위한</span>
+                    <span class="fly-in-line">부동산 전문 세무사</span>
+                </p>
+            </li>
+
+            <li class="trust-card">
+                <figure class="trust-thumb">
+                    <img src="/assets/start/page3/trust_law.png" alt="법무팀">
+                </figure>
+                <div class="trust-title">법무팀</div>
+                <div class="trust-underline"></div>
+                <p class="trust-desc">
+                    <span class="fly-in-line">부동산 소송·보상·분할·개인회생</span>
+                    <span class="fly-in-line">법적 대응을 위한</span>
+                    <span class="fly-in-line">부동산 전문 법무팀 구성</span>
+                </p>
+            </li>
+
+            <li class="trust-card">
+                <figure class="trust-thumb">
+                    <img src="/assets/start/page3/trust_appraisal.png" alt="감정평가팀">
+                </figure>
+                <div class="trust-title">감정평가팀</div>
+                <div class="trust-underline"></div>
+                <p class="trust-desc">
+                    <span class="fly-in-line">법원·세무조사에 대응이 가능한</span>
+                    <span class="fly-in-line">공신력 있는 부동산·무형자산</span>
+                    <span class="fly-in-line">감정평가서 발급</span>
+                </p>
+            </li>
+        </ul>
     </div>
 </section>
 
@@ -1383,8 +1432,8 @@
 <!-- Solutions -->
 <section class="solutions">
     <div class="container">
-        <h2 class="section-subtitle"><span class="em">세무 · 법무 · 감정평가 50인의 부동산 전문가</span>가</h2>
-        <h1 class="section-title">직접 확실하게 해결해 드립니다</h1>
+        <h2 class="section-subtitle reveal-fx reveal-right"><span class="em">세무 · 법무 · 감정평가 50인의 부동산 전문가</span>가</h2>
+        <h1 class="section-title reveal-fx reveal-left">직접 확실하게 해결해 드립니다</h1>
 
         <div class="solutions-grid">
             <article class="solution-card">
@@ -1479,8 +1528,8 @@
     <!-- 내용 -->
     <div class="vt-cta__content">
         <div>
-            <div class="vt-cta__badge"><span class="blue-highlight">전략적인 소송을 위한 부동산 추정가 파악</span></div>
-            <div class="vt-cta__headline">밸류로우로 단 5초만에 확인하세요 !</div>
+            <div class="vt-cta__badge reveal-fx reveal-right"><span class="blue-highlight">전략적인 소송을 위한 부동산 추정가 파악</span></div>
+            <div class="vt-cta__headline reveal-fx reveal-left">밸류로우로 단 5초만에 확인하세요 !</div>
         </div>
 
         <a class="vt-btn" href="/main" rel="noopener">
@@ -1576,6 +1625,156 @@
     v.setAttribute('webkit-playsinline', '');
 
     const tryPlay = () => v.play().catch(() => { /* iOS가 막아도 조용히 재시도 */ });
+
+    // DOM 준비 후 1회 시도
+    if (document.readyState === 'complete') tryPlay();
+    else window.addEventListener('load', tryPlay, { once: true });
+
+    // 사용자 첫 터치/포커스 복귀 시 재시도
+    window.addEventListener('touchstart', tryPlay, { once: true, passive: true });
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) tryPlay();
+    });
+  })();
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const trustHeadlineElement = document.querySelector('.trust-headline');
+        if (trustHeadlineElement) {
+            const words = trustHeadlineElement.querySelectorAll('.animated-word');
+            words.forEach((word, index) => {
+                setTimeout(() => {
+                    word.classList.add('animated');
+                }, index * 150); // 150ms delay between each word
+            });
+        }
+    });
+</script>
+<script>
+    // Trust cards: animate lines when each card enters the viewport
+    document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.trust-card');
+        if (!cards.length) return;
+
+        const animateCard = function(card){
+            const lines = card.querySelectorAll('.trust-desc .fly-in-line');
+            lines.forEach(function(line, idx){
+                setTimeout(function(){ line.classList.add('animated'); }, idx * 80);
+            });
+        };
+
+        if (!('IntersectionObserver' in window)) {
+            cards.forEach(animateCard);
+            return;
+        }
+
+        const io = new IntersectionObserver(function(entries, obs){
+            entries.forEach(function(entry){
+                if (entry.isIntersecting) {
+                    animateCard(entry.target);
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        cards.forEach(function(card){ io.observe(card); });
+    });
+</script>
+
+
+
+</body>
+</html>
+
+<script>
+    // Services: reveal service-card when it enters the viewport (mirrors page2)
+    document.addEventListener('DOMContentLoaded', function(){
+        const cards = document.querySelectorAll('.services .service-card');
+        if (!cards.length) return;
+        if (!('IntersectionObserver' in window)) { cards.forEach(c=>c.classList.add('is-visible')); return; }
+        const io = new IntersectionObserver((entries, obs)=>{
+            entries.forEach(e=>{ if (e.isIntersecting){ e.target.classList.add('is-visible'); obs.unobserve(e.target);} });
+        }, { threshold: 0.2 });
+        cards.forEach(c=>io.observe(c));
+    });
+</script>
+
+<script>
+    // Solutions headings and vt-cta: reveal when entering viewport (mirrors page2)
+    document.addEventListener('DOMContentLoaded', function(){
+        const targets = document.querySelectorAll('.solutions .reveal-fx, .vt-cta .reveal-fx');
+        if (!targets.length) return;
+        const show = el=>el.classList.add('is-visible');
+        if (!('IntersectionObserver' in window)) { targets.forEach(show); return; }
+        const io = new IntersectionObserver((entries, obs)=>{
+            entries.forEach(e=>{ if (e.isIntersecting){ show(e.target); obs.unobserve(e.target);} });
+        }, { threshold: 0.25 });
+        targets.forEach(el=>io.observe(el));
+    });
+</script>
+
+<script>
+    // Solutions: reveal solution-card sequentially (left to right) when grid enters viewport (mirrors page2)
+    document.addEventListener('DOMContentLoaded', function(){
+        const grid = document.querySelector('.solutions .solutions-grid');
+        if (!grid) return;
+        const cards = Array.from(grid.querySelectorAll('.solution-card'));
+        if (!cards.length) return;
+        cards.forEach(card=>card.classList.add('reveal-item'));
+        const revealAll = ()=>{ cards.forEach((card, idx)=>{ card.style.animationDelay = (idx * 0.12) + 's'; card.classList.add('is-visible'); }); };
+        if (!('IntersectionObserver' in window)) { revealAll(); return; }
+        const io = new IntersectionObserver((entries, obs)=>{
+            entries.forEach(e=>{ if (e.isIntersecting){ revealAll(); obs.unobserve(e.target);} });
+        }, { threshold: 0.2 });
+        io.observe(grid);
+    });
+</script>
+
+<script>
+    // Testi h3: split by words and reveal on intersection (mirrors page2)
+    document.addEventListener('DOMContentLoaded', function(){
+        const targets = document.querySelectorAll('.testi .js-split-words');
+        if (!targets.length) return;
+        const splitByWords = function(node){
+            if (node.nodeType === Node.TEXT_NODE) {
+                const frag = document.createDocumentFragment();
+                const tokens = (node.textContent || '').split(/(\s+)/);
+                tokens.forEach(tok=>{ if (/^\s+$/.test(tok)) frag.appendChild(document.createTextNode(tok)); else { const span=document.createElement('span'); span.className='word'; span.textContent=tok; frag.appendChild(span); } });
+                return frag;
+            }
+            if (node.nodeType === Node.ELEMENT_NODE) {
+                const clone = node.cloneNode(false);
+                Array.from(node.childNodes).forEach(child=>clone.appendChild(splitByWords(child)));
+                return clone;
+            }
+            return node.cloneNode(true);
+        };
+        targets.forEach(el=>{
+            if (el.dataset.wordProcessed === '1') return;
+            const frag = document.createDocumentFragment();
+            Array.from(el.childNodes).forEach(n=>frag.appendChild(splitByWords(n)));
+            el.textContent=''; el.appendChild(frag); el.dataset.wordProcessed='1';
+        });
+        const reveal = el=>{ el.classList.add('is-revealed-words'); el.querySelectorAll('.word').forEach((w,i)=>{ w.style.animationDelay = (i * 0.04) + 's'; }); };
+        if (!('IntersectionObserver' in window)) { targets.forEach(reveal); return; }
+        const io = new IntersectionObserver((entries, obs)=>{ entries.forEach(e=>{ if (e.isIntersecting){ reveal(e.target); obs.unobserve(e.target);} }); }, { threshold: 0.2 });
+        targets.forEach(el=>io.observe(el));
+    });
+</script>
+
+<script>
+    // Testi: reveal handwriting paragraphs as a whole from left when visible (mirrors page2)
+    document.addEventListener('DOMContentLoaded', function(){
+        const elems = document.querySelectorAll('.testi .handwriting');
+        if (!elems.length) return;
+        const show = p=>p.classList.add('is-visible');
+        if (!('IntersectionObserver' in window)) { elems.forEach(show); return; }
+        const io = new IntersectionObserver((entries, obs)=>{ entries.forEach(e=>{ if (e.isIntersecting){ show(e.target); obs.unobserve(e.target);} }); }, { threshold: 0.2 });
+        elems.forEach(p=>io.observe(p));
+    });
+</script>
+> { /* iOS가 막아도 조용히 재시도 */ });
 
     // DOM 준비 후 1회 시도
     if (document.readyState === 'complete') tryPlay();

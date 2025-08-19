@@ -351,7 +351,21 @@
         /* center content */
         .vt-hero__inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:100%;padding:220px 16px}
         .vt-hero__lead{color:#fff;font-weight:800;font-size:clamp(16px,1.3vw,20px);line-height:1.5;opacity:.95}
-        .vt-hero__barline{width:min(180px,30vw);height:6px;border-radius:999px;background:#ef4444;margin:18px auto 12px}
+        .vt-hero__barline{
+            width:0; /* Initial width for animation */
+            height:6px;border-radius:999px;background:#ef4444;margin:18px auto 12px;
+            overflow: hidden; /* Hide overflow during animation */
+        }
+
+        @keyframes draw-line {
+            to {
+                width: min(180px, 30vw);
+            }
+        }
+
+        .vt-hero__barline.draw-animated {
+            animation: draw-line 1s forwards; /* 1 second animation duration */
+        }
 
         /* NEON title */
         .vt-hero__title{font-weight:900;letter-spacing:.18em;font-size:clamp(42px,7vw,88px);color:#fff;text-transform:uppercase;
@@ -1109,6 +1123,47 @@
                 display: none;
             }
         }
+
+        @keyframes typewriter-effect {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .vt-hero__title span {
+            opacity: 0;
+            display: inline-block; /* For animation to work */
+            transform: translateY(20px); /* Initial state for rise up effect */
+        }
+
+        .vt-hero__title span.animated {
+            animation: typewriter-effect 0.5s forwards;
+        }
+
+        .trust-headline span.animated-word {
+            opacity: 0;
+            display: inline-block;
+            transform: translateY(20px); /* Initial state for rise up effect */
+        }
+
+        .trust-headline span.animated-word.animated {
+            animation: typewriter-effect 0.5s forwards;
+        }
+
+        .trust-desc .fly-in-line {
+            opacity: 0;
+            display: block; /* Each line on its own line */
+            transform: translateY(20px); /* Initial state for rise up effect */
+        }
+
+        .trust-desc .fly-in-line.animated {
+            animation: typewriter-effect 0.5s forwards;
+        }
     </style>
 
 </head>
@@ -1171,7 +1226,9 @@
     <div class="vt-hero__inner">
         <p class="vt-hero__lead">부동산 전문 세무사와 감정평가사가<br>당신만을 위한 최적의 절세 플랜을 완성합니다.</p>
         <div class="vt-hero__barline"></div>
-        <h1 class="vt-hero__title"><span class="acc">V</span>ALUE <span class="acc">T</span>AX</h1>
+        <h1 class="vt-hero__title">
+            <span class="acc">V</span><span class="letter">A</span><span class="letter">L</span><span class="letter">U</span><span class="letter">E</span> <span class="acc">T</span><span class="letter">A</span><span class="letter">X</span>
+        </h1>
         <div class="vt-hero__cta">
             <a class="vt-btn--outline"
                href="javascript:void(0);"
@@ -1190,7 +1247,7 @@
             <div class="chevron-icon"></div>
         </div>
         <h2 class="trust-headline">
-            <span class="em">세무팀 · 법무팀 · 감정평가 부동산 전문가</span>가 제공하는 최고의 <span class="highlight-dots2">원스톱</span> 서비스
+            <span class="em animated-word">세무팀</span> <span class="animated-word">·</span> <span class="animated-word">법무팀</span> <span class="animated-word">·</span> <span class="animated-word">감정평가</span> <span class="animated-word">부동산</span> <span class="animated-word">전문가가</span> <span class="animated-word">제공하는</span> <span class="animated-word">최고의</span> <span class="highlight-dots2 animated-word">원스톱</span> <span class="animated-word">서비스</span>
         </h2>
 
         <ul class="trust-grid">
@@ -1201,9 +1258,9 @@
                 <div class="trust-title">세무팀</div>
                 <div class="trust-underline"></div>
                 <p class="trust-desc">
-                    부동산 세금 감면 및 비과세 적용
-                    파악과 양도·증여·상속세
-                    예상세액 비교 검토 컨설팅
+                    <span class="fly-in-line">부동산 세금 감면 및 비과세 적용</span>
+                    <span class="fly-in-line">파악과 양도·증여·상속세</span>
+                    <span class="fly-in-line">예상세액 비교 검토 컨설팅</span>
                 </p>
             </li>
 
@@ -1214,9 +1271,9 @@
                 <div class="trust-title">법무팀</div>
                 <div class="trust-underline"></div>
                 <p class="trust-desc">
-                    부동산 소송·보상·분할·세무조사
-                    법적 대응을 위한
-                    부동산 전문 법무팀 구성
+                    <span class="fly-in-line">부동산 소송·보상·분할·세무조사</span>
+                    <span class="fly-in-line">법적 대응을 위한</span>
+                    <span class="fly-in-line">부동산 전문 법무팀 구성</span>
                 </p>
             </li>
 
@@ -1227,9 +1284,9 @@
                 <div class="trust-title">감정평가팀</div>
                 <div class="trust-underline"></div>
                 <p class="trust-desc">
-                    세무서, 법원에 제출 가능한
-                    공신력있는 부동산·무형자산
-                    감정평가서 발급
+                    <span class="fly-in-line">세무서, 법원에 제출 가능한</span>
+                    <span class="fly-in-line">공신력있는 부동산·무형자산</span>
+                    <span class="fly-in-line">감정평가서 발급</span>
                 </p>
             </li>
         </ul>
@@ -1614,6 +1671,59 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   })();
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const titleElement = document.querySelector('.vt-hero__title');
+        if (titleElement) {
+            const letters = titleElement.querySelectorAll('span');
+            letters.forEach((letter, index) => {
+                setTimeout(() => {
+                    letter.classList.add('animated');
+                }, index * 250); // 250ms delay between each letter
+            });
+        }
+
+        const barlineElement = document.querySelector('.vt-hero__barline');
+        if (barlineElement) {
+            barlineElement.classList.add('draw-animated'); // Start simultaneously
+        }
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const trustHeadlineElement = document.querySelector('.trust-headline');
+        if (trustHeadlineElement) {
+            const words = trustHeadlineElement.querySelectorAll('span');
+            words.forEach((word, index) => {
+                setTimeout(() => {
+                    word.classList.add('animated');
+                }, index * 150); // 250ms delay between each word
+            });
+        }
+    });
+</script>
+
+
+
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const trustCardDescriptions = document.querySelectorAll('.trust-desc');
+
+        trustCardDescriptions.forEach((desc, cardIndex) => {
+            const lines = desc.querySelectorAll('.fly-in-line');
+            lines.forEach((line, lineIndex) => {
+                setTimeout(() => {
+                    line.classList.add('animated');
+                }, 2000 + (cardIndex * 300) + (lineIndex * 150)); // Start after 2s, then stagger by card and line
+            });
+        });
+    });
 </script>
 
 </body>

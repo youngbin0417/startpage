@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>밸류로우 | 세무 · 법무 · 감정평가 원스톱</title>
+    <title>VALUE LAW | 세무 · 법무 · 감정평가 원스톱</title>
     <meta name="description" content="세무팀 · 법무팀 · 감정평가팀이 제공하는 부동산 절세 원스톱 서비스" />
     <link rel="icon" href="/assets/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -381,6 +381,7 @@
     /* Trust row */
         .trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
         .trust .container{padding:48px 0}
+        .trust .container2 {padding: 36px 0;}
 
         .trust-headline{
         text-align:left; margin:0 0 28px; line-height:1.35;
@@ -443,6 +444,28 @@
         @media (max-width:1024px){ .trust-grid{gap:28px} }
         @media (max-width:820px){ .trust-grid{grid-template-columns:1fr; gap:36px} }
 
+        .chevron-icon {
+            text-align: center;
+            margin-bottom: 1.25rem;
+            position: relative;
+            width: 2.625rem;
+            height: 1.625rem;
+            margin: 0 auto 6.25rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .chevron-icon::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 1.25rem;
+            height: 1.25rem;
+            border-left: 0.3125rem solid #333;
+            border-bottom: 0.3125rem solid #333;
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
 
     /* Services section */
         .services {
@@ -1149,6 +1172,9 @@
 <!-- Trust row -->
 <section class="trust" aria-label="전담팀 소개">
     <div class="container">
+        <div class="container2"> 
+            <div class="chevron-icon"></div>
+        </div>
         <h2 class="trust-headline">
             <span class="highlight-dots2">모든 부동산</span> 업무에 대응하기 위해,<br>세무 · 법무 · 감정평가 전문가가 함께 최고의 <span class="em">원스톱 서비스</span>를 제공합니다
 

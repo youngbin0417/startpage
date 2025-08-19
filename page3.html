@@ -948,7 +948,17 @@
 <!-- HERO -->
 <section class="vt-hero" aria-label="메인 히어로">
     <!-- 배경 비디오 -->
-    <video class="vt-hero__video" src="/assets/start/page3/header_vid3.mp4" autoplay muted loop playsinline class="video"></video>
+    <video id="heroVideo"
+        class="vt-hero__video"
+        src="/assets/start/page3/header_vid3.mp4"
+        autoplay
+        muted
+        playsinline
+        webkit-playsinline
+        loop
+        preload="metadata">
+    </video>
+
     <!-- 색상 톤 + 스크림 -->
 
 
@@ -1353,5 +1363,32 @@
         });
     });
 </script>
+<script>
+  (function () {
+    const v = document.getElementById('heroVideo');
+    if (!v) return;
+
+    // iOS가 속성을 무시하는 경우 대비
+    v.muted = true;
+    v.playsInline = true;
+    v.setAttribute('muted', '');
+    v.setAttribute('playsinline', '');
+    v.setAttribute('webkit-playsinline', '');
+
+    const tryPlay = () => v.play().catch(() => { /* iOS가 막아도 조용히 재시도 */ });
+
+    // DOM 준비 후 1회 시도
+    if (document.readyState === 'complete') tryPlay();
+    else window.addEventListener('load', tryPlay, { once: true });
+
+    // 사용자 첫 터치/포커스 복귀 시 재시도
+    window.addEventListener('touchstart', tryPlay, { once: true, passive: true });
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) tryPlay();
+    });
+  })();
+</script>
+
+
 </body>
 </html>

@@ -1,0 +1,2618 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/assets/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gasoek+One&amp;family=Hi+Melody&amp;family=Nanum+Myeongjo&amp;family=Nanum+Pen+Script&amp;family=Poor+Story&amp;display=swap" rel="stylesheet"&gt;>
+    <link  rel="stylesheet" href="./styles/index.css">
+</head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VALUE TOUCH - 부동산 전문 서비스</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .em{color:#DC2626}
+    /* NEON title */
+    .vt-hero__title{font-weight:900;letter-spacing:.18em;font-size:clamp(42px,7vw,88px);color:#fff;text-transform:uppercase;
+        text-shadow:
+                0 0 6px rgba(255,255,255,.9),
+                0 0 18px rgba(255,255,255,.6),
+                0 0 32px rgba(255,255,255,.25)}
+    .vt-hero__title .acc{color:#ef4444;text-shadow:
+            0 0 6px rgba(239,68,68,.9),
+            0 0 18px rgba(239,68,68,.6),
+            0 0 36px rgba(239,68,68,.35)}
+
+    /* CTA */
+    .vt-hero__cta{margin-top:18px}
+    .vt-btn--outline{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;border:5px solid rgba(255,255,255,.9);color:#fff;text-decoration:none;font-weight:600;gap:8px;box-shadow:0 10px 26px rgba(0,0,0,.18)}
+    .vt-btn--outline:hover{background:rgba(255,255,255,.12)}
+
+    /* scroll indicator */
+    .vt-hero__chev{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);width:28px;height:28px;border-bottom:3px solid #fff;border-right:3px solid #fff;rotate:45deg;opacity:.9}
+
+    a {
+        text-decoration: none;
+    }
+
+    /* Global Font Size Increase */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #000;
+        color: white;
+        overflow-x: hidden;
+        font-size: 1.2em;
+    }
+
+    /* Navigation Bar */
+    .navbar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: transparent;
+        z-index: 1000;
+        padding: 1rem 2rem;
+        transition: background-color 0.3s ease;
+    }
+
+    .navbar.scrolled {
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(0.625rem);
+    }
+
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 100rem;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .nav-logo {
+        flex-shrink: 0;
+    }
+
+    .logo {
+        width: 5rem;
+        height: 5rem;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: white;
+        font-size: 1.2em;
+    }
+
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2.5rem;
+        margin-left: auto;
+    }
+
+    .nav-link {
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        font-size: 1em;
+    }
+
+    .nav-link:hover {
+        color: #ff3131;
+    }
+
+    .nav-cta {
+        background: transparent;
+        border: 0.125rem solid #FFDD79;
+        color: #FFDD79;
+        padding: 0.625rem 0.625rem;
+        font-size: 0.9em;
+        font-weight: bold;
+        border-radius: 0.625rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .nav-cta:hover {
+        background: #FFDD79;
+        color: #000;
+    }
+
+    /* Mobile Menu Styles */
+    .mobile-menu {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        gap: 4px;
+        z-index: 1001;
+        padding: 5px;
+    }
+
+    .mobile-menu span {
+        width: 25px;
+        height: 3px;
+        background-color: #FFDD79;
+        transition: all 0.3s ease;
+        border-radius: 2px;
+    }
+
+    .mobile-menu.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .mobile-menu.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-menu.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+
+    /* Mobile Navigation Menu */
+    .mobile-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 9999;
+        transition: right 0.3s ease;
+        padding: 80px 30px 30px;
+    }
+
+    .mobile-nav.active {
+        right: 0;
+    }
+
+    .mobile-nav .close-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+        padding: 5px;
+        line-height: 1;
+    }
+
+    .mobile-nav .close-btn:hover {
+        color: #ff3131;
+    }
+
+    .mobile-nav a {
+        display: block;
+        color: white;
+        text-decoration: none;
+        font-size: 1.1rem;
+        font-weight: bold;
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: color 0.3s ease;
+    }
+
+    <!--    .mobile-nav a:hover {-->
+            <!--        color: #ff3131;-->
+            <!--    }-->
+    .mobile-nav a:not(.mobile-cta):hover { /* .mobile-cta를 제외한 a태그에만 hover 효과 적용 */
+        color: #ff3131;
+    }
+    .mobile-nav .mobile-cta {
+        background: transparent;
+        border: 2px solid white;
+        color: white !important; /* 글자색을 흰색으로 고정 (important 사용) */
+        padding: 15px 25px;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 25px;
+        margin-top: 20px;
+        text-align: center;
+        transition: all 0.3s ease;
+        display: block; /* a 태그 기본 스타일과 맞춤 */
+    }
+
+    .mobile-nav .mobile-cta:hover {
+        background: white;
+        color: #000 !important; /* 호버 시 배경은 흰색, 글자는 검은색으로 고정 */
+    }
+
+    .solution-container-phone {
+        display:inline-block;
+    }
+    @media (max-width: 1000px) {
+        .solution-container .char-dot-group .red-dot {
+            font-size: 0;
+        }
+
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+        .navbar {
+            padding: 1rem;
+        }
+
+        .solution-container-phone {
+            display:block;
+            margin-top: 60px;
+        }
+
+        .nav-links {
+            display: none;
+        }
+
+        .mobile-menu {
+            display: flex !important;
+        }
+
+        .nav-container {
+            justify-content: space-between;
+        }
+    }
+    .myeongjo {
+        font-family: 'Nanum Myeongjo', serif;
+        font-weight: bold;
+    }
+    .nanum {
+        font-family: 'Nanum Pen Script', cursive;
+    }
+    .hi_melody {
+        font-family: 'Hi Melody', sans-serif;
+        font-weight: bold;
+
+    }
+
+
+    /* Main Hero Section */
+    /* 배경 영상 스타일 */
+    #background-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* 영상 비율을 유지하면서 섹션을 가득 채웁니다 */
+        z-index: -2;      /* ::before(z-index: -1) 보다도 뒤에 위치시킵니다 */
+        background-color: #1a1a1a; /* 영상 로딩 중 보일 배경색 */
+    }
+
+    /* 콘텐츠 컨테이너 스타일 */
+    .hero-content {
+        position: relative; /* z-index 적용을 위해 필요 */
+        z-index: 1;         /* 영상과 ::before 효과보다 위에 위치하도록 설정 */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hero-section {
+        min-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 7.5rem 1.25rem 3.75rem;
+        position: relative;
+        background: transparent;
+    }
+
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image:
+                radial-gradient(circle at 20% 30%, rgba(255, 0, 0, 0.1) 0.0625rem, transparent 0.0625rem),
+                radial-gradient(circle at 80% 70%, rgba(255, 0, 0, 0.1) 0.0625rem, transparent 0.0625rem),
+                radial-gradient(circle at 40% 80%, rgba(255, 0, 0, 0.1) 0.0625rem, transparent 0.0625rem);
+        background-size: 3.125rem 3.125rem, 5rem 5rem, 3.75rem 3.75rem;
+        opacity: 0.3;
+        animation: float 20s ease-in-out infinite;
+        z-index: -1;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0rem); }
+        50% { transform: translateY(-1.25rem); }
+    }
+
+    .tagline {
+        font-size: 1.8em;
+        font-weight: 600;
+        font-style: normal;
+        color: rgb(255, 255, 255);
+        font-kerning: normal;
+        text-decoration-line: none;
+        text-decoration-thickness: initial;
+        text-decoration-style: initial;
+        margin-bottom: 1.875rem;
+    }
+
+    .tagline-separator {
+        width: 6.25rem;
+        height: 0.3125rem;
+        background: #ff3131;
+        margin: 0 auto 2.5rem;
+        border-radius: 0.1875rem;
+    }
+
+    .main-title {
+        font-size: 4.8em;
+        font-weight: 900;
+        margin-bottom: 2.5rem;
+        text-align: center;
+        letter-spacing: 0.125rem;
+    }
+
+    .main-title .highlight {
+        color: #ff3131;
+    }
+
+    .cta-button {
+        background: transparent;
+        border: 0.3rem solid white;
+        color: white;
+        padding: 1.125rem 2.25rem;
+        font-size: 1.32rem;
+        font-weight: bold;
+        border-radius: 3.125rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 2.25rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+    }
+
+    .cta-button .red-text {
+        color: #ff3131;
+    }
+
+    .cta-button .white-text {
+        color: white;
+    }
+
+    .cta-button .arrow {
+        color: white;
+    }
+
+    /* Services Section */
+    .services-section {
+        padding: 6.25rem 1.25rem;
+        background-color: white;
+        color: black;
+    }
+
+    .container {
+        max-width: 100rem;
+        margin: 0 auto;
+        padding: 0 1.25rem;
+    }
+
+    .main-title-section {
+        margin-bottom: 3.75rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .chevron-icon {
+        text-align: center;
+        margin-bottom: 1.25rem;
+        position: relative;
+        width: 2.625rem;
+        height: 1.625rem;
+        margin: 0 auto 6.25rem;
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    .chevron-icon::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 1.25rem;
+        height: 1.25rem;
+        border-left: 0.3125rem solid #333;
+        border-bottom: 0.3125rem solid #333;
+        transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.2);
+        }
+    }
+
+    .section-title {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 0;
+        text-align: left;
+        line-height: 1.2;
+    }
+
+    .title-line {
+        display: flex;
+        align-items: center; /* baseline 대신 center로 변경하여 세로 정렬 안정화 */
+        gap: 0.9375rem;
+        flex-wrap: wrap; /* 공간 부족 시 줄바꿈 허용 */
+    }
+
+    .title-start, .title-end, .char {
+        font-size: 3.75rem;
+        font-weight: 800;
+        color: #333;
+        flex-shrink: 0; /* 글자가 줄어들지 않도록 고정 */
+    }
+
+    .onestop-container {
+        display: flex; /* inline-flex에서 flex로 변경 */
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+    .char-dot-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.1875rem;
+    }
+
+    .red-dot {
+        color: #ff3131;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    .brand-name {
+        /* margin-top: -3.75rem; 제거 */
+        text-align: left;
+        margin-top: 1.25rem; /* 제목과 브랜드명 사이 간격 확보 */
+    }
+
+    .char {
+        font-size: 3.75rem;
+        font-weight: 800;
+        color: #333;
+    }
+    .char2 {
+        font-size: 3.75rem;
+        font-weight: 800;
+        color: black;
+    }
+    .brand-name .value {
+        color: #ff3131;
+        font-size: 3.96rem;
+        font-weight: 800;
+        margin-right: 1.25rem;
+    }
+
+    .brand-name .touch {
+        color: #333;
+        font-size: 1rem;
+        font-weight: 400;
+        letter-spacing: 1em;
+    }
+
+    .brand-name .touch .red-letter {
+        color: #ff3131;
+    }
+
+    .section-description {
+        font-size: 1.44rem;
+        line-height: 1.6;
+        margin-bottom: 60px;
+        color: #666;
+        text-align: left;
+    }
+
+    .service-grid {
+        display: flex;
+        justify-content: center;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .service-description-section {
+        margin-top: -2.5rem;
+    }
+
+    .section-description {
+        font-size: 1.44rem;
+        line-height: 1.6;
+        margin-bottom: 2.5rem;
+        color: #333;
+        font-weight: 1000;
+        text-align: left;
+    }
+
+    .service-content-row {
+        display: flex;
+        gap: 2.5rem;
+        max-width: 100rem;
+        margin: 0 auto;
+        align-items: flex-start;
+    }
+
+
+    .service-box {
+        background-color: #f5f5f5;
+        padding: 3.125rem;
+        width: 50%;
+        flex-shrink: 0;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .service-content {
+        text-align: right;
+    }
+
+    .service-list-container {
+        width: 50%;
+        padding: 3rem;
+        background-color: white;
+        flex-shrink: 0;
+        margin-top: 10rem;
+    }
+
+    .tax-service-list {
+        padding-left: 30rem;
+    }
+
+    .service-icon {
+        margin-bottom: 1.5625rem;
+        text-align: right;
+    }
+
+    .gavel-placeholder,
+    .house-placeholder,
+    .document-placeholder {
+        width: 10rem;
+        height: 10rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        color: white;
+    }
+
+    .service-content-row:nth-child(3) {
+        margin-top: 3.75rem;
+    }
+
+    .service-title {
+        font-size: 2rem;
+        margin-bottom: 1.25rem;
+        font-weight: 800;
+        color: #333;
+        text-align: right;
+    }
+
+    .service-description {
+        font-size: 1.2rem;
+        color: #333;
+        font-weight: 800;
+        margin-bottom: 1.875rem;
+        line-height: 1.6;
+        text-align: right;
+    }
+
+    .service-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .service-list li {
+        padding: 0.75rem 0;
+        color: #666A6e;
+        font-weight: 1000;
+        font-size: 1.3rem;
+        position: relative;
+        padding-left: 1.875rem;
+    }
+
+    .service-list li::before {
+        content: '✓';
+        color: white;
+        font-weight: 1000;
+        position: absolute;
+        left: 0;
+        top: 0.75rem;
+        font-size: 0.9rem;
+        background-color: #ff3131;
+        border-radius: 50%;
+        width: 1.25rem;
+        height: 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+    }
+
+    /* Testimonials Section */
+    .testimonials-section {
+        padding: 100px 20px;
+        background-color: #F5F5F5;
+        color: #333;
+        height:100%;
+    }
+
+    .testimonials-header {
+        text-align: left;
+        margin-bottom: 60px;
+    }
+
+    .testimonials-subtitle {
+        font-size: 1.8rem;
+        color: #ff0000;
+        font-weight: 600;
+        margin-bottom: 15px;
+        font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    .testimonials-title {
+        font-size: 2.8rem;
+        color: #000;
+        font-weight: 900;
+        line-height: 1.2;
+        font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    .solution-container {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 0;
+        flex-shrink: 0;
+        position: relative;
+        top: -4.1875rem;
+    }
+
+    .char-dot-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.1875rem;
+    }
+
+    .red-dot {
+        color: #ff3131;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+
+    .testimonials-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        width: 100%;
+    }
+
+    .testimonial-block {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .testimonial-heading {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #000;
+        margin-bottom: 30px;
+        line-height: 1.4;
+        font-family: 'Noto Sans KR', sans-serif;
+        text-align: left;
+    }
+
+    .testimonial-box {
+        background-color: white;
+        border: 2px solid #f0f0f0;
+        border-radius: 15px;
+        padding: 50px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        position: relative;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .testimonial-box::before {
+        content: '';
+        position: absolute;
+        top: 25%;
+        left: 0;
+        width: 4px;
+        height: 50%;
+        background: linear-gradient(45deg, #ff0000, #ff3333);
+        border-radius: 0 2px 2px 0;
+    }
+
+    .testimonial-text {
+        font-size: 1rem;
+        line-height: 1.8;
+        color: #555;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+
+    .testimonial-text:last-child {
+        margin-bottom: 0;
+    }
+
+    .testimonial-block:first-child .testimonial-text {
+        font-size: 1rem;
+        line-height: 2.5;
+    }
+
+    .testimonial-block:last-child .testimonial-text {
+        font-size: 0.96rem;
+        line-height: 2.3;
+    }
+
+    /* KakaoTalk Consultation Section */
+    .kakao-section {
+        padding: 100px 20px;
+        background-image: url('/assets/start/page1/터치/터치_카톡\ 실시간\ 상담.PNG');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: relative;
+    }
+
+    .kakao-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 0;
+    }
+    .kakao-section .container {
+        position: relative;
+        z-index: 1;
+    }
+
+    .kakao-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 60px;
+        max-width:100rem;
+        align-items: center;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+    }
+
+    .promo-text {
+        color: white;
+        text-align: left;
+    }
+
+    .promo-title {
+        font-size: 3.2rem;
+        font-family: "Poor Story", system-ui;
+        font-weight: 1000;
+        margin-bottom: 50px;
+        line-height: 1.2;
+        background-color: #000;
+    }
+
+    .promo-subtitle {
+        font-size: 3.2rem;
+        font-family: "Poor Story", system-ui;
+        margin-top: 20px;
+        font-weight: 1000;
+        margin-bottom: 20px;
+        color: white;
+        background-color: #000;
+    }
+
+    .promo-description {
+        font-size: 3.2rem;
+        font-weight: 1000;
+        font-family: "Poor Story", system-ui;
+        color: #FF2E55;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        background-color: #000;
+    }
+
+
+    /* 전체 채팅 UI 컨테이너 */
+    .chat-interface {
+        width:100%;
+        background-color: #E6E7E9; /* 이미지와 유사한 배경색 */
+        border-radius: 30px;       /* 둥근 모서리 */
+        padding: 20px;
+        max-width: 600px;          /* 최대 너비 지정 */
+        margin: auto;              /* 중앙 정렬 */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        border: 5px solid #000;
+        position: relative;        /* LIVE 배지 위치의 기준점 */
+        overflow: hidden;          /* 내부 요소가 모서리를 넘지 않도록 */
+    }
+
+    /* 헤더 영역 */
+    .chat-header {
+        padding: 10px 0 20px; /* 위아래 여백 추가 */
+        position: relative;
+        text-align: center; /* 로고 중앙 정렬을 위함 */
+    }
+
+    /* LIVE 배지 */
+    .live-indicator {
+        position: absolute;        /* chat-interface를 기준으로 절대 위치 */
+        top: 25px;
+        left: 25px;
+        background-color: #FF5E28; /* 이미지와 유사한 주황색 */
+        color: white;
+        padding: 4px 10px;
+        border-radius: 5px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    /* 회사 정보 및 로고 */
+    .company-info {
+        text-align: center; /* 내부 요소 중앙 정렬 */
+    }
+
+    .company-info img {
+        max-width: 180px;  /* 로고 최대 너비 지정 */
+        height: auto;      /* 이미지 비율 유지 */
+        margin-top: 15px;  /* LIVE 배지와의 간격 확보 */
+    }
+
+    /* 카카오톡 상담하기 말풍선 */
+    .chat-bubble {
+        display: inline-block; /* 내용물 크기에 맞게 너비 축소 */
+        background-color: white;
+        padding: 15px 25px;
+        border-radius: 25px; /* 더 둥글게 */
+        margin-bottom: 25px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        text-align: center;
+    }
+    /* 말풍선을 감싸는 부모(chat-interface)에서 중앙정렬 */
+    .chat-interface {
+        text-align: center;
+    }
+
+    .chat-bubble a {
+        color: #333;
+        font-weight: 1000;
+        font-size: 1rem;
+    }
+
+    /* 하단 입력 영역 */
+    .chat-input-area {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 0 10px; /* 좌우 여백 */
+    }
+
+    /* 입력창 */
+    .input-field {
+        flex: 1;
+        height: 45px;
+        background-color: #D2D3D7; /* 이미지와 유사한 회색 */
+        border-radius: 25px;
+        position: relative; /* 아이콘 위치의 기준점 */
+        padding-left: 40px; /* 아이콘을 위한 공간 확보 */
+    }
+
+    .input-field::after {
+        content: ''; /* 텍스트 콘텐츠를 비웁니다 */
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%); /* 수직 중앙 정렬 유지 */
+
+        /* ⭐ 이미지 배경으로 대체하는 핵심 코드 ⭐ */
+        width: 24px; /* 이미지의 너비 설정 */
+        height: 24px; /* 이미지의 높이 설정 */
+        background-image: url('/assets/start/page1/터치/인풋이모지.png'); /* ⭐ 이미지 파일 경로 지정 ⭐ */
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    /* Reaction Icons (이미지 버전) */
+    .reaction {
+        display: inline-block;
+        width: 28px; /* 이미지의 너비 설정 (원하는 크기로 조절) */
+        height: 28px; /* 이미지의 높이 설정 (원하는 크기로 조절) */
+        cursor: pointer;
+        transition: transform 0.2s ease;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    /* ⭐ 각 이미지 파일의 경로를 여기에 지정합니다. ⭐ */
+    .reaction.like {
+        background-image: url('/assets/start/page1/터치/이모지1.png');
+    }
+
+    .reaction.heart {
+        background-image: url('/assets/start/page1/터치/이모지2.png');
+    }
+
+    .reaction.smile {
+        background-image: url('/assets/start/page1/터치/이모지3.png');
+    }
+
+    .reaction.surprise {
+        background-image: url('/assets/start/page1/터치/이모지4.png');
+    }
+
+    .reaction.angry {
+        background-image: url('/assets/start/page1/터치/이모지5.png');
+    }
+    /*!* 반응 이모티콘 *!*/
+    /*.reaction-icons {*/
+    /*    display: flex;*/
+    /*    gap: 5px;*/
+    /*}*/
+
+    /*.reaction {*/
+    /*    font-size: 1.5rem; !* 이모티콘 크기 조정 *!*/
+    /*    cursor: pointer;*/
+    /*    transition: transform 0.2s ease;*/
+    /*}*/
+
+    /*.reaction:hover {*/
+    /*    transform: scale(1.2);*/
+    /*}*/
+
+    /* 불필요해진 기존 스타일 제거 */
+    .company-type, .company-logo, .company-name, .logo-shapes, .shape, .hands-icon {
+        display: none;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+        padding: 100px 20px;
+        background-color: white;
+        color: black;
+    }
+
+    .faq-header {
+        text-align: left;
+        margin-bottom: 60px;
+
+    }
+
+    .faq-title {
+        font-size: 3rem;
+        font-weight: 900;
+        margin-bottom: 20px;
+        line-height: 1.2;
+        text-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+    }
+
+    .faq-subtitle {
+        font-size: 3rem;
+        color: #ff0000;
+        font-weight: 600;
+        margin-bottom: 15px;
+        font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    .title-separator {
+        width: 90px;
+        height: 1px;
+        background: #ff0000;
+        border-radius: 2px;
+    }
+
+    .faq-content {
+        max-width: 1000px;
+    }
+
+    .faq-item {
+        margin-bottom: 30px;
+    }
+
+    .question {
+        font-size: 2rem;
+        font-weight: 400;
+        margin-bottom: 50px;
+        font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    .q-label {
+        font-size: 2rem;
+        font-weight: 400;
+    }
+
+    .q-text {
+        font-size: 2rem;
+        color: black;
+        line-height: 1.6;
+    }
+
+    .answer {
+        font-size: 2rem;
+        color: black;
+        line-height: 1.6;
+        font-family: 'Nanum Gothic', 'Malgun Gothic', sans-serif;
+        font-weight: 400;
+
+    }
+
+    .a-label {
+        font-size: 2rem;
+    }
+
+    .faq-separator {
+        width: 10%;
+        height: 1px;
+        background: #ff0000;
+        margin: 30px 0;
+        border-radius: 1px;
+    }
+
+    /* Process Flow Section */
+    .process-section {
+        padding: 100px 20px;
+        background-color: #f5f5f5;
+        color: #333;
+    }
+
+    .process-header {
+        text-align: center;
+        margin-bottom: 80px;
+    }
+
+    .process-title {
+        font-size: 3.7rem;
+        font-weight: 900;
+        color: #ff0000;
+        line-height: 1.2;
+    }
+    .process-subtitle {
+        font-size: 3.7rem;
+        font-weight: 900;
+        color: black;
+        line-height: 1.2;
+    }
+
+    .process-flow {
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .step-character {
+        margin: 20px 0;
+    }
+
+    .step-image-placeholder img {
+        width: 60%;
+        height: 100%;
+        object-fit: contain; /* 이미지가 잘리지 않도록 contain으로 변경 */
+    }
+
+    .step-content {
+        flex: 1;
+        max-width: 450px;
+    }
+
+    .step-number-gamdong {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #333; /* 빨간색 대신 검은색으로 변경하여 가독성 확보 */
+        margin-bottom: 20px;
+        padding-bottom: 5px;
+        border-bottom: 2px solid #ff0000;
+        width: 20%;
+    }
+
+    .step-description {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: #555;
+        font-weight: 500;
+    }
+    .process-flow {
+        max-width: 1000px;
+        margin: 0 auto;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+
+        /* 아래 4줄을 추가하여 지그재그 라인 이미지를 배경으로 넣습니다. */
+        background-image: url('/assets/start/page1/터치/터치_6p_S선.png'); /* 'line.png' 이미지 경로 */
+        background-repeat: no-repeat; /* 이미지가 반복되지 않도록 설정 */
+        background-position: center;
+        background-size: 100%; /* 이미지 크기 조정 (화면 비율에 맞게 조절 필요) */
+    }
+    .step-1, .step-3 {
+        align-self: flex-start;
+        align-items: flex-start; /* flex-start는 컨테이너의 시작점(왼쪽)으로 정렬합니다. */
+        text-align: center;
+        transform: translateY(10%); /* Y축(수직)으로 30px만큼 아래로 이동 */
+    }
+
+    /* 2단계와 4단계의 내용물을 오른쪽으로 정렬합니다. */
+    .step-2, .step-4 {
+        align-self: flex-end;
+        align-items: flex-end;   /* flex-end는 컨테이너의 끝점(오른쪽)으로 정렬합니다. */
+        text-align: center;
+        transform: translateY(-100px);
+    }
+
+    /* Process Conclusion */
+    .process-conclusion {
+        text-align: center;
+        margin-top: 60px;
+    }
+
+    .final-arrow {
+        /* 이미지를 담을 div의 크기 설정 (원하는 만큼 조절 가능) */
+        width: 8rem;
+        height: 8rem;
+        margin: 0 auto 20px;
+
+        /* 배경 이미지 관련 설정 */
+        background-image: url('/assets/start/page1/터치/터치_6p_이렇게 연결됩니다_화살표.png');
+        background-repeat: no-repeat;
+
+        /* ⭐ 이 두 속성이 이미지를 가운데만 확대하는 핵심입니다. ⭐ */
+        background-position: center; /* 이미지를 div의 정가운데에 위치시킵니다. */
+        background-size: 1000%; /* 이미지를 200%로 확대합니다. (2배) */
+
+    }
+
+
+
+    .conclusion-text {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #0066cc;
+    }
+
+    /* Footer Section */
+
+    .footer-logo {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: white;
+        font-size: 1.2em;
+    }
+    .footer-section {
+        min-height: 300px;
+        background-color: #1a1a1a;
+        color: white;
+        padding: 3.125rem 1.25rem;
+
+        background-image: url('/assets/start/page1/터치/5초\ 밸류터치.PNG');
+        overflow: hidden;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+
+        display: flex;
+        align-items: flex-end; /* 수직 정렬: 아래쪽 끝(flex-end)으로 */
+        justify-content: center; /* 수평 정렬: 중앙으로 (선택 사항) */
+    }
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 60px;
+        max-width: 100rem;
+        align-items: center;
+        /* margin: 0 auto; 는 flex-end 와 중복될 수 있으므로, 아래와 같이 수정하는 것이 좋습니다. */
+        width: 100%; /* 부모의 너비를 최대한 활용하도록 설정 */
+        position: relative;
+        z-index: 1;
+    }
+    .footer-image-wrapper {
+        /* 내부 이미지가 컨테이너를 벗어나지 않도록 설정 */
+        position: relative;
+        width: 100%; /* 오른쪽 칸을 꽉 채움 */
+        align-self: end;
+    }
+    .footer-image-wrapper img {
+        width: 100%; /* 부모(.footer-image-wrapper) 너비에 꽉 맞춤 */
+        height: auto; /* 너비에 맞춰 높이 자동 조절 (비율 유지) */
+        display: block; /* 이미지 아래 불필요한 여백 제거 */
+
+        /* 테두리 및 액자 스타일 적용 */
+        border: 10px solid black;
+        border-radius: 15px;
+        padding: 15px;
+        box-sizing: border-box; /* 패딩과 테두리를 포함하여 크기 계산 */
+        background-color: white; /* 패딩 영역에 흰색 배경 추가 (선택 사항) */
+    }
+
+    .footer-section h3 {
+        font-size: 1.125rem;
+        margin-bottom: 1.25rem;
+        color: #ff3131;
+    }
+
+    .footer-section p, .footer-section li {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 0.625rem;
+    }
+
+    .footer-text {
+        color: white;
+        text-align: left;
+    }
+
+    .footer-question {
+        font-size: 3rem;
+        font-weight: 1000;
+        margin-bottom: 20px;
+        line-height: 1.2;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .footer-cta {
+        font-size: 3rem;
+        font-weight: 1000;
+        color: white;
+        line-height: 1.1;
+        font-family: "Poor Story", system-ui;
+    }
+
+    .smartphone-interface {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .phone-frame {
+        width: 280px;
+        height: 500px;
+        background-color: #000;
+        border-radius: 30px;
+        padding: 15px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        position: relative;
+    }
+
+    .phone-frame::before {
+        content: '';
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 4px;
+        background-color: #333;
+        border-radius: 2px;
+    }
+
+    .phone-screen {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+        border-radius: 20px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .app-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .app-logo {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(45deg, #ff0000, #ff3333);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .search-bar {
+        flex: 1;
+        margin-left: 15px;
+        background-color: white;
+        border-radius: 20px;
+        padding: 8px 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-placeholder {
+        color: #999;
+        font-size: 0.8rem;
+        flex: 1;
+    }
+
+    .search-icon {
+        font-size: 1rem;
+        color: #666;
+    }
+
+    .service-buttons {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .service-btn {
+        flex: 1;
+        background-color: white;
+        border-radius: 12px;
+        padding: 15px 8px;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .service-icon-placeholder {
+        font-size: 1.5rem;
+    }
+
+    .service-btn span {
+        font-size: 0.7rem;
+        color: #333;
+        font-weight: 600;
+        line-height: 1.2;
+    }
+
+    .footer-cta-button {
+        background: linear-gradient(45deg, #ff0000, #ff3333);
+        color: white;
+        padding: 18px 20px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+        margin-top: auto;
+    }
+
+    .footer-cta-button span {
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+
+
+    <!--    .company-info-content {-->
+            <!--        max-width: 1200px;-->
+            <!--        margin: 0 auto;-->
+            <!--        text-align: left;-->
+            <!--    }-->
+
+
+    .company-footer {
+        padding: 60px 20px;
+        border-top: 1px solid #333;
+        text-align: center; /* 모바일에서 중앙 정렬 */
+        background-color: white;
+        color: black;
+    }
+
+    .company-info-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: left; /* 데스크탑에서는 왼쪽 정렬 유지 */
+    }
+
+    .company-line .value {
+        color: #fff; /* 주요 정보 글씨를 흰색으로 변경하여 강조 */
+        font-weight: 500;
+        margin-right: 8px;
+    }
+    @media(max-width: 400px) {
+        .testimonials-header {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .vt-hero__title{
+            font-size:clamp(35px,6vw,75px);
+        }
+        .vt-btn--outline{
+            padding: 14px 10px;
+        }
+    }
+    @media (max-width: 1600px) {
+        .tax-service-list {
+            padding-left: 20rem;
+        }
+    }
+    @media (max-width: 1200px) {
+        .tax-service-list {
+            padding-left: 15rem;
+        }
+    }
+    @media (max-width: 1100px) {
+        .tax-service-list {
+            padding-left: 12rem;
+        }
+    }
+
+    @media (max-width: 1000px) {
+        .tax-service-list {
+            padding-left: 8rem;
+        }
+    }
+    @media (max-width: 900px) {
+        .tax-service-list {
+            padding-left: 0rem;
+        }
+    }
+    @media (max-width: 768px) {
+        .brand-name .value {
+            color: #ff3131;
+            font-size: 2rem;
+            font-weight: 800;
+        }
+        /* 모바일에서는 입력창과 아이콘이 한 줄에 들어오도록 스타일을 변경합니다. */
+        .chat-input-area {
+            /* ⭐ flex 대신 grid 사용 ⭐ */
+            display: grid;
+            /* ⭐ 2:1 비율로 두 개의 열(column) 생성 ⭐ */
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 10px; /* 열 사이의 간격 */
+            padding: 0 10px;
+        }
+
+        /* 입력창 */
+        .input-field {
+            height: 40px; /* 모바일에서 높이 줄이기 */
+            /* 패딩을 조절하여 스마일 아이콘과 공간 확보 */
+            padding-left: 30px;
+        }
+
+        /* 모바일 전용 스타일 */
+        @media (max-width: 768px) {
+            .reaction-icons {
+                gap: 3px;
+            }
+            .reaction {
+                width: 20px; /* 모바일에서 크기 조절 */
+                height: 20px;
+            }
+        }
+        /* 입력창 내부 스마일 아이콘 */
+        .input-field::after {
+            content: ''; /* 텍스트 콘텐츠를 비웁니다 */
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%); /* 수직 중앙 정렬 유지 */
+
+            /* ⭐ 이미지 배경으로 대체하는 핵심 코드 ⭐ */
+            width: 24px; /* 이미지의 너비 설정 */
+            height: 24px; /* 이미지의 높이 설정 */
+            background-image: url('/assets/start/page1/터치/인풋이모지.png'); /* ⭐ 이미지 파일 경로 지정 ⭐ */
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+
+        /*!* 반응 이모티콘 *!*/
+        /*.reaction-icons {*/
+        /*    gap: 3px; !* 모바일에서 간격 줄이기 *!*/
+        /*}*/
+
+        /*.reaction {*/
+        /*    font-size: 1rem; !* 모바일에서 크기 줄이기 *!*/
+        /*}*/
+        .company-info-content {
+            text-align: center;
+        }
+
+        .conclusion-text{
+            font-size: 2rem;
+        }
+        .company-line {
+            display: block; /* 각 라인을 블록 요소로 만들어 줄바꿈 처리 */
+            margin-bottom: 10px;
+        }
+
+        .company-line .separator {
+            display: none; /* 구분선(|)은 모바일에서 숨김 */
+        }
+    }
+    .company-logo-placeholder {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(45deg, #ff0000, #ff3333);
+        border-radius: 12px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 1.5rem;
+        margin: 0;
+    }
+
+    .company-details {
+        margin-bottom: 30px;
+    }
+
+    .company-line {
+        margin-bottom: 15px;
+        line-height: 1.6;
+        font-size: 0.95rem;
+    }
+
+    .company-line .label {
+        color: #666;
+        font-weight: 600;
+        margin-right: 8px;
+    }
+
+    .company-line .value {
+        color: #333;
+        font-weight: 500;
+        margin-right: 8px;
+    }
+
+    .company-line .separator {
+        color: #ccc;
+        margin: 0 8px;
+        font-weight: 300;
+    }
+
+    .copyright {
+        padding-top: 20px;
+        border-top: 1px solid #e0e0e0;
+        color: #999;
+        font-size: 0.9rem;
+        font-weight: 400;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .navbar {
+            padding: 15px 20px;
+        }
+
+        .nav-links {
+            display: none;
+        }
+
+        .mobile-menu {
+            display: block;
+        }
+
+        .main-title {
+            font-size: 3rem;
+        }
+
+        .tagline {
+            font-size: 16px;
+        }
+
+        .cta-button {
+            padding: 15px 30px;
+            font-size: 16px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+        }
+
+        .brand-name {
+            font-size: 2rem;
+            margin-top: 0.5rem;
+        }
+
+        .service-box {
+            padding: 20px;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+        }
+
+        .service-description {
+            font-size: 0.9rem;
+        }
+
+        .service-list li {
+            font-size: 0.8rem;
+        }
+
+        /* Testimonials Responsive */
+        .testimonials-title {
+            font-size: 2.2rem;
+        }
+
+        .testimonials-grid {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .testimonial-heading {
+            font-size: 1.2rem;
+        }
+
+        .testimonial-box {
+            padding: 25px;
+        }
+
+        .testimonial-text {
+            font-size: 0.95rem;
+        }
+
+        /* KakaoTalk Responsive */
+        .kakao-content {
+            grid-template-columns: 1fr;
+            gap: 40px;
+            text-align: center;
+        }
+
+        .promo-title {
+            font-size: 2rem;
+        }
+
+        .promo-subtitle {
+            font-size: 1.6rem;
+        }
+
+        .promo-description {
+            font-size: 1.2rem;
+        }
+
+        .chat-interface {
+            padding: 25px;
+        }
+
+        /* FAQ Responsive */
+        .faq-title {
+            font-size: 2.5rem;
+        }
+
+        .faq-content {
+            padding: 0 20px;
+        }
+
+        .question {
+            font-size: 1.1rem;
+        }
+
+        .answer {
+            font-size: 0.95rem;
+        }
+
+        /* Process Flow Responsive */
+        .process-title {
+            font-size: 2rem;
+        }
+        .process-subtitle {
+            font-size: 2rem;
+        }
+
+        .process-step {
+            flex-direction: column !important;
+            text-align: center !important;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .step-character {
+            margin: 0 0 20px 0;
+        }
+
+        .step-content {
+            max-width: 100%;
+        }
+
+        .process-flow::before {
+            display: none;
+        }
+
+        .step-1::after,
+        .step-2::after,
+        .step-3::after {
+            display: none;
+        }
+
+        /* Footer Responsive */
+        .footer-content {
+            grid-template-columns: 1fr;
+            gap: 40px;
+            text-align: center;
+        }
+
+        .footer-text {
+            text-align: center;
+        }
+
+        .footer-question {
+            font-size: 2rem;
+        }
+
+        .footer-cta {
+            font-size: 2.2rem;
+        }
+
+        .phone-frame {
+            width: 250px;
+            height: 450px;
+        }
+
+        /* Company Footer Responsive */
+        .company-line {
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        .company-line .separator {
+            margin: 0 4px;
+        }
+
+        .title-start,
+        .title-end,
+        .char,
+        .char2{
+            font-size: 1.5rem; /* 모바일에 맞게 폰트 크기 조정 */
+        }
+
+        /* .onestop-container는 .title-line의 flexbox에 맞춰 자연스럽게 정렬됩니다. */
+
+        .brand-name {
+            margin-top: 0.5rem; /* 모바일에서는 여백을 더 줄입니다. */
+        }
+
+    }
+
+    @media (max-width: 480px) {
+        .main-title {
+            font-size: 2.5rem;
+        }
+
+        .hero-section {
+            padding: 100px 15px 40px;
+        }
+
+        .testimonials-title {
+            font-size: 1.5rem;
+        }
+
+        .testimonials-subtitle {
+            font-size: 1.3rem;
+        }
+
+        .testimonial-box {
+            padding: 20px;
+        }
+
+        .testimonial-text {
+            font-size: 0.9rem;
+        }
+    }
+    @media (max-width: 768px) {
+        /* --- 기존 코드 유지 --- */
+        .navbar {
+            padding: 1rem;
+        }
+
+        .nav-links {
+            display: none;
+        }
+
+        .mobile-menu {
+            display: flex !important;
+            position: relative; /* z-index가 mobile-nav보다 높게 설정되도록 */
+            z-index: 10000;
+        }
+
+        .step-number-gamdong {
+            border-bottom: none;
+        }
+        .nav-container {
+            justify-content: space-between;
+        }
+
+        /* --- 아래부터 개선 및 추가된 코드 --- */
+
+        body {
+            font-size: 1em; /* 모바일에서는 기본 폰트 크기를 약간 줄여서 가독성 확보 */
+        }
+
+        .main-title {
+            font-size: 2.8rem; /* 모바일 화면에 맞게 제목 크기 조정 */
+            letter-spacing: normal; /* 자간을 줄여 가독성 향상 */
+        }
+
+        .tagline {
+            font-size: 1.2em; /* 태그라인 폰트 크기 조정 */
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            padding: 1rem 1.8rem; /* 버튼 패딩 조정 */
+            font-size: 1rem;      /* 버튼 폰트 크기 조정 */
+        }
+
+        .services-section {
+            padding: 4rem 1rem; /* 섹션별 상하 패딩 축소 */
+        }
+
+        .service-content-row {
+            flex-direction: column; /* 서비스 소개 콘텐츠를 세로로 배열 */
+            gap: 2rem;
+        }
+        .service-content-row-tax {
+            flex-direction: column-reverse;
+        }
+
+        .service-box,
+        .service-list-container {
+            width: 100%; /* 너비를 100%로 설정하여 세로로 쌓이게 함 */
+            padding: 2rem;
+            margin-top: 0; /* 불필요한 마진 제거 */
+        }
+
+        .service-content, .service-title, .service-description {
+            text-align: center; /* 모바일에서는 중앙 정렬로 통일성 부여 */
+        }
+
+        .service-icon {
+            text-align: center;
+        }
+
+        .testimonials-grid {
+            grid-template-columns: 1fr; /* 후기 섹션도 세로로 1열 배열 */
+            gap: 2rem;
+        }
+
+        .kakao-content {
+            grid-template-columns: 1fr; /* 카톡 상담 섹션도 세로로 1열 배열 */
+        }
+
+        .promo-title, .promo-subtitle, .promo-description {
+            font-size: 2rem; /* 프로모션 텍스트 크기 조정 */
+            text-align: center;
+        }
+
+        .process-flow {
+            /* S자 배경 이미지가 모바일에서 어색하게 보일 수 있으므로 제거 */
+            background-image: none;
+            padding-top: 0;
+        }
+
+        /* 프로세스 각 단계를 중앙 정렬하고 transform 효과를 초기화 */
+        .step-1, .step-2, .step-3, .step-4 {
+            align-self: center;
+            align-items: center;
+            text-align: center;
+            transform: none;
+            margin-bottom: 4rem; /* 각 단계 사이의 간격 조정 */
+        }
+
+        .footer-content {
+            grid-template-columns: 1fr; /* 푸터도 세로 1열로 변경 */
+            text-align: center;
+        }
+
+        .footer-text {
+            text-align: center;
+        }
+    }
+</style>
+
+<body>
+<!-- Navigation Bar -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo">
+            <a href="/" class="logo">
+                <img src="/assets/start/page1/터치/밸류터치_로고.png" alt="VTF Logo" style="width: 100%; height: 100%; object-fit: contain;">
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="/" class="nav-link">감정평가</a>
+            <a href="/tax" class="nav-link">세금 컨설팅</a>
+            <a href="/law" class="nav-link">부동산 법률 상담</a>
+            <a href="/main" class="nav-cta">내 집 가치 확인</a>
+        </div>
+        <div class="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
+
+<!-- Mobile Navigation Menu -->
+<div class="mobile-nav" id="mobileNav">
+    <button class="close-btn">×</button>
+    <a href="/">감정평가</a>
+    <a href="/tax">세금 컨설팅</a>
+    <a href="/law">부동산법률상담</a>
+    <a href="/main">내 집 가치 확인</a>
+</div>
+
+<!-- Main Hero Section -->
+<section class="hero-section">
+    <video id="background-video"
+           src="/assets/start/page1/터치/밸류터치 헤더 영상.mp4"
+           autoplay
+           muted
+           playsinline
+           webkit-playsinline
+           loop
+           preload="metadata">
+    </video>
+    <div class="hero-content">
+        <p class="tagline">부동산 자동 가치산정부터 감정평가까지</p>
+        <div class="tagline-separator"></div>
+        <h1 class="vt-hero__title"><span class="acc">V</span>ALUE <span class="acc">T</span>OUCH</h1>
+        <div class="vt-hero__cta">
+            <a class="vt-btn--outline"
+               href="javascript:void(0);"
+               onclick="openConsultingModal('appraisal')">
+                3분 만에 나의 <span class="em">무료로 부동산 전문가</span> 상담하기 →
+            </a>
+        </div>
+    </div>
+
+</section>
+
+<!-- Services Section -->
+<section class="services-section">
+    <div class="container">
+        <!-- Main Title Section -->
+        <div class="main-title-section">
+            <div class="chevron-icon"></div>
+            <h2 class="section-title">
+                <div class="title-line">
+                    <div class="title-start">부동산</div>
+                    <div class="onestop-container">
+                        <div class="char-dot-group">
+                            <span class="red-dot">•</span>
+                            <span class="char">원</span>
+                        </div>
+                        <div class="char-dot-group">
+                            <span class="red-dot">•</span>
+                            <span class="char">스</span>
+                        </div>
+                        <div class="char-dot-group">
+                            <span class="red-dot">•</span>
+                            <span class="char">톱</span>
+                        </div>
+                    </div>
+                    <div class="title-end">전문 서비스</div>
+                </div>
+            </h2>
+            <div class="brand-name">
+                <span class="value">밸류터치</span><span class="touch"><span class="red-letter">V</span>ALUE<span class="red-letter">T</span>OUCH</span>
+            </div>
+        </div>
+
+        <!-- Service Description and Card -->
+        <div class="service-description-section">
+            <p class="section-description">
+                세무·법무·감정평가 부동산 전문가가 협업해 고객님만을 위한 결과를 제공합니다.
+            </p>
+        </div>
+
+        <!-- Service Content Row -->
+        <div class="service-content-row">
+            <!-- Left Section: Legal Consultation Box -->
+            <div class="service-box legal-box">
+                <div class="service-content">
+                    <div class="service-icon">
+                        <div class="gavel-placeholder">
+                            <img src="/assets/start/page1/터치/전문_서비스_부동산_법무_상담-removebg-preview.png" alt="Gavel Icon" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                    </div>
+                    <h3 class="service-title">부동산 법무 상담</h3>
+                    <span class="service-description">
+                            복잡한 부동산 법률 문제를 명확하게 해결하고,
+                        </span>
+                    <br>
+                    <span class="service-description">
+                            계약서 검토부터 분쟁 해결까지 전 과정을 지원합니다.
+                        </span>
+                </div>
+            </div>
+
+            <!-- Right Section: Service List -->
+            <div class="service-list-container">
+                <ul class="service-list">
+                    <li>매매·임대차 계약서 작성 및 검토</li>
+                    <li>부동산 분쟁 조정 및 소송 대리</li>
+                    <li>등기 및 소유권 이전 업무</li>
+                    <li>재개발·재건축 법률 자문</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Tax Consulting Service Row -->
+        <div class="service-content-row service-content-row-tax">
+            <!-- Left Section: Tax Service List -->
+            <div class="service-list-container tax-service-list">
+                <ul class="service-list">
+                    <li>양도소득세 절세 컨설팅</li>
+                    <li>취득세 · 재산세 최적화</li>
+                    <li>상속 · 증여세 전문 상담</li>
+                    <li>세무조사 · 조세불복 대응</li>
+                </ul>
+            </div>
+
+            <!-- Right Section: Tax Consulting Box -->
+            <div class="service-box">
+                <div class="service-content">
+                    <div class="service-icon">
+                        <div class="document-placeholder">
+                            <img src="/assets/start/page1/터치/전문_서비스_세금_컨설팅-removebg-preview.png" alt="Tax Document Icon" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                    </div>
+                    <h3 class="service-title">세금 컨설팅</h3>
+                    <span class="service-description">
+                            최적의 절세 전략으로 세금 부담을 최소화하고,
+                        </span>
+                    <br>
+                    <span class="service-description">
+                            정확하고 안전한 세무 신고를 보장합니다.
+                        </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Appraisal Service Row -->
+        <div class="service-content-row">
+            <!-- Left Section: Appraisal Box -->
+            <div class="service-box appraisal-box">
+                <div class="service-content">
+                    <div class="service-icon">
+                        <div class="house-placeholder">
+                            <img src="/assets/start/page1/터치/전문_서비스_감정평가_의뢰-removebg-preview.png" alt="House Icon" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                    </div>
+                    <h3 class="service-title">감정평가 의뢰</h3>
+                    <span class="service-description">
+                            고객님의 상황을 고려해 감정평가로 합리적인 가격 결정을 도와드립니다.
+                        </span>
+                    <br>
+                    <span class="service-description">
+                            세무서 법원 제출도 가능합니다.
+                        </span>
+                </div>
+            </div>
+
+            <!-- Right Section: Appraisal Service List -->
+            <div class="service-list-container">
+                <ul class="service-list">
+                    <li>시세 조사 및 가격 산정</li>
+                    <li>법원 · 국세청 제출용 감정평가</li>
+                    <li>개인 · 법인회생 감정평가</li>
+                    <li>상속 · 증여 목적 감정평가</li>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+<!-- Customer Testimonials Section -->
+<section class="testimonials-section">
+    <div class="container">
+        <!-- Main Title Area -->
+        <div class="testimonials-header">
+            <h2 class="testimonials-subtitle">고객들이 증명합니다.</h2>
+            <h1 class="testimonials-title">
+                <span class="char2">밸류터치 감정평가 서비스의</span>
+                <div class="solution-container-phone"></div>
+                <div class="solution-container">
+                    <div class="char-dot-group">
+                        <span class="red-dot">•</span>
+                        <span class="char2">명</span>
+                    </div>
+                    <div class="char-dot-group">
+                        <span class="red-dot">•</span>
+                        <span class="char2">쾌</span>
+                    </div>
+                    <div class="char-dot-group">
+                        <span class="red-dot">•</span>
+                        <span class="char2">한</span>
+                    </div>
+                    <div class="char-dot-group">
+                        <span class="red-dot">•</span>
+                        <span class="char2">해</span>
+                    </div>
+                    <div class="char-dot-group">
+                        <span class="red-dot">•</span>
+                        <span class="char2">답</span>
+                    </div>
+                </div>
+            </h1>
+        </div>
+
+        <!-- Testimonials Grid -->
+        <div class="testimonials-grid">
+            <!-- Left Testimonial -->
+            <div class="testimonial-block">
+                <h3 class="testimonial-heading">부동산 감정평가로<br>상속세 문제를 미리 대비했습니다.</h3>
+                <div class="testimonial-box">
+                    <p class="testimonial-text myeongjo">
+                        노쇠하신 부모님께서 가지고 계신 건물이 하나 있었는데 국세청에서 <br>
+                        세금을 더 걷기 위한 감정평가를 실시한다는 소식을 들었습니다.<br>
+                        건물을 상속받으면 너무 큰 세금 부담이 발생해 걱정하던 중<br>
+                        밸류터치를 통해 상담 받아 보았습니다.<br>
+                        상담 결과 객관적이고 정확하게 감정평가를 한다면 상속세 부담이<br>
+                        줄어들 수 있다는 답변을 받았고 평가서 발행까지 해주었습니다.<br>
+                        덕분에 상속세 걱정을 덜어낼 수 있었습니다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Testimonial -->
+            <div class="testimonial-block">
+                <h3 class="testimonial-heading">힘들었던 전세보증보험 가입<br>밸류터치로 해결했어요!</h3>
+                <div class="testimonial-box">
+                    <p class="testimonial-text hi_melody">
+                        서울에 급하게 전세로 집에 거주하게 되었는데<br>
+                        최근 전세사기 소식이 너무 많이 들려와 두려웠어요.<br>
+                        HUG에 가입하려고 해도 평가서 때문에<br>
+                        3개월은 기다려야 한다는 황당한 답변만 받았죠.<br>
+                        그나마 감정평가법인 감동의 평가서는 인정된다고 하더라고요.<br>
+                        초조한 마음에 밸류터치에 문의해 보니 감정평가법인 감동과 파트너쉽이 되어 있어<br>
+                        저당이 없다면 감동에서 발행한 평가서로 HUG 가입이 가능하다고 했습니다 !<br>
+                        다행히 감동에서 받은 평가서로 HUG에 가입해 안심했습니다 ^^
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- KakaoTalk Consultation Section -->
+<section class="kakao-section">
+    <div class="">
+        <div class="kakao-content">
+            <!-- Left: Promotional Text -->
+            <div class="promo-text">
+                <span class="promo-title">복잡한 절차? </span> <span class="promo-title" style="color: #FFDD79;">클릭 한 번</span><span class="promo-title">에 해결!</span>
+                <br>
+                <div style="margin-top: 20px;"></div>
+                <span class="promo-subtitle">세무·법무·감정평가까지</span>
+                <div style="margin-top: 20px;"></div>
+
+                <span class="promo-description">부동산 전문 상담, 카톡으로 가능</span><span class="promo-description" style="color: white;">합니다.</span>
+            </div>
+
+            <!-- Right: Chat Interface -->
+            <!-- Right: Chat Interface -->
+            <div class="chat-interface">
+                <div class="chat-header">
+                    <div class="live-indicator">LIVE</div>
+                    <div class="company-info">
+                        <!-- 로고 이미지만 남깁니다 -->
+                        <img src="./assets/start/page1/터치/감동_로고_수정.png" alt="감동 로고">
+                    </div>
+                </div>
+
+                <div class="chat-bubble">
+                    <a href="http://pf.kakao.com/_ckUxcG/chat" target="_blank" rel="noopener" style="color: black;">카카오톡으로 실시간 상담하기 &gt;</a>
+                </div>
+
+                <div class="chat-input-area">
+                    <!-- 아이콘을 CSS로 추가할 것이므로 div만 유지합니다 -->
+                    <div class="input-field"></div>
+                    <div class="reaction-icons">
+                        <span class="reaction like"></span>
+                        <span class="reaction heart"></span>
+                        <span class="reaction smile"></span>
+                        <span class="reaction surprise"></span>
+                        <span class="reaction angry"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section">
+    <div class="container">
+        <!-- Section Title -->
+        <div class="faq-header">
+            <h2 class="faq-title">자주 묻는 질문</h2>
+            <h3 class="faq-subtitle">FAQ</h3>
+            <div class="title-separator"></div>
+        </div>
+
+        <!-- FAQ Content -->
+        <div class="faq-content">
+            <!-- Q1 & A1 -->
+            <div class="faq-item">
+                <div class="question">
+                    <span class="q-label">Q1.</span>
+                    <br>
+                    <span class="q-text">감정평가 없이도 부동산 상속증여 세금 신고가 가능한가요?</span>
+                </div>
+                <div class="answer">
+                    <span class="a-label">A1.</span>
+                    <br>
+                    <span class="a-text">
+                            집합건물의 경우, 주변 시세를 참고할 수 있다면 감정평가 없이 세금 신고가 가능합니다.
+                            다만, 납세자의 개별 상황이 반영되지 않은 시세를 그대로 적용하는 경우가 있어 정밀한 상담이 필요하고,
+                            호화주택이나 꼬마빌딩은 특히 고객님의 상황을 고려한 감정평가와 전략적인 세금 컨설팅이 필요합니다.
+                        </span>
+                </div>
+            </div>
+
+            <div class="faq-separator"></div>
+
+            <!-- Q2 & A2 -->
+            <div class="faq-item">
+                <div class="question">
+                    <span class="q-label">Q2.</span>
+                    <br>
+                    <span class="q-text">부동산 전문가 상담은 무료인가요?</span>
+                </div>
+                <div class="answer">
+                    <span class="a-label">A2.</span>
+                    <br>
+                    <span class="a-text">
+                            부동산 세무·법무·감정평가 원스톱 서비스 상담 및 탁상감정은 무료입니다.
+                            세금 신고 및 컨설팅, 고도의 법률 자문, 감정평가 진행은 수수료를 안내드릴 수 있습니다.
+                        </span>
+                </div>
+            </div>
+
+            <div class="faq-separator"></div>
+
+            <!-- Q3 & A3 -->
+            <div class="faq-item">
+                <div class="question">
+                    <span class="q-label">Q3.</span>
+                    <br>
+                    <span class="q-text">밸류터치 AVM 추정가 만으로 효력이 있나요?</span>
+                </div>
+                <div class="answer">
+                    <span class="a-label">A3.</span>
+                    <br>
+                    <span class="a-text">
+                            밸류터치는 빅데이터를 기반으로 부동산 AI가 추정가를 산정합니다.
+                            따라서 단순 참고용으로 충분히 사용 가능하지만 세무서, 법원 제출은 감정평가서가 필요합니다.
+                        </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Process Flow Section -->
+<section class="process-section">
+    <div class="container">
+        <!-- Section Title -->
+        <div class="process-header">
+            <span class="process-title" style="color:white; background-color: #00458d; font-size:2.5rem;">감정평가법인 감동</span><span class="process-subtitle" style="color:black;font-size:2.5rem;">의 노하우가 담긴</span> <br />
+            <div style="margin:15px;"></div>
+            <span class="process-title">밸류터치</span><span class="process-subtitle">는 이렇게 연결됩니다.</span>
+        </div>
+
+        <!-- Process Steps -->
+        <div class="process-flow">
+            <!-- Step 1 -->
+            <div class="process-step step-1">
+                <span class="step-number-gamdong">1단계</span>
+
+                <div class="step-character">
+                    <div class="step-image-placeholder">
+                        <img src="/assets/start/page1/터치/터치_1단계 감동이.png">
+                    </div>
+                </div>
+                <div class="step-content">
+                    <p class="step-description">
+                        부동산 세무·법무·감정평가 상담 신청 또는
+                    </p>
+                    <p class="step-description">
+                        밸류터치 AI로 예상 추정가 확인
+                    </p>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="process-step step-2">
+                <span class="step-number-gamdong">2단계</span>
+
+                <div class="step-character">
+                    <div class="step-image-placeholder">
+                        <img src="/assets/start/page1/터치/터치_2단계 감동이.png">
+                    </div>
+                </div>
+                <div class="step-content">
+                    <p class="step-description">
+                        부동산 세금 또는 법률 문제 전문가 진단
+                    </p>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="process-step step-3">
+                <span class="step-number-gamdong">3단계</span>
+                <div class="step-character">
+                    <div class="step-image-placeholder">
+                        <img src="/assets/start/page1/터치/터치_3단계 감동이.png">
+                    </div>
+                </div>
+                <div class="step-content">
+                    <p class="step-description">
+                        고객님의 상황을 최대한 고려해서 전략을 수립하고
+                    </p>
+                    <p class="step-description">
+                        필요 시 공신력있는 감정평가서 발행
+                    </p>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="process-step step-4">
+                <span class="step-number-gamdong">4단계</span>
+                <div class="step-character">
+                    <div class="step-image-placeholder">
+                        <img src="/assets/start/page1/터치/터치_4단계 감동이.png">
+                    </div>
+                </div>
+                <div class="step-content">
+                    <p class="step-description">
+                        세금 신고 서류 세무서 제출 완료
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Arrow and Conclusion -->
+        <div class="process-conclusion">
+            <div class="final-arrow"></div>
+            <span class="conclusion-text" style="color: #000;">부동산 법률 분쟁</span><span class="conclusion-text"> 해결</span>
+        </div>
+    </div>
+</section>
+
+<!-- Footer Section -->
+<footer class="footer-section">
+    <div class="container">
+        <div class="footer-content">
+            <!-- Left: Text Content -->
+            <div class="footer-text">
+                <span class="footer-question">내 집, 지금 얼마일까?</span> <br>
+                <div style="margin-top: 30px;"></div>
+                <span class="footer-cta" style="color: #84211E; background-color: #eee8e8;">5초 만에 밸류터치</span>
+                <span class="footer-cta">로 부동산 가치 확인!</span>
+            </div>
+            <div class="chat-bubble" style="background-color: #ff2e55; border-radius: 30px;">
+                <a href="/main" style="color: white; font-weight: 1000;">무료로 부동산 추정가 확인하기 &gt;</a>
+            </div>
+            <!-- <div class="footer-image-wrapper">
+                <img src="/assets/images/터치/5초 밸류터치 노트북 화면.PNG" alt="밸류터치 노트북 화면">
+            </div> -->
+        </div>
+    </div>
+</footer>
+
+<!-- Company Information Footer -->
+<footer class="company-footer">
+    <div class="container">
+        <div class="company-info-content">
+            <!-- Company Logo -->
+            <div>
+                <a href="/" class="footer-logo">
+                    <img src="/assets/start/page1/터치/밸류터치_로고.png" alt="VTF Logo" style="width: 100%; height: 100%; object-fit: contain;">
+                </a>
+            </div>
+
+            <!-- Company Details -->
+            <div class="company-details">
+                <div class="company-line">
+                    <span class="label">상호 :</span>
+                    <span class="value">주식회사 감정평가법인감동</span>
+                    <span class="separator">|</span>
+                    <span class="label">대표 :</span>
+                    <span class="value">김민구</span>
+                    <span class="separator">|</span>
+                    <span class="label">주소 :</span>
+                    <span class="value">서울특별시 종로구 새문안로5길 37, 7층 4호(도렴동)</span>
+                </div>
+
+                <div class="company-line">
+                    <span class="label">사업자등록번호 :</span>
+                    <span class="value">679-86-01599</span>
+                    <span class="separator">|</span>
+                    <span class="label">전화번호 :</span>
+                    <span class="value">02-899-2444</span>
+                    <span class="separator">|</span>
+                    <span class="value">02-6299-7444</span>
+                </div>
+
+                <div class="company-line">
+                    <span class="label">이메일 :</span>
+                    <span class="value">gamdong01@kapaland.co.kr</span>
+                    <span class="separator">|</span>
+                    <span class="label">팩스 :</span>
+                    <span class="value">0505-182-4448</span>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="copyright">
+                <span>Copyright All Rights Reserved.</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<template id="appraisal-consulting-template">
+    {{>modal/appraisalConsultingRequest}}
+</template>
+
+<script src="/js/jquery/core/jquery-1.12.4.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="/devJs/mainFunction.js"></script>
+
+<script>
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) { // 50px 이상 스크롤되면
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+    // Mobile Navigation Toggle
+    const mobileMenuBtn = document.querySelector('.mobile-menu');
+    const mobileNavMenu = document.getElementById('mobileNav');
+    const bodyElement = document.body;
+    const closeBtn = document.querySelector('.close-btn');
+
+    mobileMenuBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        mobileMenuBtn.classList.toggle('active');
+        mobileNavMenu.classList.toggle('active');
+        bodyElement.style.overflow = mobileNavMenu.classList.contains('active') ? 'hidden' : '';
+    });
+
+    // Close button functionality
+    closeBtn.addEventListener('click', function() {
+        mobileMenuBtn.classList.remove('active');
+        mobileNavMenu.classList.remove('active');
+        bodyElement.style.overflow = '';
+    });
+
+    // Close mobile menu when clicking on a link
+    const mobileLinks = mobileNavMenu.querySelectorAll('a, button:not(.close-btn)');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            mobileMenuBtn.classList.remove('active');
+            mobileNavMenu.classList.remove('active');
+            bodyElement.style.overflow = '';
+        });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!mobileMenuBtn.contains(e.target) && !mobileNavMenu.contains(e.target)) {
+            mobileMenuBtn.classList.remove('active');
+            mobileNavMenu.classList.remove('active');
+            bodyElement.style.overflow = '';
+        }
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+</script>
+<script>
+    (function () {
+        const v = document.getElementById('background-video');
+        if (!v) {
+            console.log('Video element not found');
+            return;
+        }
+
+        v.addEventListener('error', (e) => {
+            console.error('Video error:', e);
+            if (v.error) {
+                console.error('Video error code:', v.error.code);
+                console.error('Video error message:', v.error.message);
+            }
+        });
+
+        // iOS가 속성을 무시하는 경우 대비
+        v.muted = true;
+        v.playsInline = true;
+        v.setAttribute('muted', '');
+        v.setAttribute('playsinline', '');
+        v.setAttribute('webkit-playsinline', '');
+
+        const tryPlay = () => {
+            console.log('Attempting to play video...');
+            const promise = v.play();
+            if (promise !== undefined) {
+                promise.then(() => {
+                    console.log('Video playback started.');
+                }).catch(error => {
+                    console.error('Video playback failed:', error);
+                });
+            }
+        };
+
+        // DOM 준비 후 1회 시도
+        if (document.readyState === 'complete') {
+            tryPlay();
+        } else {
+            window.addEventListener('load', tryPlay, { once: true });
+        }
+
+        // 사용자 첫 터치/포커스 복귀 시 재시도
+        window.addEventListener('touchstart', tryPlay, { once: true, passive: true });
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) {
+                tryPlay();
+            }
+        });
+    })();
+</script>
+</body></html>

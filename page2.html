@@ -282,7 +282,7 @@
         }
 
     /* Hero */
-        .vt-hero{position:relative;min-height:72vh;background:#ffd54d; overflow: hidden;}
+        .vt-hero{position:relative;min-height:72vh;background:#000; overflow: hidden;}
         .vt-hero__video {
         position: absolute;
         inset: 0;
@@ -291,7 +291,7 @@
         height: 100%;
         object-fit: cover;
         object-position: 70% center;  /* ⬅️ 중심보다 우측을 기준으로 */
-        background: #ffd54d;
+        background: transparent;
         filter: none;
         opacity: 1;
         mix-blend-mode: normal;
@@ -300,7 +300,7 @@
 
         .vt-hero__tint{
         position:absolute; inset:0; z-index:1; pointer-events:none;
-        background:#ffd54d;                /* 노란 톤 */
+        background:transparent;                /* 노란 톤 */
         mix-blend-mode:screen;             /* 화면(밝게) 블렌드 */
         opacity:.18;                       /* 0~0.3 사이 조절 */
         }
@@ -522,12 +522,12 @@
 
     /* One-stop Section */
         .vt-onestop {
-        position: relative;
-        width: 100%;
-        height:300px;
-        overflow: hidden;
-        border-top: 1px solid var(--line);
-        border-bottom: 1px solid var(--line);
+            position: relative;
+            width: 100%;
+            padding: 60px 0; /* 섹션 상하 여백 추가 */
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            overflow: hidden; /* 배경 이미지가 섹션을 벗어나지 않도록 */
         }
 
         .vt-onestop__chips { display:flex; flex-direction:column; gap:8px; }
@@ -547,28 +547,33 @@
         .vt-onestop__chip .accent{ color:#F59E0B; }
 
         .vt-onestop__bg {
-        display: block;
-        width: 100%;
-        height: auto;
-        vertical-align: middle;
+            position: absolute;
+            inset: 0;
+            z-index: -2; /* 콘텐츠 뒤로 보내기 */
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 섹션을 꽉 채우도록 */
         }
 
         .vt-onestop__scrim {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(90deg, rgba(0,0,0,.65) 0%, rgba(0,0,0,.4) 40%, rgba(0,0,0,0) 70%);
-        pointer-events: none;
+            position: absolute;
+            inset: 0;
+            z-index: -1; /* 배경 위, 콘텐츠 아래 */
+            background: linear-gradient(90deg, rgba(0,0,0,.65) 0%, rgba(0,0,0,.4) 40%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
         }
 
         .vt-onestop__content {
-        position: absolute;
-        inset: 0;
-        z-index: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: clamp(12px,3vw,20px) clamp(16px,6vw,80px);
-        gap: 40px;
+            position: relative; /* 이제부터는 static(기본)이 아닌 relative */
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            width: 100%;
+            max-width: var(--container); /* --container 변수 값으로 최대 너비 제한 */
+            margin: 0 auto; /* 중앙 정렬 */
+            padding: 0 20px; /* 좌우 여백 */
         }
 
         .vt-onestop__headline1 {
@@ -663,7 +668,157 @@
             z-index: -1;
         }
         }
+        .chat-interface {
+        width:100%;
+        background-color: #E6E7E9; /* 이미지와 유사한 배경색 */
+        border-radius: 30px;       /* 둥근 모서리 */
+        padding: 20px;
+        max-width: 600px;          /* 최대 너비 지정 */
+        margin: auto;              /* 중앙 정렬 */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        border: 5px solid #000;
+        position: relative;        /* LIVE 배지 위치의 기준점 */
+        overflow: hidden;          /* 내부 요소가 모서리를 넘지 않도록 */
+        }
+        /* 헤더 영역 */
+        .chat-header {
+            padding: 10px 0 20px; /* 위아래 여백 추가 */
+            position: relative;
+            text-align: center; /* 로고 중앙 정렬을 위함 */
+        }
 
+        /* LIVE 배지 */
+        .live-indicator {
+            position: absolute;        /* chat-interface를 기준으로 절대 위치 */
+            top: 25px;
+            left: 25px;
+            background-color: #FF5E28; /* 이미지와 유사한 주황색 */
+            color: white;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* 회사 정보 및 로고 */
+        .company-info {
+            text-align: center; /* 내부 요소 중앙 정렬 */
+        }
+
+        .company-info img {
+            max-width: 180px;  /* 로고 최대 너비 지정 */
+            height: auto;      /* 이미지 비율 유지 */
+            margin-top: 15px;  /* LIVE 배지와의 간격 확보 */
+        }
+
+        /* 카카오톡 상담하기 말풍선 */
+        .chat-bubble {
+            display: inline-block; /* 내용물 크기에 맞게 너비 축소 */
+            background-color: #FEE500; /* 항상 노란색으로 변경 */
+            padding: 15px 25px;
+            border-radius: 25px; /* 더 둥글게 */
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease; /* 부드러운 전환 효과 */
+        }
+
+        .chat-bubble:hover {
+            transform: translateY(-3px); /* 위로 살짝 이동 */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* 그림자 강조 */
+        }
+        
+        /* 말풍선을 감싸는 부모(chat-interface)에서 중앙정렬 */
+        .chat-interface {
+            text-align: center;
+        }
+
+        .chat-bubble a {
+            color: #333;
+            font-weight: 1000;
+            font-size: 1rem;
+            text-decoration: none; /* 밑줄 제거 */
+        }
+
+        /* 하단 입력 영역 */
+        .chat-input-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 0 10px; /* 좌우 여백 */
+        }
+
+        /* 입력창 */
+        .input-field {
+            flex: 1;
+            height: 45px;
+            background-color: #D2D3D7; /* 이미지와 유사한 회색 */
+            border-radius: 25px;
+            position: relative; /* 아이콘 위치의 기준점 */
+            padding-left: 40px; /* 아이콘을 위한 공간 확보 */
+        }
+
+        .input-field::after {
+            content: ''; /* 텍스트 콘텐츠를 비웁니다 */
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%); /* 수직 중앙 정렬 유지 */
+
+            /* ⭐ 이미지 배경으로 대체하는 핵심 코드 ⭐ */
+            width: 24px; /* 이미지의 너비 설정 */
+            height: 24px; /* 이미지의 높이 설정 */
+            background-image: url('/assets/start/page1/터치/인풋이모지.png'); /* ⭐ 이미지 파일 경로 지정 ⭐ */
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        /* Reaction Icons (이미지 버전) */
+        .reaction {
+            display: inline-block;
+            width: 28px; /* 이미지의 너비 설정 (원하는 크기로 조절) */
+            height: 28px; /* 이미지의 높이 설정 (원하는 크기로 조절) */
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        /* ⭐ 각 이미지 파일의 경로를 여기에 지정합니다. ⭐ */
+        .reaction.like {
+            background-image: url('/assets/start/page1/터치/이모지1.png');
+        }
+
+        .reaction.heart {
+            background-image: url('/assets/start/page1/터치/이모지2.png');
+        }
+
+        .reaction.smile {
+            background-image: url('/assets/start/page1/터치/이모지3.png');
+        }
+
+        .reaction.surprise {
+            background-image: url('/assets/start/page1/터치/이모지4.png');
+        }
+
+        .reaction.angry {
+            background-image: url('/assets/start/page1/터치/이모지5.png');
+        }
+        /*!* 반응 이모티콘 *!*/
+        /*.reaction-icons {*/
+        /*    display: flex;*/
+        /*    gap: 5px;*/
+        /*}*/
+
+        /*.reaction {*/
+        /*    font-size: 1.5rem; !* 이모티콘 크기 조정 *!*/
+        /*    cursor: pointer;*/
+        /*    transition: transform 0.2s ease;*/
+        /*}*/
+
+        /*.reaction:hover {*/
+        /*    transform: scale(1.2);*/
+        /*}*/
 
     /* Solutions */
         .solutions {
@@ -942,7 +1097,16 @@
 <!-- HERO -->
 <section class="vt-hero" aria-label="메인 히어로">
     <!-- 배경 비디오 -->
-    <video class="vt-hero__video" src="/assets/start/page2/header_vid2.mp4" autoplay muted loop playsinline class="video"></video>
+    <video id="heroVideo"
+        class="vt-hero__video"
+        autoplay
+        muted
+        playsinline
+        webkit-playsinline
+        loop
+        preload="metadata">
+        <source src="/assets/start/page2/header_vid2.mp4" type="video/mp4">
+    </video>
     <!-- 색상 톤 + 스크림 -->
 
 
@@ -1154,13 +1318,32 @@
             </div>
         </div>
 
-        <!-- 오른쪽 로고 + 버튼 (회색 박스) -->
-        <div class="vt-onestop__right">
-            <img src="/assets/start/page2/gamdong.png" alt="감동 로고" class="vt-onestop__logo">
-            <a class="vt-onestop__btn" href="http://pf.kakao.com/_ckUxcG/chat" target="_blank" rel="noopener">
-                카카오톡으로 실시간 상담하기 ›
-            </a>
-        </div>
+        <!-- Right: Chat Interface -->
+            <div class="chat-interface">
+                <div class="chat-header">
+                    <div class="live-indicator">LIVE</div>
+                    <div class="company-info">
+                        <!-- 로고 이미지만 남깁니다 -->
+                        <img src="./assets/start/page1/터치/감동_로고_수정.png" alt="감동 로고">
+                    </div>
+                </div>
+
+                <div class="chat-bubble">
+                    <a href="http://pf.kakao.com/_ckUxcG/chat" target="_blank" rel="noopener" style="color: black;">카카오톡으로 실시간 상담하기 &gt;</a>
+                </div>
+
+                <div class="chat-input-area">
+                    <!-- 아이콘을 CSS로 추가할 것이므로 div만 유지합니다 -->
+                    <div class="input-field"></div>
+                    <div class="reaction-icons">
+                        <span class="reaction like"></span>
+                        <span class="reaction heart"></span>
+                        <span class="reaction smile"></span>
+                        <span class="reaction surprise"></span>
+                        <span class="reaction angry"></span>
+                    </div>
+                </div>
+            </div>
     </div>
 </section>
 
@@ -1351,5 +1534,57 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
+<script>
+  (function () {
+    const v = document.getElementById('heroVideo');
+    if (!v) {
+      console.log('Video element not found');
+      return;
+    }
+
+    v.addEventListener('error', (e) => {
+      console.error('Video error:', e);
+      if (v.error) {
+        console.error('Video error code:', v.error.code);
+        console.error('Video error message:', v.error.message);
+      }
+    });
+
+    // iOS가 속성을 무시하는 경우 대비
+    v.muted = true;
+    v.playsInline = true;
+    v.setAttribute('muted', '');
+    v.setAttribute('playsinline', '');
+    v.setAttribute('webkit-playsinline', '');
+
+    const tryPlay = () => {
+      console.log('Attempting to play video...');
+      const promise = v.play();
+      if (promise !== undefined) {
+        promise.then(() => {
+          console.log('Video playback started.');
+        }).catch(error => {
+          console.error('Video playback failed:', error);
+        });
+      }
+    };
+
+    // DOM 준비 후 1회 시도
+    if (document.readyState === 'complete') {
+      tryPlay();
+    } else {
+      window.addEventListener('load', tryPlay, { once: true });
+    }
+
+    // 사용자 첫 터치/포커스 복귀 시 재시도
+    window.addEventListener('touchstart', tryPlay, { once: true, passive: true });
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) {
+        tryPlay();
+      }
+    });
+  })();
+</script>
+
 </body>
 </html>

@@ -8,7 +8,7 @@
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans KR",sans-serif;background:#f7f8fa;color:#111;display:flex;flex-direction:column;min-height:100vh;}
     .main-header{text-align:left;padding:20px 40px 0;}
-    .main-header h1{font-size:34px;line-height:1.35;font-weight:700;}
+    .main-header h1{font-size:48px;line-height:1.35;font-weight:700;}
     .layout{display:flex;flex-grow:1;}
     .right{flex:1 1 65%;padding:0 40px 40px;display:flex;align-items:flex-start;justify-content:center;}
     /* ──────────────── 좌측(배지·텍스트) ──────────────── */
@@ -16,8 +16,8 @@
     .section-title{font-weight:700;margin-bottom:12px;}
     .badge-group{display:flex;flex-wrap:wrap;gap:8px 12px;}
     .badge{
-      padding:6px 14px;border:2px solid #111;border-radius:6px;
-      font-size:14px;cursor:pointer;background:#fff;transition:background .15s,color .15s;
+      padding:8px 18px;border:2px solid #111;border-radius:6px;
+      font-size:14px;font-weight:bold;cursor:pointer;background:#fff;transition:background .15s,color .15s;
     }
     .badge.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8;}
     .badge.selected{
@@ -25,10 +25,7 @@
         color:#fff;
         border-color:#1d4ed8;
     }
-    .badge-group.badge-group-3-col {
-      display: grid;
-      grid-template-columns: repeat(3, auto);
-    }
+    
 
     /* ──────────────── 우측(SVG 지도) ──────────────── */
     svg{width:100%;height:auto;display:block;}
@@ -55,7 +52,7 @@
     <!-- 수도권 -->
     <div>
       <div class="section-title">| 수도권</div>
-      <div class="badge-group badge-group-3-col">
+      <div class="badge-group">
         <span class="badge" data-region="KR-41">본사</span>
         <span class="badge" data-region="KR-11">서울지사</span>
         <span class="badge" data-region="KR-41">경기지역본부</span>

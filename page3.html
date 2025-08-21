@@ -11,7 +11,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/index.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B23X7348T7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
+        gtag('config', 'G-B23X7348T7');
+    </script>
     <style>
         :root{
           --brand:#0D1B2A; /* 남색 */
@@ -350,8 +358,21 @@
         /* center content */
         .vt-hero__inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:100%;padding:220px 16px}
         .vt-hero__lead{color:#fff;font-weight:800;font-size:clamp(16px,1.3vw,20px);line-height:1.5;opacity:.95}
-        .vt-hero__barline{width:min(180px,30vw);height:6px;border-radius:999px;background:#ef4444;margin:18px auto 12px}
+        .vt-hero__barline{
+            width:0; /* Initial width for animation */
+            height:6px;border-radius:999px;background:#ef4444;margin:18px auto 12px;
+            overflow: hidden; /* Hide overflow during animation */
+        }
 
+        @keyframes draw-line {
+            to {
+                width: min(180px, 30vw);
+            }
+        }
+
+        .vt-hero__barline.draw-animated {
+            animation: draw-line 1s forwards; /* 1 second animation duration */
+        }
         /* NEON title */
         .vt-hero__title{font-weight:900;letter-spacing:.18em;font-size:clamp(42px,7vw,88px);color:#fff;text-transform:uppercase;
         text-shadow:
@@ -1142,12 +1163,36 @@
                 word-break: keep-all;
             }
         }
+        @keyframes typewriter-effect {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .vt-hero__title span {
+            opacity: 0;
+            display: inline-block; /* For animation to work */
+            transform: translateY(20px); /* Initial state for rise up effect */
+        }
+
+        .vt-hero__title span.animated {
+            animation: typewriter-effect 0.5s forwards;
+        }
+
         @media (max-width: 640px) {
             .highlight-dots::before,
             .highlight-dots2::before {
                 display: none;
             }
         }
+
+            
+
     </style>
 </head>
 <body>
@@ -1210,14 +1255,16 @@
     <div class="vt-hero__inner">
         <p class="vt-hero__lead">재산은 지키고 걱정은 덜어드립니다<br>부동산 전문 원스톱 서비스팀의 신속한 상담 가능</p>
         <div class="vt-hero__barline"></div>
-        <h1 class="vt-hero__title"><span class="acc">V</span>ALUE <span class="acc">L</span>AW</h1>
+        <h1 class="vt-hero__title">
+            <span class="acc">V</span><span class="letter">A</span><span class="letter">L</span><span class="letter">U</span><span class="letter">E</span> <span class="acc">L</span><span class="letter">A</span><span class="letter">W</span>
+        </h1>
         <div class="vt-hero__cta">
             <a class="vt-btn--outline" href="javascript:void(0);" onclick="openConsultingModal('legal')">3분 만에 나의 <span class="em">부동산 문제</span> 상담하기→</a>
         </div>
     </div>
 </section>
 
-<div class="valuetouch-sidebar">
+<!--div class="valuetouch-sidebar">
     <a href="javascript:void(0);" onclick="openConsultingModal('tax')">
         <img src="/assets/sidebar/call.svg" alt="상담신청">
         <span>상담신청</span>
@@ -1230,7 +1277,7 @@
         <img src="/assets/sidebar/map.svg" alt="무료탁감">
         <span>무료탁감</span>
     </a>
-</div>
+</div-->
 
 <!-- Trust row -->
 <section class="trust" aria-label="전담팀 소개">
@@ -1839,5 +1886,24 @@
     });
 </script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const titleElement = document.querySelector('.vt-hero__title');
+        if (titleElement) {
+            const letters = titleElement.querySelectorAll('span');
+            letters.forEach((letter, index) => {
+                setTimeout(() => {
+                    letter.classList.add('animated');
+                }, index * 150); // 250ms delay between each letter
+            });
+        }
+
+        const barlineElement = document.querySelector('.vt-hero__barline');
+        if (barlineElement) {
+            barlineElement.classList.add('draw-animated'); // Start simultaneously
+        }
+    });
+</script>
+  
 </body>
 </html>

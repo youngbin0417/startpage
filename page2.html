@@ -11,7 +11,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/index.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B23X7348T7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
+        gtag('config', 'G-B23X7348T7');
+    </script>
     <style>
         :root{
           --brand:#0D1B2A; /* 남색 */
@@ -1810,7 +1818,7 @@ document.addEventListener('DOMContentLoaded', function() {
             letters.forEach((letter, index) => {
                 setTimeout(() => {
                     letter.classList.add('animated');
-                }, index * 250); // 250ms delay between each letter
+                }, index * 150); // 250ms delay between each letter
             });
         }
 

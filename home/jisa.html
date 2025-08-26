@@ -206,113 +206,139 @@
         function addLabelsToMap() {
             regions.forEach(region => {
                 const bbox = region.getBBox();
-                let centerX = bbox.x + bbox.width / 2;
-                let centerY = bbox.y + bbox.height / 2;
                 const title = region.getAttribute('title');
 
-                // 경기도 라벨 위치 조정
+                // 경기도 라벨 위치 조정 - 경기북부와 경기남부로 분리
                 if (region.id === 'KR-41') {
-                    centerX = bbox.x + bbox.width *0.6;
-                    centerY = bbox.y + bbox.height * 0.8; // 남쪽으로 더 이동
-                }
+                    // 경기북부 라벨
+                    const textNorth = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    textNorth.setAttribute('x', bbox.x + bbox.width * 0.6);
+                    textNorth.setAttribute('y', bbox.y + bbox.height * 0.35); // 북부 위치
+                    textNorth.setAttribute('text-anchor', 'middle');
+                    textNorth.setAttribute('dominant-baseline', 'middle');
+                    textNorth.setAttribute('fill', '#1f1f1f');
+                    textNorth.setAttribute('font-size', '12px');
+                    textNorth.setAttribute('font-family', 'system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", sans-serif');
+                    textNorth.setAttribute('font-weight', 'bold');
+                    textNorth.textContent = '경기북부';
+                    textNorth.style.pointerEvents = 'none';
+                    svg.appendChild(textNorth);
 
-                // 서울 라벨 위치 조정
-                if (region.id === 'KR-11') {
-                    centerX = bbox.x + bbox.width / 2;
-                    centerY = bbox.y + bbox.height / 2;
-                }
+                    // 경기남부 라벨
+                    const textSouth = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    textSouth.setAttribute('x', bbox.x + bbox.width * 0.7);
+                    textSouth.setAttribute('y', bbox.y + bbox.height * 0.75); // 남부 위치
+                    textSouth.setAttribute('text-anchor', 'middle');
+                    textSouth.setAttribute('dominant-baseline', 'middle');
+                    textSouth.setAttribute('fill', '#1f1f1f');
+                    textSouth.setAttribute('font-size', '12px');
+                    textSouth.setAttribute('font-family', 'system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", sans-serif');
+                    textSouth.setAttribute('font-weight', 'bold');
+                    textSouth.textContent = '경기남부';
+                    textSouth.style.pointerEvents = 'none';
+                    svg.appendChild(textSouth);
+                } 
+                // 다른 지역들에 대한 라벨 처리
+                else if (title) {
+                    let centerX = bbox.x + bbox.width / 2;
+                    let centerY = bbox.y + bbox.height / 2;
 
-                // 인천 라벨 위치 조정
-                if (region.id === 'KR-28') {
-                    centerX = bbox.x + bbox.width / 2;
-                    centerY = bbox.y + bbox.height / 2;
-                }
+                    // 서울 라벨 위치 조정
+                    if (region.id === 'KR-11') {
+                        centerX = bbox.x + bbox.width / 2;
+                        centerY = bbox.y + bbox.height / 2;
+                    }
 
-                // 부산 라벨 위치 조정
-                if (region.id === 'KR-26') {
-                    centerX = bbox.x + bbox.width / 2;
-                    centerY = bbox.y + bbox.height / 2;
-                }
+                    // 인천 라벨 위치 조정
+                    if (region.id === 'KR-28') {
+                        centerX = bbox.x + bbox.width / 2;
+                        centerY = bbox.y + bbox.height / 2;
+                    }
 
-                // 대구 라벨 위치 조정
-                if (region.id === 'KR-27') {
-                    centerX = bbox.x + bbox.width / 2;
-                    centerY = bbox.y + bbox.height / 2;
-                }
+                    // 부산 라벨 위치 조정
+                    if (region.id === 'KR-26') {
+                        centerX = bbox.x + bbox.width / 2;
+                        centerY = bbox.y + bbox.height / 2;
+                    }
 
-                // 광주 라벨 위치 조정
-                if (region.id === 'KR-29') {
-                    centerX = bbox.x + bbox.width / 2;
-                    centerY = bbox.y + bbox.height / 2;
-                }
+                    // 대구 라벨 위치 조정
+                    if (region.id === 'KR-27') {
+                        centerX = bbox.x + bbox.width / 2;
+                        centerY = bbox.y + bbox.height / 2;
+                    }
 
-                // 대전 라벨 위치 조정
-                if (region.id === 'KR-30') {
-                    centerX = bbox.x + bbox.width / 2;
-                    centerY = bbox.y + bbox.height / 2;
-                }
+                    // 광주 라벨 위치 조정
+                    if (region.id === 'KR-29') {
+                        centerX = bbox.x + bbox.width / 2;
+                        centerY = bbox.y + bbox.height / 2;
+                    }
 
-                // 울산 라벨 위치 조정
-                if (region.id === 'KR-31') {
-                    centerX = bbox.x + bbox.width / 2;
-                    centerY = bbox.y + bbox.height / 2;
-                }
+                    // 대전 라벨 위치 조정
+                    if (region.id === 'KR-30') {
+                        centerX = bbox.x + bbox.width / 2;
+                        centerY = bbox.y + bbox.height / 2;
+                    }
 
-                // 세종 라벨 위치 조정
-                if (region.id === 'KR-50') {
-                    centerX = bbox.x + bbox.width / 2;
-                    centerY = bbox.y + bbox.height / 2;
-                }
+                    // 울산 라벨 위치 조정
+                    if (region.id === 'KR-31') {
+                        centerX = bbox.x + bbox.width / 2;
+                        centerY = bbox.y + bbox.height / 2;
+                    }
 
-                // 강원 라벨 위치 조정
-                if (region.id === 'KR-42') {
-                    centerX = bbox.x + bbox.width / 2;
-                    centerY = bbox.y + bbox.height / 2;
-                }
+                    // 세종 라벨 위치 조정
+                    if (region.id === 'KR-50') {
+                        centerX = bbox.x + bbox.width / 2;
+                        centerY = bbox.y + bbox.height / 2;
+                    }
 
-                // 충북 라벨 위치 조정
-                if (region.id === 'KR-43') {
-                    centerX = bbox.x + bbox.width / 2;
-                    centerY = bbox.y + bbox.height / 2;
-                }
+                    // 강원 라벨 위치 조정
+                    if (region.id === 'KR-42') {
+                        centerX = bbox.x + bbox.width / 2;
+                        centerY = bbox.y + bbox.height / 2;
+                    }
 
-                // 충남 라벨 위치 조정
-                if (region.id === 'KR-44') {
-                    centerX = bbox.x + bbox.width / 2;
-                    centerY = bbox.y + bbox.height / 2;
-                }
+                    // 충북 라벨 위치 조정
+                    if (region.id === 'KR-43') {
+                        centerX = bbox.x + bbox.width * 0.3;
+                        centerY = bbox.y + bbox.height * 0.4 // 위치를 약간 아래로 조정
+                    }
 
-                // 전북 라벨 위치 조정
-                if (region.id === 'KR-45') {
-                    centerX = bbox.x + bbox.width / 2;
-                    centerY = bbox.y + bbox.height / 2;
-                }
+                    // 충남 라벨 위치 조정
+                    if (region.id === 'KR-44') {
+                        centerX = bbox.x + bbox.width / 2;
+                        centerY = bbox.y + bbox.height / 2;
+                    }
 
-                // 전남 라벨 위치 조정
-                if (region.id === 'KR-46') {
-                    centerX = bbox.x + bbox.width / 2;
-                    centerY = bbox.y + bbox.height / 2;
-                }
+                    // 전북 라벨 위치 조정
+                    if (region.id === 'KR-45') {
+                        centerX = bbox.x + bbox.width / 2;
+                        centerY = bbox.y + bbox.height / 2;
+                    }
 
-                // 경북 라벨 위치 조정
-                if (region.id === 'KR-47') {
-                    centerX = bbox.x + bbox.width / 2;
-                    centerY = bbox.y + bbox.height / 2;
-                }
+                    // 전남 라벨 위치 조정
+                    if (region.id === 'KR-46') {
+                        centerX = bbox.x + bbox.width * 0.6;
+                        centerY = bbox.y + bbox.height * 0.4;
+                    }
 
-                // 경남 라벨 위치 조정
-                if (region.id === 'KR-48') {
-                    centerX = bbox.x + bbox.width / 2;
-                    centerY = bbox.y + bbox.height / 2;
-                }
+                    // 경북 라벨 위치 조정
+                    if (region.id === 'KR-47') {
+                        centerX = bbox.x + bbox.width / 2;
+                        centerY = bbox.y + bbox.height / 2;
+                    }
 
-                // 제주 라벨 위치 조정
-                if (region.id === 'KR-49') {
-                    centerX = bbox.x + bbox.width / 2;
-                    centerY = bbox.y + bbox.height / 2;
-                }
+                    // 경남 라벨 위치 조정
+                    if (region.id === 'KR-48') {
+                        centerX = bbox.x + bbox.width / 2;
+                        centerY = bbox.y + bbox.height / 2;
+                    }
 
-                if (title) {
+                    // 제주 라벨 위치 조정
+                    if (region.id === 'KR-49') {
+                        centerX = bbox.x + bbox.width / 2;
+                        centerY = bbox.y + bbox.height / 2;
+                    }
+
                     const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
                     text.setAttribute('x', centerX);
                     text.setAttribute('y', centerY);
@@ -321,9 +347,9 @@
                     text.setAttribute('fill', '#1f1f1f');
                     text.setAttribute('font-size', '12px');
                     text.setAttribute('font-family', 'system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", sans-serif');
-                    text.setAttribute('font-weight', 'bold'); // 텍스트를 굵게 표시
+                    text.setAttribute('font-weight', 'bold');
                     text.textContent = title;
-                    text.style.pointerEvents = 'none'; // 클릭 이벤트 방지
+                    text.style.pointerEvents = 'none';
                     svg.appendChild(text);
                 }
             });

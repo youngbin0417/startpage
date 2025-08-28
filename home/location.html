@@ -648,7 +648,12 @@
         }
 
         /* Hide default address and phone info from Kakao map */
-        .root_daum_roughmap .wrap_mapinfo {
+        .root_daum_roughmap .cont {
+            display: none !important;
+        }
+        
+        /* Hide road view text from Kakao map */
+        .root_daum_roughmap .wrap_controllers .wrap_btn_roadview .txt {
             display: none !important;
         }
     </style>
@@ -714,6 +719,120 @@
             <div class="brand-name">
                 <span class="touch slide-in-from-right"><span class="red-letter">G</span>AMDONG <span class="red-letter">K</span>EYPOONG <span class="red-letter">Y</span>OONSEUNG</span>
             </div>
+
+            <!-- Company Headquarters Section -->
+        <div style="margin-top: 40px;">
+            <div class="main-title-section">
+                <h2 class="section-title slide-in-from-right">
+                    <div class="title-line">
+                        <div class="title-start">
+                            <div class="vertical-line"></div>
+                            본사
+                        </div>
+                    </div>
+                </h2>
+            </div>
+            <div class="service-grid">
+                <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;">
+                    <!-- Left Area (Mini Map) -->
+                    <div style="flex: 1; min-width: 300px;">
+                        <!-- 1. 지도 노드 -->
+                        <div id="daumRoughmapContainer1756347135809" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+                    </div>
+                    <!-- Right Area (Company Info Card) -->
+                    <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center;">
+                        <div style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                            <div style="margin-bottom: 15px;">
+                                <div style="font-size: 1.2em; font-weight: bold; color: #333;">본사</div>
+                            </div>
+                            <div style="margin-bottom: 10px;">
+                                <div style="font-size: 1em; color: #666;">주소: 서울 종로구 새문안로5길 37 7층 4호</div>
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <div style="font-size: 1em; color: #666;">전화번호: 0507-1422-2445</div>
+                            </div>
+                            <a href="https://naver.me/xU4tO81u" target="_blank" style="display: inline-block; background-color: #03C75A; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold;">네이버 지도 보기</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Law Firm Section -->
+        <div style="margin-top: 40px;">
+            <div class="main-title-section">
+                <h2 class="section-title slide-in-from-right">
+                    <div class="title-line">
+                        <div class="title-start">
+                            <div class="vertical-line"></div>
+                            법무법인 기풍
+                        </div>
+                    </div>
+                </h2>
+            </div>
+            <div class="service-grid">
+                <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;">
+                    <!-- Left Area (Mini Map) -->
+                    <div style="flex: 1; min-width: 300px;">
+                        <!-- 1. 지도 노드 -->
+                        <div id="daumRoughmapContainer1756347786545" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+                    </div>
+                    <!-- Right Area (Company Info Card) -->
+                    <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center;">
+                        <div style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                            <div style="margin-bottom: 15px;">
+                                <div style="font-size: 1.2em; font-weight: bold; color: #333;">법무법인 기풍</div>
+                            </div>
+                            <div style="margin-bottom: 10px;">
+                                <div style="font-size: 1em; color: #666;">주소: 서울 서초구 서초대로 254 오퓨런스빌딩 11층 1108, 1109호</div>
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <div style="font-size: 1em; color: #666;">전화번호: 02-6205-0777</div>
+                            </div>
+                            <a href="https://naver.me/5kx7bwNu" target="_blank" style="display: inline-block; background-color: #03C75A; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold;">네이버 지도 보기</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tax Accounting Section -->
+        <div style="margin-top: 40px;">
+            <div class="main-title-section">
+                <h2 class="section-title slide-in-from-right">
+                    <div class="title-line">
+                        <div class="title-start">
+                            <div class="vertical-line"></div>
+                            세무회계 기풍
+                        </div>
+                    </div>
+                </h2>
+            </div>
+            <div class="service-grid">
+                <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;">
+                    <!-- Left Area (Mini Map) -->
+                    <div style="flex: 1; min-width: 300px;">
+                        <!-- 1. 지도 노드 -->
+                        <div id="daumRoughmapContainer1756347875713" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+                    </div>
+                    <!-- Right Area (Company Info Card) -->
+                    <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center;">
+                        <div style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                            <div style="margin-bottom: 15px;">
+                                <div style="font-size: 1.2em; font-weight: bold; color: #333;">세무회계 기풍</div>
+                            </div>
+                            <div style="margin-bottom: 10px;">
+                                <div style="font-size: 1em; color: #666;">주소: 경기 파주시 경의로 1218 503호 (와동동, 월드타워12차)</div>
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <div style="font-size: 1em; color: #666;">전화번호: 0507-1448-7714</div>
+                            </div>
+                            <a href="https://naver.me/xY4hRCwZ" target="_blank" style="display: inline-block; background-color: #03C75A; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold;">네이버 지도 보기</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
     </div>
 </section>
@@ -734,126 +853,6 @@
                 </div>
             </h2>
 
-        </div>
-    </div>
-</section>
-
-<!-- Company Headquarters Section -->
-<section class="services-section">
-    <div class="container">
-        <div class="main-title-section">
-            <h2 class="section-title slide-in-from-right">
-                <div class="title-line">
-                    <div class="title-start">
-                        <div class="vertical-line"></div>
-                        본사
-                    </div>
-                </div>
-            </h2>
-        </div>
-        <div class="service-grid">
-            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;">
-                <!-- Left Area (Mini Map) -->
-                <div style="flex: 1; min-width: 300px;">
-                    <!-- 1. 지도 노드 -->
-                    <div id="daumRoughmapContainer1756347135809" class="root_daum_roughmap root_daum_roughmap_landing"></div>
-                </div>
-                <!-- Right Area (Company Info Card) -->
-                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center;">
-                    <div style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-                        <div style="margin-bottom: 15px;">
-                            <div style="font-size: 1.2em; font-weight: bold; color: #333;">본사</div>
-                        </div>
-                        <div style="margin-bottom: 10px;">
-                            <div style="font-size: 1em; color: #666;">주소: 서울 종로구 새문안로5길 37 7층 4호</div>
-                        </div>
-                        <div style="margin-bottom: 20px;">
-                            <div style="font-size: 1em; color: #666;">전화번호: 0507-1422-2445</div>
-                        </div>
-                        <a href="https://naver.me/xU4tO81u" target="_blank" style="display: inline-block; background-color: #007bff; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold;">네이버 지도 보기</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Law Firm Section -->
-<section class="services-section">
-    <div class="container">
-        <div class="main-title-section">
-            <h2 class="section-title slide-in-from-right">
-                <div class="title-line">
-                    <div class="title-start">
-                        <div class="vertical-line"></div>
-                        법무법인 기풍
-                    </div>
-                </div>
-            </h2>
-        </div>
-        <div class="service-grid">
-            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;">
-                <!-- Left Area (Mini Map) -->
-                <div style="flex: 1; min-width: 300px;">
-                    <!-- 1. 지도 노드 -->
-                    <div id="daumRoughmapContainer1756347786545" class="root_daum_roughmap root_daum_roughmap_landing"></div>
-                </div>
-                <!-- Right Area (Company Info Card) -->
-                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center;">
-                    <div style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-                        <div style="margin-bottom: 15px;">
-                            <div style="font-size: 1.2em; font-weight: bold; color: #333;">법무법인 기풍</div>
-                        </div>
-                        <div style="margin-bottom: 10px;">
-                            <div style="font-size: 1em; color: #666;">주소: 서울 서초구 서초대로 254 오퓨런스빌딩 11층 1108, 1109호</div>
-                        </div>
-                        <div style="margin-bottom: 20px;">
-                            <div style="font-size: 1em; color: #666;">전화번호: 02-6205-0777</div>
-                        </div>
-                        <a href="https://naver.me/5kx7bwNu" target="_blank" style="display: inline-block; background-color: #007bff; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold;">네이버 지도 보기</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Tax Accounting Section -->
-<section class="services-section">
-    <div class="container">
-        <div class="main-title-section">
-            <h2 class="section-title slide-in-from-right">
-                <div class="title-line">
-                    <div class="title-start">
-                        <div class="vertical-line"></div>
-                        세무회계 기풍
-                    </div>
-                </div>
-            </h2>
-        </div>
-        <div class="service-grid">
-            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;">
-                <!-- Left Area (Mini Map) -->
-                <div style="flex: 1; min-width: 300px;">
-                    <!-- 1. 지도 노드 -->
-                    <div id="daumRoughmapContainer1756347875713" class="root_daum_roughmap root_daum_roughmap_landing"></div>
-                </div>
-                <!-- Right Area (Company Info Card) -->
-                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center;">
-                    <div style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-                        <div style="margin-bottom: 15px;">
-                            <div style="font-size: 1.2em; font-weight: bold; color: #333;">세무회계 기풍</div>
-                        </div>
-                        <div style="margin-bottom: 10px;">
-                            <div style="font-size: 1em; color: #666;">주소: 경기 파주시 경의로 1218 503호 (와동동, 월드타워12차)</div>
-                        </div>
-                        <div style="margin-bottom: 20px;">
-                            <div style="font-size: 1em; color: #666;">전화번호: 0507-1448-7714</div>
-                        </div>
-                        <a href="https://naver.me/xY4hRCwZ" target="_blank" style="display: inline-block; background-color: #007bff; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold;">네이버 지도 보기</a>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>

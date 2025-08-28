@@ -31,7 +31,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Arial', sans-serif;
             background-color: #000;
@@ -39,7 +39,237 @@
             overflow-x: hidden;
             font-size: 1em;
         }
-        
+        .footer-logo {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.2em;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+
+        .services-section {
+            padding: 6.25rem 1.25rem;
+            background-color: white;
+            color: black;
+        }
+
+        .company-details {
+            margin-bottom: 30px;
+        }
+
+        .company-line {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .company-line .label {
+            color: #666;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .company-line .value {
+            color: #333;
+            font-weight: 500;
+            margin-right: 8px;
+        }
+
+        .company-line .separator {
+            color: #ccc;
+            margin: 0 8px;
+            font-weight: 300;
+        }
+
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            color: #999;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+        .vertical-line {
+            width: 4px;
+            height: 40px;
+            background-color: #ff3131;
+            margin-right: 15px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .title-start {
+            display: flex;
+            align-items: center;
+        }
+
+        .main-title-section {
+            margin-bottom: 3.75rem;
+            position: relative;
+            z-index: 1;
+        }
+        .chevron-icon {
+            text-align: center;
+            margin-bottom: 1.25rem;
+            position: relative;
+            width: 2.625rem;
+            height: 1.625rem;
+            margin: 0 auto 6.25rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        .chevron-icon::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 1.25rem;
+            height: 1.25rem;
+            border-left: 0.3125rem solid #333;
+            border-bottom: 0.3125rem solid #333;
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        .company-footer {
+            padding: 60px 20px;
+            text-align: center; /* 모바일에서 중앙 정렬 */
+            background-color: white;
+            color: black;
+        }
+
+        .company-info-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: left; /* 데스크탑에서는 왼쪽 정렬 유지 */
+        }
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0;
+            text-align: left;
+            line-height: 1.2;
+        }
+
+        .title-line {
+            display: flex;
+            align-items: center; /* baseline 대신 center로 변경하여 세로 정렬 안정화 */
+            gap: 0.9375rem;
+            flex-wrap: wrap; /* 공간 부족 시 줄바꿈 허용 */
+        }
+
+        .title-start,  .char {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #333;
+            flex-shrink: 0; /* 글자가 줄어들지 않도록 고정 */
+        }
+        .title-end{
+            font-size: 3rem;
+            font-weight: 800;
+            color: #333;
+            flex-shrink: 0;
+        }
+
+
+        .onestop-container {
+            display: flex; /* inline-flex에서 flex로 변경 */
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .char-dot-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.1875rem;
+        }
+
+        .red-dot {
+            color: #ff3131;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .brand-name {
+            /* margin-top: -3.75rem; 제거 */
+            text-align: left;
+            margin-top: 1.25rem; /* 제목과 브랜드명 사이 간격 확보 */
+        }
+
+        .char {
+            font-size: 3.75rem;
+            font-weight: 800;
+            color: #333;
+        }
+        .char2 {
+            font-size: 3.75rem;
+            font-weight: 800;
+            color: black;
+        }
+        .brand-name .value {
+            color: #ff3131;
+            font-size: 3.96rem;
+            font-weight: 800;
+            margin-right: 1.25rem;
+        }
+
+        .brand-name .touch {
+            color: #333;
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 1em;
+        }
+
+        .brand-name .touch .red-letter {
+            color: #ff3131;
+        }
+
+        .section-description {
+            font-size: 1.44rem;
+            line-height: 1.6;
+            margin-bottom: 60px;
+            color: #666;
+            text-align: left;
+        }
+
+        .service-grid {
+            display: flex;
+            justify-content: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .service-description-section {
+            margin-top: -2.5rem;
+        }
+
+        .section-description {
+            font-size: 1.44rem;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            color: #333;
+            font-weight: 1000;
+            text-align: left;
+        }
+
+
         /* Navigation Bar */
         .navbar {
             position: absolute;
@@ -51,13 +281,13 @@
             padding: 1rem 2rem;
             transition: background-color 0.3s ease;
         }
-        
+
         .navbar.scrolled {
             position: fixed;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: white;
             backdrop-filter: blur(0.625rem);
         }
-        
+
         .nav-container {
             display: flex;
             justify-content: space-between;
@@ -66,11 +296,11 @@
             margin: 0 auto;
             width: 100%;
         }
-        
+
         .nav-logo {
             flex-shrink: 0;
         }
-        
+
         .logo {
             width: 5rem;
             height: 5rem;
@@ -82,14 +312,14 @@
             color: white;
             font-size: 1.2em;
         }
-        
+
         .nav-links {
             display: flex;
             align-items: center;
             gap: 2.5rem;
             margin-left: auto;
         }
-        
+
         .nav-link {
             color: black;
             font-weight: bold;
@@ -97,11 +327,11 @@
             transition: color 0.3s ease;
             font-size: 1em;
         }
-        
+
         .nav-link:hover {
             color: #ff3131;
         }
-        
+
         .nav-cta {
             background: transparent;
             border: 0.125rem solid #FE3535;
@@ -113,12 +343,12 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
+
         .nav-cta:hover {
             background: #FFC2C2;
             color: #FE3535;
         }
-        
+
         /* Mobile Menu Styles */
         .mobile-menu {
             display: none;
@@ -128,7 +358,7 @@
             z-index: 1001;
             padding: 5px;
         }
-        
+
         .mobile-menu span {
             width: 25px;
             height: 3px;
@@ -136,19 +366,19 @@
             transition: all 0.3s ease;
             border-radius: 2px;
         }
-        
+
         .mobile-menu.active span:nth-child(1) {
             transform: rotate(45deg) translate(5px, 5px);
         }
-        
+
         .mobile-menu.active span:nth-child(2) {
             opacity: 0;
         }
-        
+
         .mobile-menu.active span:nth-child(3) {
             transform: rotate(-45deg) translate(7px, -6px);
         }
-        
+
         /* Mobile Navigation Menu */
         .mobile-nav {
             position: fixed;
@@ -162,11 +392,11 @@
             transition: right 0.3s ease;
             padding: 80px 30px 30px;
         }
-        
+
         .mobile-nav.active {
             right: 0;
         }
-        
+
         .mobile-nav .close-btn {
             position: absolute;
             top: 20px;
@@ -179,11 +409,11 @@
             padding: 5px;
             line-height: 1;
         }
-        
+
         .mobile-nav .close-btn:hover {
             color: #ff3131;
         }
-        
+
         .mobile-nav a {
             display: block;
             color: black;
@@ -194,11 +424,11 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             transition: color 0.3s ease;
         }
-        
+
         .mobile-nav a:hover {
             color: #ff3131;
         }
-        
+
         .mobile-nav .mobile-cta {
             background: transparent;
             border: 2px solid white;
@@ -211,41 +441,82 @@
             text-align: center;
             transition: all 0.3s ease;
         }
-        
+
         .mobile-nav .mobile-cta:hover {
             background: white;
             color: #000;
         }
-        
+
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            .services-section {
+                padding: 4rem 1rem;
+            }
             .navbar {
                 padding: 1rem;
             }
-            
+
             .nav-links {
                 display: none;
             }
-            
+
             .mobile-menu {
                 display: flex !important;
             }
-            
+
             .nav-container {
                 justify-content: space-between;
             }
+
+            .brand-name .touch {
+                font-size: 0.8rem;
+                letter-spacing: 0.5em;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .title-start,
+            .title-end,
+            .char,
+            .char2{
+                font-size: 1.5rem;
+            }
+
+            .brand-name {
+                margin-top: 0.5rem;
+            }
         }
-        
+
+        @media (max-width: 480px) {
+            .brand-name .touch {
+                font-size: 0.7rem;
+                letter-spacing: 0.3em;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .title-start,
+            .title-end,
+            .char,
+            .char2{
+                font-size: 1.2rem;
+            }
+        }
+
         .nav-cta,
         .nav-cta:hover,
         .mobile-nav .mobile-cta,
         .mobile-nav .mobile-cta:hover {
             text-decoration: none;
         }
-        
+
         /* Hero Section with Background Image */
         .hero-section {
-            min-height: 100vh;
+            min-height: 72vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -255,7 +526,7 @@
             background: transparent;
             overflow: hidden;
         }
-        
+
         /* 배경 이미지 스타일 */
         .background-image {
             position: absolute;
@@ -267,7 +538,7 @@
             z-index: -2;
             background-color: #1a1a1a;
         }
-        
+
         /* 콘텐츠 컨테이너 스타일 */
         .hero-content {
             position: relative;
@@ -277,7 +548,7 @@
             justify-content: center;
             align-items: center;
         }
-        
+
         /* NEON title */
         .vt-hero__title {
             font-weight: 900;
@@ -286,26 +557,26 @@
             color: #000;
             text-transform: uppercase;
             text-shadow:
-                0 0 6px rgba(0, 0, 0, .9),
-                0 0 18px rgba(0, 0, 0, .6),
-                0 0 32px rgba(0, 0, 0, .25);
+                    0 0 6px rgba(0, 0, 0, .9),
+                    0 0 18px rgba(0, 0, 0, .6),
+                    0 0 32px rgba(0, 0, 0, .25);
         }
-        
+
         .vt-hero__title .acc {
             color: #ef4444;
             text-shadow:
-                0 0 6px rgba(239, 68, 68, .9),
-                0 0 18px rgba(239, 68, 68, .6),
-                0 0 36px rgba(239, 68, 68, .35);
+                    0 0 6px rgba(239, 68, 68, .9),
+                    0 0 18px rgba(239, 68, 68, .6),
+                    0 0 36px rgba(239, 68, 68, .35);
         }
-        
+
         .vt-hero__title .letter {
             display: inline-block;
             opacity: 0;
             transform-origin: center;
             animation: fall-down 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
         }
-        
+
         .black-bar {
             width: 0; /* Initial width for animation */
             height: 6px;
@@ -324,7 +595,7 @@
         .black-bar.draw-animated {
             animation: draw-line 1s forwards; /* 1 second animation duration */
         }
-        
+
         .location-heading {
             color: #000;
             font-size: 2.5rem;
@@ -333,7 +604,7 @@
             margin: 20px 0;
             line-height: 1.4;
         }
-        
+
         @keyframes fall-down {
             from {
                 opacity: 0;
@@ -344,132 +615,409 @@
                 transform: translateY(0) rotateX(0deg);
             }
         }
-        
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .hero-title {
                 font-size: 3rem;
             }
+            .brand-name .value {
+                color: #ff3131;
+                font-size: 1rem;
+                font-weight: 800;
+            }
+            .title-start,
+            .title-end,
+            .char,
+            .char2{
+                font-size: 1.5rem; /* 모바일에 맞게 폰트 크기 조정 */
+            }
+
+
+            /* .onestop-container는 .title-line의 flexbox에 맞춰 자연스럽게 정렬됩니다. */
+
+            .brand-name {
+                margin-top: 0.5rem; /* 모바일에서는 여백을 더 줄입니다. */
+            }
         }
-        
+
         @media (max-width: 480px) {
             .hero-title {
                 font-size: 2.5rem;
             }
         }
+
+        /* Hide default address and phone info from Kakao map */
+        .root_daum_roughmap .wrap_mapinfo {
+            display: none !important;
+        }
     </style>
 </head>
 
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="/" class="logo">
-                    <img src="/assets/start/page1/터치/밸류터치_로고.png" alt="VT Logo" style="width: 100%; height: 100%; object-fit: contain;">
+<!-- Navigation Bar -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo">
+            <a href="/" class="logo">
+                <img src="/assets/start/page1/터치/밸류터치_로고.png" alt="VT Logo" style="width: 100%; height: 100%; object-fit: contain;">
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="/" class="nav-link">감정평가</a>
+            <a href="/tax" class="nav-link">세금 컨설팅</a>
+            <a href="/law" class="nav-link">부동산 법률 상담</a>
+            <a href="/main" class="nav-cta">내 집 가치 확인</a>
+        </div>
+        <div class="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
+
+<!-- Mobile Navigation Menu -->
+<div class="mobile-nav" id="mobileNav">
+    <button class="close-btn">×</button>
+    <a href="/">감정평가</a>
+    <a href="/tax">세금 컨설팅</a>
+    <a href="/law">부동산법률상담</a>
+    <a href="/main" class="mobile-cta">내 집 가치 확인</a>
+</div>
+
+<!-- Hero Section with Background Image -->
+<section class="hero-section">
+    <img src="/assets/start/location_back.png" alt="Location Background" class="background-image">
+    <div class="hero-content">
+        <p class="location-heading">밸류터치와 함께하는<br>업무 협력 기관을 소개합니다.</p>
+        <div class="black-bar"></div>
+        <h1 class="vt-hero__title" id="animated-title">
+            <span class="acc">L</span><span class="letter">o</span><span class="letter">c</span><span class="letter">a</span><span class="letter">t</span><span class="letter">i</span><span class="letter">o</span><span class="letter">n</span> <span class="acc">G</span><span class="letter">u</span><span class="letter">i</span><span class="letter">d</span><span class="letter">a</span><span class="letter">n</span><span class="letter">c</span><span class="letter">e</span>
+        </h1>
+    </div>
+</section>
+
+
+<!-- Services Section -->
+<section class="services-section">
+    <div class="container">
+        <!-- Main Title Section -->
+        <div class="main-title-section">
+            <div class="chevron-icon"></div>
+            <h2 class="section-title slide-in-from-right">
+                <div class="title-line">
+                    <div class="title-start">세무팀 · 법무팀 · 감정평가 전문가와 함께</div>
+                    <div class="title-end"><span style="color: #ff3131;">최선의 결과</span>를 만들어 내겠습니다.</div>
+                </div>
+            </h2>
+            <div class="brand-name">
+                <span class="touch slide-in-from-right"><span class="red-letter">G</span>AMDONG <span class="red-letter">K</span>EYPOONG <span class="red-letter">Y</span>OONSEUNG</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="services-section" style="background-color: #F0F1F5;">
+    <div class="container">
+        <!-- Main Title Section -->
+        <div class="main-title-section">
+            <div class="brand-name" style="margin-top: 0; margin-bottom: 20px;">
+                <span class="touch slide-in-from-right"><span class="red-letter">G</span>AMDONG <span class="red-letter">A</span>PPRAISAL <span class="red-letter">I</span>NTRODUCTION</span>
+            </div>
+            <h2 class="section-title slide-in-from-right">
+                <div class="title-line">
+                    <div class="title-start">
+                        <div class="vertical-line"></div>
+                        감정평가법인 감동 14개 지사
+                    </div>
+                </div>
+            </h2>
+
+        </div>
+    </div>
+</section>
+
+<!-- Company Headquarters Section -->
+<section class="services-section">
+    <div class="container">
+        <div class="main-title-section">
+            <h2 class="section-title slide-in-from-right">
+                <div class="title-line">
+                    <div class="title-start">
+                        <div class="vertical-line"></div>
+                        본사
+                    </div>
+                </div>
+            </h2>
+        </div>
+        <div class="service-grid">
+            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;">
+                <!-- Left Area (Mini Map) -->
+                <div style="flex: 1; min-width: 300px;">
+                    <!-- 1. 지도 노드 -->
+                    <div id="daumRoughmapContainer1756347135809" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+                </div>
+                <!-- Right Area (Company Info Card) -->
+                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center;">
+                    <div style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                        <div style="margin-bottom: 15px;">
+                            <div style="font-size: 1.2em; font-weight: bold; color: #333;">본사</div>
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <div style="font-size: 1em; color: #666;">주소: 서울 종로구 새문안로5길 37 7층 4호</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <div style="font-size: 1em; color: #666;">전화번호: 0507-1422-2445</div>
+                        </div>
+                        <a href="https://naver.me/xU4tO81u" target="_blank" style="display: inline-block; background-color: #007bff; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold;">네이버 지도 보기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Law Firm Section -->
+<section class="services-section">
+    <div class="container">
+        <div class="main-title-section">
+            <h2 class="section-title slide-in-from-right">
+                <div class="title-line">
+                    <div class="title-start">
+                        <div class="vertical-line"></div>
+                        법무법인 기풍
+                    </div>
+                </div>
+            </h2>
+        </div>
+        <div class="service-grid">
+            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;">
+                <!-- Left Area (Mini Map) -->
+                <div style="flex: 1; min-width: 300px;">
+                    <!-- 1. 지도 노드 -->
+                    <div id="daumRoughmapContainer1756347786545" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+                </div>
+                <!-- Right Area (Company Info Card) -->
+                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center;">
+                    <div style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                        <div style="margin-bottom: 15px;">
+                            <div style="font-size: 1.2em; font-weight: bold; color: #333;">법무법인 기풍</div>
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <div style="font-size: 1em; color: #666;">주소: 서울 서초구 서초대로 254 오퓨런스빌딩 11층 1108, 1109호</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <div style="font-size: 1em; color: #666;">전화번호: 02-6205-0777</div>
+                        </div>
+                        <a href="https://naver.me/5kx7bwNu" target="_blank" style="display: inline-block; background-color: #007bff; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold;">네이버 지도 보기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tax Accounting Section -->
+<section class="services-section">
+    <div class="container">
+        <div class="main-title-section">
+            <h2 class="section-title slide-in-from-right">
+                <div class="title-line">
+                    <div class="title-start">
+                        <div class="vertical-line"></div>
+                        세무회계 기풍
+                    </div>
+                </div>
+            </h2>
+        </div>
+        <div class="service-grid">
+            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;">
+                <!-- Left Area (Mini Map) -->
+                <div style="flex: 1; min-width: 300px;">
+                    <!-- 1. 지도 노드 -->
+                    <div id="daumRoughmapContainer1756347875713" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+                </div>
+                <!-- Right Area (Company Info Card) -->
+                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center;">
+                    <div style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                        <div style="margin-bottom: 15px;">
+                            <div style="font-size: 1.2em; font-weight: bold; color: #333;">세무회계 기풍</div>
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <div style="font-size: 1em; color: #666;">주소: 경기 파주시 경의로 1218 503호 (와동동, 월드타워12차)</div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <div style="font-size: 1em; color: #666;">전화번호: 0507-1448-7714</div>
+                        </div>
+                        <a href="https://naver.me/xY4hRCwZ" target="_blank" style="display: inline-block; background-color: #007bff; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold;">네이버 지도 보기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Company Information Footer -->
+<footer class="company-footer">
+    <div class="container">
+        <div class="company-info-content">
+            <!-- Company Logo -->
+            <div>
+                <a href="/" class="footer-logo">
+                    <img src="/assets/start/page1/터치/밸류터치_로고.png" alt="VTF Logo" style="width: 100%; height: 100%; object-fit: contain;">
                 </a>
             </div>
-            <div class="nav-links">
-                <a href="/" class="nav-link">감정평가</a>
-                <a href="/tax" class="nav-link">세금 컨설팅</a>
-                <a href="/law" class="nav-link">부동산 법률 상담</a>
-                <a href="/main" class="nav-cta">내 집 가치 확인</a>
+
+            <!-- Company Details -->
+            <div class="company-details">
+                <div class="company-line">
+                    <span class="label">상호 :</span>
+                    <span class="value">주식회사 감정평가법인감동</span>
+                    <span class="separator">|</span>
+                    <span class="label">대표 :</span>
+                    <span class="value">김민구</span>
+                    <span class="separator">|</span>
+                    <span class="label">주소 :</span>
+                    <span class="value">서울특별시 종로구 새문안로5길 37, 7층 4호(도렴동)</span>
+                </div>
+
+                <div class="company-line">
+                    <span class="label">사업자등록번호 :</span>
+                    <span class="value">679-86-01599</span>
+                    <span class="separator">|</span>
+                    <span class="label">전화번호 :</span>
+                    <span class="value">02-899-2444</span>
+                    <span class="separator">|</span>
+                    <span class="value">02-6299-7444</span>
+                </div>
+
+                <div class="company-line">
+                    <span class="label">이메일 :</span>
+                    <span class="value">gamdong01@kapaland.co.kr</span>
+                    <span class="separator">|</span>
+                    <span class="label">팩스 :</span>
+                    <span class="value">0505-182-4448</span>
+                </div>
             </div>
-            <div class="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
+
+            <!-- Copyright -->
+            <div class="copyright">
+                <span>Copyright All Rights Reserved.</span>
             </div>
         </div>
-    </nav>
-    
-    <!-- Mobile Navigation Menu -->
-    <div class="mobile-nav" id="mobileNav">
-        <button class="close-btn">×</button>
-        <a href="/">감정평가</a>
-        <a href="/tax">세금 컨설팅</a>
-        <a href="/law">부동산법률상담</a>
-        <a href="/main" class="mobile-cta">내 집 가치 확인</a>
     </div>
-    
-    <!-- Hero Section with Background Image -->
-    <section class="hero-section">
-        <img src="/assets/start/location_back.png" alt="Location Background" class="background-image">
-        <div class="hero-content">
-            <p class="location-heading">밸류터치와 함께하는<br>업무 협력 기관을 소개합니다.</p>
-            <div class="black-bar"></div>
-            <h1 class="vt-hero__title" id="animated-title">
-                <span class="acc">L</span><span class="letter">o</span><span class="letter">c</span><span class="letter">a</span><span class="letter">t</span><span class="letter">i</span><span class="letter">o</span><span class="letter">n</span> <span class="acc">G</span><span class="letter">u</span><span class="letter">i</span><span class="letter">d</span><span class="letter">a</span><span class="letter">n</span><span class="letter">c</span><span class="letter">e</span>
-            </h1>
-        </div>
-    </section>
-    
-    <script>
-        // Navbar scroll behavior
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-        
-        // Mobile Navigation Toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu');
-        const mobileNavMenu = document.getElementById('mobileNav');
-        const bodyElement = document.body;
-        const closeBtn = document.querySelector('.close-btn');
-        
-        mobileMenuBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            mobileMenuBtn.classList.toggle('active');
-            mobileNavMenu.classList.toggle('active');
-            bodyElement.style.overflow = mobileNavMenu.classList.contains('active') ? 'hidden' : '';
-        });
-        
-        // Close button functionality
-        closeBtn.addEventListener('click', function() {
+</footer>
+
+
+<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+<script>
+    // Navbar scroll behavior
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Mobile Navigation Toggle
+    const mobileMenuBtn = document.querySelector('.mobile-menu');
+    const mobileNavMenu = document.getElementById('mobileNav');
+    const bodyElement = document.body;
+    const closeBtn = document.querySelector('.close-btn');
+
+    mobileMenuBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        mobileMenuBtn.classList.toggle('active');
+        mobileNavMenu.classList.toggle('active');
+        bodyElement.style.overflow = mobileNavMenu.classList.contains('active') ? 'hidden' : '';
+    });
+
+    // Close button functionality
+    closeBtn.addEventListener('click', function() {
+        mobileMenuBtn.classList.remove('active');
+        mobileNavMenu.classList.remove('active');
+        bodyElement.style.overflow = '';
+    });
+
+    // Close mobile menu when clicking on a link
+    const mobileLinks = mobileNavMenu.querySelectorAll('a, button:not(.close-btn)');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', function() {
             mobileMenuBtn.classList.remove('active');
             mobileNavMenu.classList.remove('active');
             bodyElement.style.overflow = '';
         });
-        
-        // Close mobile menu when clicking on a link
-        const mobileLinks = mobileNavMenu.querySelectorAll('a, button:not(.close-btn)');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                mobileMenuBtn.classList.remove('active');
-                mobileNavMenu.classList.remove('active');
-                bodyElement.style.overflow = '';
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!mobileMenuBtn.contains(e.target) && !mobileNavMenu.contains(e.target)) {
+            mobileMenuBtn.classList.remove('active');
+            mobileNavMenu.classList.remove('active');
+            bodyElement.style.overflow = '';
+        }
+    });
+
+    // Letter-by-letter animation for the title
+    document.addEventListener('DOMContentLoaded', function() {
+        const titleElement = document.getElementById('animated-title');
+        const letters = titleElement.querySelectorAll('.letter, .acc');
+
+        // Apply animation delays to each letter
+        letters.forEach((letter, index) => {
+            letter.style.animationDelay = `${index * 0.1}s`;
+        });
+
+        // Animate the black bar
+        const blackBarElement = document.querySelector('.black-bar');
+        if (blackBarElement) {
+            blackBarElement.classList.add('draw-animated');
+        }
+    });
+
+    // Intersection Observer for scroll animations
+    document.addEventListener('DOMContentLoaded', () => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
             });
+        }, { threshold: 0.3 });
+
+        const elementsToAnimate = document.querySelectorAll('.slide-in-from-left, .slide-in-from-right, .slide-up, .letter-slide-in-container, .pop-in, .zigzag-scale-animation');
+        elementsToAnimate.forEach(el => {
+            observer.observe(el);
         });
-        
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!mobileMenuBtn.contains(e.target) && !mobileNavMenu.contains(e.target)) {
-                mobileMenuBtn.classList.remove('active');
-                mobileNavMenu.classList.remove('active');
-                bodyElement.style.overflow = '';
-            }
-        });
-        
-        // Letter-by-letter animation for the title
-        document.addEventListener('DOMContentLoaded', function() {
-            const titleElement = document.getElementById('animated-title');
-            const letters = titleElement.querySelectorAll('.letter, .acc');
-            
-            // Apply animation delays to each letter
-            letters.forEach((letter, index) => {
-                letter.style.animationDelay = `${index * 0.1}s`;
-            });
-            
-            // Animate the black bar
-            const blackBarElement = document.querySelector('.black-bar');
-            if (blackBarElement) {
-                blackBarElement.classList.add('draw-animated');
-            }
-        });
-    </script>
+    });
+
+    // Kakao Map Scripts
+    // 본사
+    new daum.roughmap.Lander({
+        "timestamp" : "1756347135809",
+        "key" : "7r6tqardtfa",
+        "mapWidth" : "100%",
+        "mapHeight" : "360"
+    }).render();
+
+    // 법무법인 기풍
+    new daum.roughmap.Lander({
+        "timestamp" : "1756347786545",
+        "key" : "7r7bz6gz5xi",
+        "mapWidth" : "100%",
+        "mapHeight" : "360"
+    }).render();
+
+    // 세무회계 기풍
+    new daum.roughmap.Lander({
+        "timestamp" : "1756347875713",
+        "key" : "84ehxv7ihwq",
+        "mapWidth" : "100%",
+        "mapHeight" : "360"
+    }).render();
+</script>
 </body>
 </html>

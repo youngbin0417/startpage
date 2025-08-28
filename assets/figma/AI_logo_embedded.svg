@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- [수정] viewBox의 높이를 95로 늘려 잘림 문제를 해결하고, 너비도 조정했습니다. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 175 95">
+  <defs>
+    <path id="sparkle" d="M25,0 L35,15 L50,25 L35,35 L25,50 L15,35 L0,25 L15,15 Z" />
+  </defs>
+
+  <g fill="#FFBF00">
+    <!-- 'Ai' 텍스트 그룹 -->
+    <!-- [수정] font-size를 90으로 키우고, y 좌표를 조정하여 세로 정렬을 맞췄습니다. -->
+    <g font-family="Arial, 'Helvetica Neue', Helvetica, sans-serif" font-size="90" font-weight="bold">
+      <text x="0" y="80">A</text>
+      <text x="65" y="80">i</text>
+    </g>
+
+    <!-- 반짝이 효과 그룹 (커진 글자에 맞춰 위치 미세 조정) -->
+    <g>
+      <use href="#sparkle" transform="translate(112, 5) scale(0.55)" />
+      <use href="#sparkle" transform="translate(92, 30) scale(0.75)" />
+      <use href="#sparkle" transform="translate(120, 45) scale(1)" />
+    </g>
+  </g>
+</svg>

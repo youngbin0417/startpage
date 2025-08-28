@@ -37,6 +37,11 @@
     }
     .em{color:#DC2626}
 
+    #gamdong-map-section{
+        max-width: 100rem;
+        margin: 0 auto;
+        padding: 0 1.25rem;
+    }
     /* Hero */
     .vt-hero{position:relative;min-height:72vh;background:#000; overflow: hidden;}
     .vt-hero__video {
@@ -333,6 +338,7 @@
         color: #000;
     }
 
+
     /* Mobile Responsive */
     @media (max-width: 768px) {
         .navbar {
@@ -600,6 +606,7 @@
         flex-shrink: 0; /* 글자가 줄어들지 않도록 고정 */
     }
 
+
     .onestop-container {
         display: flex; /* inline-flex에서 flex로 변경 */
         flex-direction: row;
@@ -697,6 +704,8 @@
         flex-shrink: 0;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
+
 
     .service-content {
         text-align: right;
@@ -1590,6 +1599,7 @@
         }
     }
     @media(max-width: 400px) {
+
         .testimonials-header {
             text-align: left;
             margin-bottom: 30px;
@@ -1611,6 +1621,7 @@
         .tax-service-list {
             padding-left: 15rem;
         }
+
     }
     @media (max-width: 1100px) {
         .tax-service-list {
@@ -1629,6 +1640,7 @@
         }
     }
     @media (max-width: 768px) {
+
         .brand-name .value {
             color: #ff3131;
             font-size: 2rem;
@@ -1940,6 +1952,7 @@
         .char2{
             font-size: 1.5rem; /* 모바일에 맞게 폰트 크기 조정 */
         }
+
 
         /* .onestop-container는 .title-line의 flexbox에 맞춰 자연스럽게 정렬됩니다. */
 
@@ -2295,18 +2308,19 @@
         </div>
     </div>
 </section>
+
 <div class="valuetouch-sidebar">
-    <a href="javascript:void(0);" onclick="openConsultingModal('touch')">
-        <img src="/assets/sidebar/call.svg" alt="상담신청">
-        <span>상담신청</span>
+    <a href="#" onclick="handlePhoneClick()">
+        <img src="/assets/sidebar/call.svg" alt="전화상담">
+        <span>전화상담</span>
     </a>
-    <a href="http://pf.kakao.com/_xnBWWn/chat" target="_blank" rel="noopener">
+    <a href="http://pf.kakao.com/_uxmwxmn/chat" target="_blank" rel="noopener">
         <img src="/assets/sidebar/kakao.svg" alt="카카오톡">
         <span>카카오톡</span>
     </a>
-    <a href="https://valuetouch.kr/main" target="_blank" rel="noopener">
-        <img src="/assets/sidebar/map.svg" alt="무료탁감">
-        <span>무료탁감</span>
+    <a href="javascript:void(0);" onclick="openConsultingModal('touch')">
+        <img src="/assets/sidebar/doc.svg" alt="상담신청">
+        <span>상담신청</span>
     </a>
 </div>
 
@@ -2447,9 +2461,19 @@
 
     </div>
 </section>
+
+
+{{> home/partner}}
+
 <section id="gamdong-map-section" style="background-color:#f7f8fa; padding:40px 0;">
     {{> home/jisa }}
 </section>
+
+
+
+
+
+
 <!-- Customer Testimonials Section -->
 <section class="testimonials-section">
     <div class="container">
@@ -2553,7 +2577,7 @@
                 </div>
 
                 <div class="chat-bubble">
-                    <a href="http://pf.kakao.com/_xnBWWn/chat" target="_blank" rel="noopener" style="color: black;" class="flicker-blink">카카오톡으로 실시간 상담하기 &gt;</a>
+                    <a href="http://pf.kakao.com/_uxmwxmn/chat" target="_blank" rel="noopener" style="color: black;" class="flicker-blink">카카오톡으로 실시간 상담하기 &gt;</a>
                 </div>
 
                 <div class="chat-input-area">
@@ -2890,6 +2914,21 @@
         });
     });
 </script>
+
+<script>
+    function isMobile() {
+     return /iPhone|Android|Mobile|iPad|iPod/i.test(navigator.userAgent);
+    }
+
+    function handlePhoneClick() {
+     if (isMobile()) {
+     window.location.href = 'tel:02-6299-7447';
+     } else {
+     alert('전화번호: 02-6299-7447\n휴대폰에서 눌러주시면 바로 연결됩니다.');
+     }
+    }
+</script>
+
 <script>
     (function () {
         const v = document.getElementById('background-video');

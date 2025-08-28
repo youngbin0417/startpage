@@ -487,6 +487,30 @@
             .brand-name {
                 margin-top: 0.5rem;
             }
+            
+            /* 모바일에서 지도와 카드 레이아웃 변경 */
+            .service-grid {
+                flex-direction: column;
+            }
+            
+            .service-grid > div {
+                flex-direction: column;
+            }
+            
+            .service-grid > div > div {
+                width: 100%;
+            }
+            
+            /* 모바일에서 지도와 카드 레이아웃 변경을 위한 클래스 추가 */
+            @media (max-width: 768px) {
+                .map-card-container {
+                    flex-direction: column !important;
+                }
+                
+                .map-container, .card-container {
+                    width: 100% !important;
+                }
+            }
         }
 
         @media (max-width: 480px) {
@@ -727,23 +751,24 @@
                     <div class="title-line">
                         <div class="title-start">
                             <div class="vertical-line"></div>
-                            본사
+                            감정평가법인 감동 본사
                         </div>
                     </div>
                 </h2>
             </div>
-            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;">
+            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;" class="map-card-container">
                 <!-- Left Area (Mini Map) -->
-                <div style="flex: 1; min-width: 300px;">
+                <div style="flex: 1; min-width: 300px;" class="map-container">
                     <!-- 1. 지도 노드 -->
                     <div id="daumRoughmapContainer1756347135809" class="root_daum_roughmap root_daum_roughmap_landing" style="width: 100%; height: 360px;"></div>
                 </div>
                 <!-- Right Area (Company Info Card) -->
-                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;">
+                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;" class="card-container">
                     <div style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                         <div style="margin-bottom: 15px;">
                             <div style="font-size: 1.2em; font-weight: bold; color: #333;">본사</div>
                         </div>
+                        <div style="width: 100px; height: 2px; background-color: #ff3131; margin-bottom: 15px;"></div>
                         <div style="margin-bottom: 10px;">
                             <div style="font-size: 1em; color: #666;">주소: 서울 종로구 새문안로5길 37 7층 4호</div>
                         </div>
@@ -768,18 +793,19 @@
                     </div>
                 </h2>
             </div>
-            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;">
+            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;" class="map-card-container">
                 <!-- Left Area (Mini Map) -->
-                <div style="flex: 1; min-width: 300px;">
+                <div style="flex: 1; min-width: 300px;" class="map-container">
                     <!-- 1. 지도 노드 -->
                     <div id="daumRoughmapContainer1756347786545" class="root_daum_roughmap root_daum_roughmap_landing" style="width: 100%; height: 360px;"></div>
                 </div>
                 <!-- Right Area (Company Info Card) -->
-                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;">
+                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;" class="card-container">
                     <div style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                         <div style="margin-bottom: 15px;">
                             <div style="font-size: 1.2em; font-weight: bold; color: #333;">법무법인 기풍</div>
                         </div>
+                        <div style="width: 100px; height: 2px; background-color: #ff3131; margin-bottom: 15px;"></div>
                         <div style="margin-bottom: 10px;">
                             <div style="font-size: 1em; color: #666;">주소: 서울 서초구 서초대로 254 오퓨런스빌딩 11층 1108, 1109호</div>
                         </div>
@@ -804,18 +830,19 @@
                     </div>
                 </h2>
             </div>
-            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;">
+            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;" class="map-card-container">
                 <!-- Left Area (Mini Map) -->
-                <div style="flex: 1; min-width: 300px;">
+                <div style="flex: 1; min-width: 300px;" class="map-container">
                     <!-- 1. 지도 노드 -->
                     <div id="daumRoughmapContainer1756347875713" class="root_daum_roughmap root_daum_roughmap_landing" style="width: 100%; height: 360px;"></div>
                 </div>
                 <!-- Right Area (Company Info Card) -->
-                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;">
+                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;" class="card-container">
                     <div style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                         <div style="margin-bottom: 15px;">
                             <div style="font-size: 1.2em; font-weight: bold; color: #333;">세무회계 기풍</div>
                         </div>
+                        <div style="width: 100px; height: 2px; background-color: #ff3131; margin-bottom: 15px;"></div>
                         <div style="margin-bottom: 10px;">
                             <div style="font-size: 1em; color: #666;">주소: 경기 파주시 경의로 1218 503호 (와동동, 월드타워12차)</div>
                         </div>
@@ -861,18 +888,19 @@
                     </div>
                 </h2>
             </div>
-            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;">
+            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;" class="map-card-container">
                 <!-- Left Area (Mini Map) -->
-                <div style="flex: 1; min-width: 300px;">
+                <div style="flex: 1; min-width: 300px;" class="map-container">
                     <!-- 1. 지도 노드 -->
                     <div id="daumRoughmapContainer1756347255401" class="root_daum_roughmap root_daum_roughmap_landing" style="width: 100%; height: 360px;"></div>
                 </div>
                 <!-- Right Area (Company Info Card) -->
-                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;">
+                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;" class="card-container">
                     <div style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                         <div style="margin-bottom: 15px;">
                             <div style="font-size: 1.2em; font-weight: bold; color: #333;">서울지사</div>
                         </div>
+                        <div style="width: 100px; height: 2px; background-color: #ff3131; margin-bottom: 15px;"></div>
                         <div style="margin-bottom: 10px;">
                             <div style="font-size: 1em; color: #666;">주소: 서울 송파구 백제고분로 67 7층 705호</div>
                         </div>
@@ -897,18 +925,19 @@
                     </div>
                 </h2>
             </div>
-            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;">
+            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;" class="map-card-container">
                 <!-- Left Area (Mini Map) -->
-                <div style="flex: 1; min-width: 300px;">
+                <div style="flex: 1; min-width: 300px;" class="map-container">
                     <!-- 1. 지도 노드 -->
                     <div id="daumRoughmapContainer1756347301017" class="root_daum_roughmap root_daum_roughmap_landing" style="width: 100%; height: 360px;"></div>
                 </div>
                 <!-- Right Area (Company Info Card) -->
-                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;">
+                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;" class="card-container">
                     <div style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                         <div style="margin-bottom: 15px;">
                             <div style="font-size: 1.2em; font-weight: bold; color: #333;">경기지역본부</div>
                         </div>
+                        <div style="width: 100px; height: 2px; background-color: #ff3131; margin-bottom: 15px;"></div>
                         <div style="margin-bottom: 10px;">
                             <div style="font-size: 1em; color: #666;">주소: 경기 광명시 새빛공원로 67 씨동 3층 314호</div>
                         </div>
@@ -933,18 +962,19 @@
                     </div>
                 </h2>
             </div>
-            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;">
+            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;" class="map-card-container">
                 <!-- Left Area (Mini Map) -->
-                <div style="flex: 1; min-width: 300px;">
+                <div style="flex: 1; min-width: 300px;" class="map-container">
                     <!-- 1. 지도 노드 -->
                     <div id="daumRoughmapContainer1756347336784" class="root_daum_roughmap root_daum_roughmap_landing" style="width: 100%; height: 360px;"></div>
                 </div>
                 <!-- Right Area (Company Info Card) -->
-                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;">
+                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;" class="card-container">
                     <div style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                         <div style="margin-bottom: 15px;">
                             <div style="font-size: 1.2em; font-weight: bold; color: #333;">경기북부지사</div>
                         </div>
+                        <div style="width: 100px; height: 2px; background-color: #ff3131; margin-bottom: 15px;"></div>
                         <div style="margin-bottom: 10px;">
                             <div style="font-size: 1em; color: #666;">주소: 경기 남양주시 가운로1길 25 104호</div>
                         </div>
@@ -969,18 +999,19 @@
                     </div>
                 </h2>
             </div>
-            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;">
+            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;" class="map-card-container">
                 <!-- Left Area (Mini Map) -->
-                <div style="flex: 1; min-width: 300px;">
+                <div style="flex: 1; min-width: 300px;" class="map-container">
                     <!-- 1. 지도 노드 -->
                     <div id="daumRoughmapContainer1756347427041" class="root_daum_roughmap root_daum_roughmap_landing" style="width: 100%; height: 360px;"></div>
                 </div>
                 <!-- Right Area (Company Info Card) -->
-                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;">
+                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;" class="card-container">
                     <div style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                         <div style="margin-bottom: 15px;">
                             <div style="font-size: 1.2em; font-weight: bold; color: #333;">경인지사</div>
                         </div>
+                        <div style="width: 100px; height: 2px; background-color: #ff3131; margin-bottom: 15px;"></div>
                         <div style="margin-bottom: 10px;">
                             <div style="font-size: 1em; color: #666;">주소: 인천 남동구 복개서로97번길 15</div>
                         </div>
@@ -1005,18 +1036,19 @@
                     </div>
                 </h2>
             </div>
-            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;">
+            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;" class="map-card-container">
                 <!-- Left Area (Mini Map) -->
-                <div style="flex: 1; min-width: 300px;">
+                <div style="flex: 1; min-width: 300px;" class="map-container">
                     <!-- 1. 지도 노드 -->
                     <div id="daumRoughmapContainer1756347482209" class="root_daum_roughmap root_daum_roughmap_landing" style="width: 100%; height: 360px;"></div>
                 </div>
                 <!-- Right Area (Company Info Card) -->
-                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;">
+                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;" class="card-container">
                     <div style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                         <div style="margin-bottom: 15px;">
                             <div style="font-size: 1.2em; font-weight: bold; color: #333;">시흥안산지사</div>
                         </div>
+                        <div style="width: 100px; height: 2px; background-color: #ff3131; margin-bottom: 15px;"></div>
                         <div style="margin-bottom: 10px;">
                             <div style="font-size: 1em; color: #666;">주소: 경기 시흥시 공단1대로 207 에이동 2층</div>
                         </div>
@@ -1041,18 +1073,19 @@
                     </div>
                 </h2>
             </div>
-            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;">
+            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;" class="map-card-container">
                 <!-- Left Area (Mini Map) -->
-                <div style="flex: 1; min-width: 300px;">
+                <div style="flex: 1; min-width: 300px;" class="map-container">
                     <!-- 1. 지도 노드 -->
                     <div id="daumRoughmapContainer1756347550129" class="root_daum_roughmap root_daum_roughmap_landing" style="width: 100%; height: 360px;"></div>
                 </div>
                 <!-- Right Area (Company Info Card) -->
-                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;">
+                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;" class="card-container">
                     <div style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                         <div style="margin-bottom: 15px;">
                             <div style="font-size: 1.2em; font-weight: bold; color: #333;">강원지사</div>
                         </div>
+                        <div style="width: 100px; height: 2px; background-color: #ff3131; margin-bottom: 15px;"></div>
                         <div style="margin-bottom: 10px;">
                             <div style="font-size: 1em; color: #666;">주소: 강원 춘천시 충혼길52번길 10 3층 305호</div>
                         </div>
@@ -1077,18 +1110,19 @@
                     </div>
                 </h2>
             </div>
-            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;">
+            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;" class="map-card-container">
                 <!-- Left Area (Mini Map) -->
-                <div style="flex: 1; min-width: 300px;">
+                <div style="flex: 1; min-width: 300px;" class="map-container">
                     <!-- 1. 지도 노드 -->
                     <div id="daumRoughmapContainer1756347571425" class="root_daum_roughmap root_daum_roughmap_landing" style="width: 100%; height: 360px;"></div>
                 </div>
                 <!-- Right Area (Company Info Card) -->
-                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;">
+                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;" class="card-container">
                     <div style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                         <div style="margin-bottom: 15px;">
                             <div style="font-size: 1.2em; font-weight: bold; color: #333;">충북지사</div>
                         </div>
+                        <div style="width: 100px; height: 2px; background-color: #ff3131; margin-bottom: 15px;"></div>
                         <div style="margin-bottom: 10px;">
                             <div style="font-size: 1em; color: #666;">주소: 충북 청주시 상당구 상당로70번길 16-1 3층</div>
                         </div>
@@ -1113,18 +1147,19 @@
                     </div>
                 </h2>
             </div>
-            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;">
+            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;" class="map-card-container">
                 <!-- Left Area (Mini Map) -->
-                <div style="flex: 1; min-width: 300px;">
+                <div style="flex: 1; min-width: 300px;" class="map-container">
                     <!-- 1. 지도 노드 -->
                     <div id="daumRoughmapContainer1756347588729" class="root_daum_roughmap root_daum_roughmap_landing" style="width: 100%; height: 360px;"></div>
                 </div>
                 <!-- Right Area (Company Info Card) -->
-                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;">
+                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;" class="card-container">
                     <div style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                         <div style="margin-bottom: 15px;">
                             <div style="font-size: 1.2em; font-weight: bold; color: #333;">충남지사</div>
                         </div>
+                        <div style="width: 100px; height: 2px; background-color: #ff3131; margin-bottom: 15px;"></div>
                         <div style="margin-bottom: 10px;">
                             <div style="font-size: 1em; color: #666;">주소: 충남 아산시 배방읍 광장로 177-10 13층 1301호</div>
                         </div>
@@ -1149,18 +1184,19 @@
                     </div>
                 </h2>
             </div>
-            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;">
+            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;" class="map-card-container">
                 <!-- Left Area (Mini Map) -->
-                <div style="flex: 1; min-width: 300px;">
+                <div style="flex: 1; min-width: 300px;" class="map-container">
                     <!-- 1. 지도 노드 -->
                     <div id="daumRoughmapContainer1756347611513" class="root_daum_roughmap root_daum_roughmap_landing" style="width: 100%; height: 360px;"></div>
                 </div>
                 <!-- Right Area (Company Info Card) -->
-                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;">
+                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;" class="card-container">
                     <div style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                         <div style="margin-bottom: 15px;">
                             <div style="font-size: 1.2em; font-weight: bold; color: #333;">전북지사</div>
                         </div>
+                        <div style="width: 100px; height: 2px; background-color: #ff3131; margin-bottom: 15px;"></div>
                         <div style="margin-bottom: 10px;">
                             <div style="font-size: 1em; color: #666;">주소: 전북 군산시 동수송2길 19 3층 301호</div>
                         </div>
@@ -1185,18 +1221,19 @@
                     </div>
                 </h2>
             </div>
-            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;">
+            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;" class="map-card-container">
                 <!-- Left Area (Mini Map) -->
-                <div style="flex: 1; min-width: 300px;">
+                <div style="flex: 1; min-width: 300px;" class="map-container">
                     <!-- 1. 지도 노드 -->
                     <div id="daumRoughmapContainer1756347629496" class="root_daum_roughmap root_daum_roughmap_landing" style="width: 100%; height: 360px;"></div>
                 </div>
                 <!-- Right Area (Company Info Card) -->
-                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;">
+                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;" class="card-container">
                     <div style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                         <div style="margin-bottom: 15px;">
                             <div style="font-size: 1.2em; font-weight: bold; color: #333;">전남지사</div>
                         </div>
+                        <div style="width: 100px; height: 2px; background-color: #ff3131; margin-bottom: 15px;"></div>
                         <div style="margin-bottom: 10px;">
                             <div style="font-size: 1em; color: #666;">주소: 전남 나주시 상야2길 7 6층 에이734호</div>
                         </div>
@@ -1221,18 +1258,19 @@
                     </div>
                 </h2>
             </div>
-            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;">
+            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;" class="map-card-container">
                 <!-- Left Area (Mini Map) -->
-                <div style="flex: 1; min-width: 300px;">
+                <div style="flex: 1; min-width: 300px;" class="map-container">
                     <!-- 1. 지도 노드 -->
                     <div id="daumRoughmapContainer1756347651385" class="root_daum_roughmap root_daum_roughmap_landing" style="width: 100%; height: 360px;"></div>
                 </div>
                 <!-- Right Area (Company Info Card) -->
-                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;">
+                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;" class="card-container">
                     <div style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                         <div style="margin-bottom: 15px;">
                             <div style="font-size: 1.2em; font-weight: bold; color: #333;">대구지사</div>
                         </div>
+                        <div style="width: 100px; height: 2px; background-color: #ff3131; margin-bottom: 15px;"></div>
                         <div style="margin-bottom: 10px;">
                             <div style="font-size: 1em; color: #666;">주소: 대구 수성구 범어천로 60-2 3층</div>
                         </div>
@@ -1257,18 +1295,19 @@
                     </div>
                 </h2>
             </div>
-            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;">
+            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;" class="map-card-container">
                 <!-- Left Area (Mini Map) -->
-                <div style="flex: 1; min-width: 300px;">
+                <div style="flex: 1; min-width: 300px;" class="map-container">
                     <!-- 1. 지도 노드 -->
                     <div id="daumRoughmapContainer1756347754073" class="root_daum_roughmap root_daum_roughmap_landing" style="width: 100%; height: 360px;"></div>
                 </div>
                 <!-- Right Area (Company Info Card) -->
-                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;">
+                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;" class="card-container">
                     <div style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                         <div style="margin-bottom: 15px;">
                             <div style="font-size: 1.2em; font-weight: bold; color: #333;">경남지사</div>
                         </div>
+                        <div style="width: 100px; height: 2px; background-color: #ff3131; margin-bottom: 15px;"></div>
                         <div style="margin-bottom: 10px;">
                             <div style="font-size: 1em; color: #666;">주소: 경남 창원시 마산회원구 3·15대로 636 2층 211호</div>
                         </div>
@@ -1293,18 +1332,19 @@
                     </div>
                 </h2>
             </div>
-            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;">
+            <div style="display: flex; flex-direction: row; gap: 20px; width: 100%;" class="map-card-container">
                 <!-- Left Area (Mini Map) -->
-                <div style="flex: 1; min-width: 300px;">
+                <div style="flex: 1; min-width: 300px;" class="map-container">
                     <!-- 1. 지도 노드 -->
                     <div id="daumRoughmapContainer1756347738801" class="root_daum_roughmap root_daum_roughmap_landing" style="width: 100%; height: 360px;"></div>
                 </div>
                 <!-- Right Area (Company Info Card) -->
-                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;">
+                <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1;" class="card-container">
                     <div style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                         <div style="margin-bottom: 15px;">
                             <div style="font-size: 1.2em; font-weight: bold; color: #333;">부산지사</div>
                         </div>
+                        <div style="width: 100px; height: 2px; background-color: #ff3131; margin-bottom: 15px;"></div>
                         <div style="margin-bottom: 10px;">
                             <div style="font-size: 1em; color: #666;">주소: 부산 해운대구 좌동순환로 503 웰비치오피스텔 10층 1014호</div>
                         </div>
@@ -1586,6 +1626,22 @@
         "mapWidth" : "100%",
         "mapHeight" : "360"
     }).render();
+    
+    // Adjust red line width based on text width
+    document.addEventListener('DOMContentLoaded', function() {
+        const companyCards = document.querySelectorAll('.company-info-content > div > div > div > div > div > div');
+        companyCards.forEach(function(card) {
+            const nameElement = card.querySelector('div:nth-child(1) > div');
+            const redLine = card.querySelector('div:nth-child(2)');
+            if (nameElement && redLine) {
+                // Use a timeout to ensure the element is fully rendered
+                setTimeout(function() {
+                    const textWidth = nameElement.offsetWidth;
+                    redLine.style.width = textWidth + 'px';
+                }, 100);
+            }
+        });
+    });
 </script>
 </body>
 </html>
